@@ -54,5 +54,5 @@
  ## Sobre nós
  Quem somos?
 
- O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de Informação, com o propósito de unir arte, cultura e tecnologia. Nosso foco é transformar a experiência de visitação ao Parque de Esculturas Francisco Brennand, tornando-a mais acessível,      interativa e conectada.
+ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de Informação do CESAR School, com o propósito de unir arte, cultura e tecnologia. Nosso foco é transformar a experiência de visitação ao Parque de Esculturas Francisco Brennand, tornando-a mais acessível,      interativa e conectada.
 
