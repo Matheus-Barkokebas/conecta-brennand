@@ -9,7 +9,7 @@
  
  Responsável por organizar etapas, prazos e equipe. Responsável por definir arquitetura, padrões e apoiar em problemas técnicos. Responsável por ajudar no desenvolvimento back-end e front-end, integrando o sistema. 
 
- Flávio Barbosa: Designer;
+ # Flávio Barbosa: Designer;
  
  Desenvolvedor Front End;
  
