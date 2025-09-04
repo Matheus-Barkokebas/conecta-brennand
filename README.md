@@ -1,4 +1,4 @@
-![banner](arq_readme./imgs/banner.png) 
+![banner](arq_readme/imgs/banner.png)
 
 # Connecta Brennand
 
@@ -8,7 +8,7 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 
 <a href="https://trello.com/b/XQcU1FLY/conecta-brennand" target="_blank">📌 Link do Backlog (Trello)</a>
 
-[📥 Baixar manual](arq_readm./pdfs/story_mapping.pdf)
+[📥 Story Mapping (PDF)](arq_readme/pdfs/story_mapping.pdf)
 
 ## 🎨 Protótipo LOFI  
 
