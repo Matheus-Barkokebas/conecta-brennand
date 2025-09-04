@@ -1,58 +1,89 @@
-# Conecta-Brennand
+![banner](arq_readme./imgs/banner.png) 
 
-## Equipe
- Matheus Barkokebas: Lider do Projeto
- 
- Lider de Desenvolvimento;
- 
- Email: mbbc@cesar.school 
- 
- Responsável por organizar etapas, prazos e equipe. Responsável por definir arquitetura, padrões e apoiar em problemas técnicos. Responsável por ajudar no desenvolvimento back-end e front-end, integrando o sistema. 
+# Connecta Brennand
 
- Flávio Barbosa: Designer
- 
- Desenvolvedor Front End;
- 
- Email: fbsj@cesar.school
- 
- Responsável por definir a interface do sistema, garantindo usabilidade e identidade visual, além de desenvolver o Google Sites para apresentação do projeto. 
+O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de Informação, com o propósito de unir arte, cultura e tecnologia. Nosso foco é transformar a experiência de visitação ao Parque de Esculturas Francisco Brennand, tornando-a mais acessível, interativa e conectada.
 
- José Vitor de Sousa: Quality Assurance
- 
- Desenvolvedor Back End;
- 
- Email: jvslx@cesar.school
- 
- Responsável por desenvolver o back-end do sistema e realizar testes de qualidade, garantindo integração com o banco de dados, performance e confiabilidade da aplicação. 
+## 📋 Backlog 
 
- Nestor de Franca: Desenvolvedor Full Stack
- 
- Email: nmmf@cesar.school
- 
- Responsável por criar e integrar a interface do usuário, além da lógica e dos dados que sustentam as aplicações.
+<a href="https://trello.com/b/XQcU1FLY/conecta-brennand" target="_blank">📌 Link do Backlog (Trello)</a>
 
- Pedro Henrique: Desenvolvedor Back End
+[📥 Baixar manual](arq_readm./pdfs/story_mapping.pdf)
 
- Email: phct@cesar.school
- 
- Responsável por estruturar a lógica e regras de negócio do sistema, desenvolver a integração com o banco de dados e garantir a segurança e performance da aplicação. 
+## 🎨 Protótipo LOFI  
 
- Tiago Abraão: Desenvolvedor Full Stack
- 
- Email: taol@cesar.school
- 
- Responsável por criar e integrar a interface do usuário, além da lógica e dos dados que sustentam as aplicações.
+<details> 
+    <summary>📌 LOFI </summary>
+    
+EM DEV..
 
- Luiz Eduardo: Designer
- 
- Desenvolvedor Front End;
- 
- Email: lemm@cesar.school
- 
- Responsável por definir a interface do sistema, garantindo usabilidade e identidade visual, além de desenvolver o Google Sites para apresentação do projeto. 
+</details>
 
- ## Sobre nós
- Quem somos?
+## 👥 Equipe
 
- O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de Informação do CESAR School, com o propósito de unir arte, cultura e tecnologia. Nosso foco é transformar a experiência de visitação ao Parque de Esculturas Francisco Brennand, tornando-a mais acessível,      interativa e conectada.
+### Matheus Barkokebas  
+**Líder do Projeto | Líder de Desenvolvimento**  
+📧 mbbc@cesar.school  
+
+- Organizar etapas, prazos e equipe  
+- Definir arquitetura e padrões técnicos  
+- Apoiar na resolução de problemas técnicos  
+- Atuar no desenvolvimento back-end e front-end, garantindo integração do sistema  
+
+---
+
+### Flávio Barbosa  
+**Designer | Desenvolvedor Front-End**  
+📧 fbsj@cesar.school  
+
+- Definir interface do sistema, com foco em usabilidade e identidade visual  
+- Desenvolver o Google Sites para apresentação do projeto  
+
+---
+
+### José Vitor de Sousa  
+**Quality Assurance | Desenvolvedor Back-End**  
+📧 jvslx@cesar.school  
+
+- Desenvolver o back-end do sistema  
+- Realizar testes de qualidade  
+- Garantir integração com banco de dados, performance e confiabilidade da aplicação  
+
+---
+
+### Nestor de Franca  
+**Desenvolvedor Full Stack**  
+📧 nmmf@cesar.school  
+
+- Criar e integrar a interface do usuário  
+- Desenvolver lógica de negócio e estrutura de dados da aplicação  
+
+---
+
+### Pedro Henrique  
+**Desenvolvedor Back-End**  
+📧 phct@cesar.school  
+
+- Estruturar lógica e regras de negócio do sistema  
+- Desenvolver integração com banco de dados  
+- Garantir segurança e performance da aplicação  
+
+---
+
+### Tiago Abraão  
+**Desenvolvedor Full Stack**  
+📧 taol@cesar.school  
+
+- Criar e integrar a interface do usuário  
+- Desenvolver lógica e dados que sustentam a aplicação  
+
+---
+
+### Luiz Eduardo  
+**Designer | Desenvolvedor Front-End**  
+📧 lemm@cesar.school  
+
+- Definir interface do sistema, garantindo usabilidade e identidade visual  
+- Desenvolver o Google Sites para apresentação do projeto  
+
 
