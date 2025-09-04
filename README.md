@@ -19,6 +19,13 @@ EM DEV..
 
 </details>
 
+<details> 
+    <summary>📌 BDD - Gherkin </summary>
+    
+[📥 BDD - Gherkin (PDF)](arq_readme/pdfs/bdd_gherkin.pdf)
+
+</details>
+
 ## 👥 Equipe
 
 ### Matheus Barkokebas  
