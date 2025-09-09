@@ -1,3 +1,4 @@
+-- Criação do Banco
 CREATE DATABASE conectaBrenannd;
 \c conectaBrenannd;
 
@@ -14,6 +15,7 @@ CREATE TABLE visitante (
     tipo VARCHAR(50) CHECK (tipo IN ('individual', 'grupo'))
 );
 
+
 CREATE TABLE agendamento (
     id_agendamento SERIAL PRIMARY KEY,
     id_visitante INT NOT NULL,
@@ -22,6 +24,16 @@ CREATE TABLE agendamento (
     qtd_pessoas INT DEFAULT 1,
     status VARCHAR(20) CHECK (status IN ('pendente', 'confirmado', 'cancelado')) DEFAULT 'pendente'
 );
+
+
+CREATE TABLE participante (
+    id_participante SERIAL PRIMARY KEY,
+    id_agendamento INT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE,
+    documento VARCHAR(20)
+);
+
 
 CREATE TABLE token (
     id_token SERIAL PRIMARY KEY,
@@ -32,6 +44,7 @@ CREATE TABLE token (
     data_expiracao TIMESTAMP
 );
 
+
 CREATE TABLE feedback (
     id_feedback SERIAL PRIMARY KEY,
     id_agendamento INT NOT NULL,
@@ -39,6 +52,7 @@ CREATE TABLE feedback (
     comentario TEXT,
     data_feedback TIMESTAMP DEFAULT NOW()
 );
+
 
 CREATE TABLE administrador (
     id_admin SERIAL PRIMARY KEY,
@@ -53,16 +67,25 @@ CREATE TABLE administrador (
 
 ---------------------------------------------------------
 
+-- um agendamento pertence a um visitante (1/1).
 ALTER TABLE agendamento
 ADD CONSTRAINT fk_agendamento_visitante
 FOREIGN KEY (id_visitante) REFERENCES visitante(id_visitante)
 ON DELETE CASCADE;
 
+-- cada participante de grupo está vinculado a um agendamento específico (1/1).
+ALTER TABLE participante
+ADD CONSTRAINT fk_participante_agendamento
+FOREIGN KEY (id_agendamento) REFERENCES agendamento(id_agendamento)
+ON DELETE CASCADE;
+
+-- cada token é gerado para um agendamento (entrada/validação no parque (1/1)).
 ALTER TABLE token
 ADD CONSTRAINT fk_token_agendamento
 FOREIGN KEY (id_agendamento) REFERENCES agendamento(id_agendamento)
 ON DELETE CASCADE;
 
+-- cada feedback está associado a um agendamento (avaliação da visita (1/1)).
 ALTER TABLE feedback
 ADD CONSTRAINT fk_feedback_agendamento
 FOREIGN KEY (id_agendamento) REFERENCES agendamento(id_agendamento)
