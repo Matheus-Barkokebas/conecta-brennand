@@ -15,7 +15,7 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 <details> 
     <summary>📌 LOFI </summary>
     
-EM DEV..
+[📥 LOFI ](arq_readme/videos/prototipo.mp4)
 
 </details>
 
