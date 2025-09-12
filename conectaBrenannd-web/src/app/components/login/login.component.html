@@ -1,0 +1,28 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+  <div class="input-group">
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" placeholder="Digite seu email" required />
+      <mat-icon matPrefix>person</mat-icon>
+      <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        Email inválido
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="input-group">
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Senha</mat-label>
+      <input matInput formControlName="senha" type="password" placeholder="Digite sua senha" required />
+      <mat-icon matPrefix>lock</mat-icon>
+      <mat-error *ngIf="loginForm.get('senha')?.invalid && loginForm.get('senha')?.touched">
+        Senha é obrigatória
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button class="login-button" type="submit">
+    <span>Entrar</span>
+    <div class="button-hover-effect"></div>
+  </button>
+</form>

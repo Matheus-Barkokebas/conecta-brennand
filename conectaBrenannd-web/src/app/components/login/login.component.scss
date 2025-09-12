@@ -1,0 +1,47 @@
+.login-form {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .input-group {
+    width: 100%;
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .login-button {
+    position: relative;
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    background: #1976d2;
+    color: #fff;
+    overflow: hidden;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #1565c0;
+    }
+  }
+
+  mat-error {
+    font-size: 0.8rem;
+    color: #e53935;
+  }
+}
+
+body {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  font-family: 'Roboto', sans-serif;
+}

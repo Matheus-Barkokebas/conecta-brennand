@@ -36,7 +36,6 @@ public class UsuarioController {
 	private final UsuarioQueryService queryService;
 	private final IUsuarioMapper mapper;
 
-	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
 	@ResponseStatus(CREATED)
 	public UsuarioDto save(@RequestBody @Validated final UsuarioDto dto) {
