@@ -12,9 +12,9 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { SERVICES_TOKEN } from '../../service/service.token';
-import { SnackbarManagerService } from '../../service/snackbar-manager.service';
+import { SnackbarManagerService } from '../../service/ui/snackbar-manager.service';
 import { AuthService } from '../../service/auth/auth.service';
-import { ISnackbarManagerService } from '../../service/isnackbar-manager.service';
+import { ISnackbarManagerService } from '../../service/ui/isnackbar-manager.service';
 
 @Component({
   selector: 'app-login',

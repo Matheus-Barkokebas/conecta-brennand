@@ -4,7 +4,7 @@ export enum Permissoes {
   USUARIO = 'USUARIO',
 }
 
-export class UsuarioDto {
+export class Usuario {
   id: number;
   nome: string;
   email: string;

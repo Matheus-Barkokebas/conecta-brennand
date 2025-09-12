@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ComponentType } from '@angular/cdk/portal';
 import { Observable } from 'rxjs';
-import { YesNoDialogComponent } from '../commons/components/yes-no-dialog/yes-no-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { IDialogManagerService } from './idialog-manger.service';
+import { YesNoDialogComponent } from '../../components/commons/yes-no-dialog/yes-no-dialog.component';
 
 @Injectable({
   providedIn: 'root',

@@ -1,7 +1,7 @@
 import { InjectionToken } from "@angular/core";
-import { IUsuarioService } from "./api/usuario/iusuario.service";
-import { ISnackbarManagerService } from "./isnackbar-manager.service";
-import { IDialogManagerService } from "./idialog-manger.service";
+import { ISnackbarManagerService } from "./ui/isnackbar-manager.service";
+import { IDialogManagerService } from "./ui/idialog-manger.service";
+import { IUsuarioService } from "../components/entity/usuario/services/iusuario.service";
 
 export const SERVICES_TOKEN = {
   HTTP: {
