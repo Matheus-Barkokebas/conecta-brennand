@@ -1,1 +1,97 @@
-<p>usuario-form works!</p>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="user-form-container">
+  <div class="form-header">
+    <h2>Cadastro de Usuário</h2>
+    <p>Preencha os campos abaixo para registrar um novo usuário</p>
+  </div>
+
+  <div class="form-grid">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Nome</mat-label>
+        <input matInput name="nome" #nomeModel="ngModel" [(ngModel)]="usuario.nome" required>
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="nomeModel.hasError('required')">Nome é obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>CPF</mat-label>
+        <input matInput name="cpf" #cpfModel="ngModel" [(ngModel)]="usuario.cpf" required>
+        <mat-icon matPrefix>badge</mat-icon>
+        <mat-error *ngIf="cpfModel.hasError('required')">CPF é obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Email</mat-label>
+        <input matInput name="email" #emailModel="ngModel" [(ngModel)]="usuario.email" required type="email">
+        <mat-icon matPrefix>email</mat-icon>
+        <mat-error *ngIf="emailModel.hasError('required')">Email é obrigatório</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Senha</mat-label>
+        <input matInput name="senha" type="password" #senhaModel="ngModel" [(ngModel)]="usuario.senha" required>
+        <mat-icon matPrefix>lock</mat-icon>
+        <mat-error *ngIf="senhaModel.hasError('required')">Senha é obrigatória</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Telefone</mat-label>
+        <input matInput name="telefone" #telefoneModel="ngModel" [(ngModel)]="usuario.telefone" required>
+        <mat-icon matPrefix>phone</mat-icon>
+        <mat-error *ngIf="telefoneModel.hasError('required')">Telefone é obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Data de Nascimento</mat-label>
+        <input matInput name="dataNascimento" [matDatepicker]="picker" [(ngModel)]="usuario.dataNascimento" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>Data de nascimento é obrigatória</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Endereço</mat-label>
+        <input matInput name="endereco" [(ngModel)]="usuario.endereco" required>
+        <mat-icon matPrefix>home</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Cidade</mat-label>
+        <input matInput name="cidade" [(ngModel)]="usuario.cidade" required>
+        <mat-icon matPrefix>location_city</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Estado</mat-label>
+        <input matInput name="estado" [(ngModel)]="usuario.estado" required>
+        <mat-icon matPrefix>map</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>CEP</mat-label>
+        <input matInput name="cep" [(ngModel)]="usuario.cep" required>
+        <mat-icon matPrefix>markunread_mailbox</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Permissão</mat-label>
+        <mat-select [(ngModel)]="usuario.permissao" name="permissao" required>
+          <mat-option *ngFor="let permissao of permissoes" [value]="permissao">
+            {{ permissao }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button type="submit" mat-raised-button class="submit-button" [disabled]="form.invalid">
+    <mat-icon>save</mat-icon>
+    Cadastrar Usuário
+  </button>
+</form>

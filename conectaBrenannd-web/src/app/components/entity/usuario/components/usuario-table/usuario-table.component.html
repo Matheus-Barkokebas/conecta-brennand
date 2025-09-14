@@ -1,1 +1,73 @@
-<p>usuario-table works!</p>
+<div class="elegant-table-container">
+  <table mat-table [dataSource]="dataSource" class="elegant-table mat-elevation-z1">
+
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Nome</th>
+      <td mat-cell *matCellDef="let usuario" class="table-cell">{{ usuario.nome }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cpf">
+      <th mat-header-cell *matHeaderCellDef class="table-header">CPF</th>
+      <td mat-cell *matCellDef="let usuario" class="table-cell">{{ usuario.cpf }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Email</th>
+      <td mat-cell *matCellDef="let usuario" class="table-cell">{{ usuario.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="telefone">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Telefone</th>
+      <td mat-cell *matCellDef="let usuario" class="table-cell">{{ usuario.telefone }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dataNascimento">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Nascimento</th>
+      <td mat-cell *matCellDef="let usuario" class="table-cell">
+        {{ usuario.dataNascimento | date:'dd/MM/yyyy' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="endereco">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Endereço</th>
+      <td mat-cell *matCellDef="let usuario" class="table-cell">{{ usuario.endereco }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cidade">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Cidade</th>
+      <td mat-cell *matCellDef="let usuario" class="table-cell">{{ usuario.cidade }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Estado</th>
+      <td mat-cell *matCellDef="let usuario" class="table-cell">{{ usuario.estado }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cep">
+      <th mat-header-cell *matHeaderCellDef class="table-header">CEP</th>
+      <td mat-cell *matCellDef="let usuario" class="table-cell">{{ usuario.cep }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="permissao">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Permissão</th>
+      <td mat-cell *matCellDef="let usuario" class="table-cell">{{ usuario.permissao }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="table-header actions-header">Ações</th>
+      <td mat-cell *matCellDef="let usuario" class="table-cell actions-cell">
+        <button mat-icon-button matTooltip="Excluir" class="delete-button" (click)="delete(usuario)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Editar" class="edit-button" (click)="update(usuario)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" class="data-row"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons class="elegant-paginator"></mat-paginator>
+</div>

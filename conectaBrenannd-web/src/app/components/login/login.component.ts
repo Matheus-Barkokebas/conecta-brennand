@@ -9,12 +9,13 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { SERVICES_TOKEN } from '../../service/service.token';
 import { SnackbarManagerService } from '../../service/ui/snackbar-manager.service';
 import { AuthService } from '../../service/auth/auth.service';
 import { ISnackbarManagerService } from '../../service/ui/isnackbar-manager.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ import { ISnackbarManagerService } from '../../service/ui/isnackbar-manager.serv
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    RouterLink,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -40,6 +42,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
+    private dialog: MatDialog,
     @Inject(SERVICES_TOKEN.SNACKBAR)
     private readonly snackBarManager: ISnackbarManagerService
   ) {
@@ -62,5 +65,10 @@ export class LoginComponent {
         },
       });
     }
+  }
+
+  navigateTo(path: string) {
+    this.dialog.closeAll();
+    this.router.navigate([path]);
   }
 }

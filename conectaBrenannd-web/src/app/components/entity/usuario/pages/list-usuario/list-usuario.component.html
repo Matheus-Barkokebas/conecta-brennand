@@ -1,1 +1,8 @@
-<p>list-usuario works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-usuario-table [usuario]="usuario" (onConfirmDelete)="delete($event)"
+        (onRequestUpdate)="update($event)"></app-usuario-table>
+    </div>
+  </div>
+</div>

@@ -5,7 +5,7 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideNgxMask } from 'ngx-mask';
-//import { authInterceptorProvider } from './services/auth/auth.interceptor.provider';
+import { authInterceptorProvider } from './service/auth/auth.interceptor.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [ provideZoneChangeDetection({ eventCoalescing: true }),
@@ -13,5 +13,5 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(withInterceptorsFromDi()),
     provideNgxMask({}),
-    /*authInterceptorProvider*/]
+    authInterceptorProvider]
 };
