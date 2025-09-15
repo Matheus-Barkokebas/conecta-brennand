@@ -38,6 +38,7 @@ public class UsuarioController {
 
 	@PostMapping
 	@ResponseStatus(CREATED)
+	@PreAuthorize("permitAll()")
 	public UsuarioDto save(@RequestBody @Validated final UsuarioDto dto) {
 		Usuario entity = mapper.toEntity(dto);
 		service.save(entity);

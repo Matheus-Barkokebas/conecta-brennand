@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -39,16 +40,19 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf(csrf -> csrf.disable())
-        .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource()))
-		.exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**", "/api/test/**").permitAll()
-						.anyRequest().authenticated())
-				.authenticationProvider(authenticationProvider())
-				.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
+	    http.csrf(csrf -> csrf.disable())
+	        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+	        .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
+	        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+	        .authorizeHttpRequests(auth -> auth
+	            .requestMatchers("/api/auth/**", "/api/test/**").permitAll()
+	            .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+	            .anyRequest().authenticated()
+	        )
+	        .authenticationProvider(authenticationProvider())
+	        .addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
-		return http.build();
+	    return http.build();
 	}
 
 	@Bean
