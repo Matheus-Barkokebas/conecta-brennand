@@ -16,6 +16,9 @@ import { SnackbarManagerService } from '../../service/ui/snackbar-manager.servic
 import { AuthService } from '../../service/auth/auth.service';
 import { ISnackbarManagerService } from '../../service/ui/isnackbar-manager.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
+
 
 @Component({
   selector: 'app-login',
@@ -28,6 +31,7 @@ import { MatDialog } from '@angular/material/dialog';
     MatButtonModule,
     MatIconModule,
     RouterLink,
+    MatCheckboxModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -37,6 +41,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  hide = true;
+  lateralImage = 'assets/img/lateral.png';
 
   constructor(
     private fb: FormBuilder,

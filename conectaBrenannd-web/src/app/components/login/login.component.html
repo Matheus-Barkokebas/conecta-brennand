@@ -1,33 +1,54 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-  <div class="input-group">
-    <mat-form-field appearance="fill" class="w-100">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" type="email" placeholder="Digite seu email" required />
-      <mat-icon matPrefix>person</mat-icon>
-      <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-        Email inválido
-      </mat-error>
-    </mat-form-field>
+<div class="login-container">
+ 
+
+  <!-- Card de login -->
+  <div class="login-card">
+    <h2>Acesse Conecta Brennand</h2>
+    <p>Digite suas credenciais para acessar o sistema.</p>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <!-- Campo E-mail -->
+      <label for="email">E-mail</label>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput id="email" formControlName="email" type="email" placeholder="email@exemplo.com" required />
+        <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          Email inválido
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Campo Senha -->
+      <label for="senha">Senha</label>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput id="senha" [type]="hide ? 'password' : 'text'" formControlName="senha"
+          placeholder="Digite sua senha" required />
+        <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Ocultar senha'"
+          [attr.aria-pressed]="!hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('senha')?.invalid && loginForm.get('senha')?.touched">
+          Senha é obrigatória
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Opções -->
+      <div class="options">
+        <mat-checkbox class="remember">Lembrar</mat-checkbox>
+        <a class="forgot" href="#">Esqueceu a senha?</a>
+      </div>
+
+      <!-- Botão continuar -->
+      <button class="btn-primary" type="submit">
+        Continuar
+      </button>
+    </form>
+
+    <!-- Divider -->
+    <div class="divider">
+      <span>Não possui conta?</span>
+    </div>
+
+    <!-- Botão criar conta -->
+    <button mat-stroked-button class="btn-outline" type="button" [routerLink]="'/usuarios/new'">
+      Criar conta
+    </button>
   </div>
-
-  <div class="input-group">
-    <mat-form-field appearance="fill" class="w-100">
-      <mat-label>Senha</mat-label>
-      <input matInput formControlName="senha" type="password" placeholder="Digite sua senha" required />
-      <mat-icon matPrefix>lock</mat-icon>
-      <mat-error *ngIf="loginForm.get('senha')?.invalid && loginForm.get('senha')?.touched">
-        Senha é obrigatória
-      </mat-error>
-    </mat-form-field>
-  </div>
-
-  <button mat-raised-button class="login-button" type="submit">
-    <span>Entrar</span>
-    <div class="button-hover-effect"></div>
-  </button>
-</form>
-
-<button mat-raised-button type="button" class="login-button" [routerLink]="'/usuarios/new'">
-  <span>Cadastrar</span>
-  <div class="button-hover-effect"></div>
-</button>
+</div>
