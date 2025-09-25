@@ -1,0 +1,50 @@
+<header class="header">
+  <div class="logo">Parque de Esculturas</div>
+  <nav class="nav">
+    <ul>
+      <li><a href="#">Início</a></li>
+      <li><a href="#">Visita</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="main-section">
+  <h2>
+    Que tal explorar a arte ao ar livre no Parque de Esculturas Francisco Brennand?
+  </h2>
+  <p>
+    Localizado no Marco Zero do Recife, o Parque de Esculturas Francisco Brennand reúne mais de 90 obras monumentais do renomado artista pernambucano.
+    Um espaço único que mistura arte, cultura e o cenário encantador do Rio Capibaribe.
+    Venha viver uma experiência inesquecível e se encantar com um dos maiores cartões-postais da cidade.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <img src="assets/parque1.jpg" alt="Escultura" />
+      <div class="card-content">
+        <h3>Reserve sua visita</h3>
+        <p>Garanta seu acesso ao Parque escolhendo data e horário com antecedência. Evite filas e aproveite a experiência com tranquilidade.</p>
+        <button [routerLink]="'/ingressos/new'">Agendar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="assets/grupo.jpg" alt="Grupo" />
+      <div class="card-content">
+        <h3>Traga seu grupo</h3>
+        <p>Para escolas, excursões ou visitas coletivas, faça sua reserva em grupo. Solicite sua data e receba a aprovação do administrador.</p>
+        <button>Reservar Grupo</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="assets/checkin.jpg" alt="Check-in" />
+      <div class="card-content">
+        <h3>Check-in facilitado</h3>
+        <p>No dia da visita, apresente o token de confirmação na recepção e tenha acesso rápido e seguro ao Parque.</p>
+        <button>Saiba mais</button>
+      </div>
+    </div>
+  </div>
+</section>

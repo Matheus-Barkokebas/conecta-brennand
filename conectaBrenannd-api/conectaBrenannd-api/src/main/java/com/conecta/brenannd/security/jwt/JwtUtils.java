@@ -38,6 +38,7 @@ public class JwtUtils {
 
     return Jwts.builder()
         .setSubject(userPrincipal.getEmail())
+        .claim("cpf", userPrincipal.getCpf())
         .setIssuedAt(new Date())
         .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
         .signWith(getSigningKey(), SignatureAlgorithm.HS256)
@@ -52,6 +53,16 @@ public class JwtUtils {
         .getBody()
         .getSubject();
   }
+  
+  public String getCpfFromJwtToken(String token) {
+	    return Jwts.parserBuilder()
+	        .setSigningKey(getSigningKey())
+	        .build()
+	        .parseClaimsJws(token)
+	        .getBody()
+	        .get("cpf", String.class);
+	}
+
 
   public boolean validateJwtToken(String authToken) {
     try {

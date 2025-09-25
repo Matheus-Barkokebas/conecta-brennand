@@ -60,8 +60,4 @@ public class Usuario {
 	@Enumerated(EnumType.STRING)
     @Column(name = "permissao")
 	private Permissao permissao = Permissao.VISITANTE;
-	
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Ingresso> ingressos;
-
 }

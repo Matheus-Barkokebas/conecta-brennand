@@ -1,0 +1,52 @@
+<div class="ingresso-container">
+  <mat-card class="ingresso-card">
+    <h2>Solicitar Ingresso</h2>
+    <p>Informe seu CPF e a data da visita</p>
+
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="ingresso-form">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>CPF</mat-label>
+        <input
+          matInput
+          name="cpfToken"
+          [(ngModel)]="ingresso.cpfToken"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Data da Visita</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          name="dataVisita"
+          [(ngModel)]="ingresso.dataVisita"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>GRATUITO</mat-label>
+        <input
+          matInput
+          name="tipoIngresso"
+          [(ngModel)]="ingresso.tipoIngresso"
+          value="GRATUITO"
+          disabled
+        />
+      </mat-form-field>
+
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        class="btn-full"
+        [disabled]="form.invalid"
+      >
+        Confirmar
+      </button>
+    </form>
+  </mat-card>
+</div>

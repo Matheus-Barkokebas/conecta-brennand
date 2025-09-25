@@ -26,6 +26,8 @@ public class UserDetailsImpl implements UserDetails {
 
 	@JsonIgnore
 	private String password;
+	
+	private String cpf;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
@@ -38,6 +40,7 @@ public class UserDetailsImpl implements UserDetails {
 	        user.getNome(),
 	        user.getEmail(),
 	        user.getSenha(),
+	        user.getCpf(),
 	        authorities
 	    );
 	}

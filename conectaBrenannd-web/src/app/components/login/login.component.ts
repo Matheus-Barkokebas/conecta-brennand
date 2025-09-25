@@ -64,7 +64,7 @@ export class LoginComponent {
       this.auth.login({ email, senha }).subscribe({
         next: () => {
           this.snackBarManager.show('Login efetuado com sucesso');
-          this.router.navigate(['']);
+          this.router.navigate(['home']);
         },
         error: (err) => {
           this.snackBarManager.show('Email ou Senha incorretos');

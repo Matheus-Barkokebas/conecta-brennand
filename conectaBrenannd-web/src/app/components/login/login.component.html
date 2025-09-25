@@ -1,12 +1,8 @@
 <div class="login-container">
- 
-
-  <!-- Card de login -->
   <div class="login-card">
     <h2>Acesse Conecta Brennand</h2>
     <p>Digite suas credenciais para acessar o sistema.</p>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-      <!-- Campo E-mail -->
       <label for="email">E-mail</label>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput id="email" formControlName="email" type="email" placeholder="email@exemplo.com" required />
@@ -15,7 +11,6 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Campo Senha -->
       <label for="senha">Senha</label>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput id="senha" [type]="hide ? 'password' : 'text'" formControlName="senha"
@@ -29,24 +24,20 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Opções -->
       <div class="options">
         <mat-checkbox class="remember">Lembrar</mat-checkbox>
         <a class="forgot" href="#">Esqueceu a senha?</a>
       </div>
 
-      <!-- Botão continuar -->
       <button class="btn-primary" type="submit">
         Continuar
       </button>
     </form>
 
-    <!-- Divider -->
     <div class="divider">
       <span>Não possui conta?</span>
     </div>
 
-    <!-- Botão criar conta -->
     <button mat-stroked-button class="btn-outline" type="button" [routerLink]="'/usuarios/new'">
       Criar conta
     </button>

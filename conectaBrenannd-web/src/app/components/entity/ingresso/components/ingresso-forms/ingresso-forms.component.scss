@@ -1,0 +1,65 @@
+.ingresso-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa, #e4ebf1);
+  padding: 2rem;
+}
+
+.ingresso-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  text-align: center;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.ingresso-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  .full-width {
+    width: 100%;
+  }
+
+  mat-form-field {
+    font-size: 0.95rem;
+  }
+
+  button.btn-full {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .ingresso-card {
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+}

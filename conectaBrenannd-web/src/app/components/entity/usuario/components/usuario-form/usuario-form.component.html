@@ -4,7 +4,7 @@
     <p>Preencha os campos abaixo para registrar um novo usuário</p>
 
     <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="cadastro-form">
-      
+
       <div class="form-row">
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Nome</mat-label>
@@ -67,8 +67,9 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Tipo de Usuário</mat-label>
           <mat-select [(ngModel)]="usuario.permissao" name="permissao" required>
-            <mat-option value="usuario">Usuário</mat-option>
-            <mat-option value="admin">Administrador</mat-option>
+            <mat-option value="USUARIO">USUARIO</mat-option>
+            <mat-option value="RECEPCIONISTA">RECEPCIONISTA</mat-option>
+            <mat-option value="ADMIN">ADMIN</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
