@@ -6,7 +6,7 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 
 ## 📋 Backlog 
 
-<a href="https://trello.com/b/XQcU1FLY/conecta-brennand" target="_blank">📌 Link do Backlog (Trello)</a>
+<a href="https://trello.com/b/XQcU1FLY/conecta-brennand" target="_blank">📌 Link do Backlog (Trello)</a> 
 
 [📥 Story Mapping (PDF)](arq_readme/pdfs/story_mapping.pdf)
 
@@ -27,6 +27,9 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 [📥 BDD - Gherkin (PDF)](arq_readme/pdfs/bdd_gherkin.pdf)
 
 </details>
+
+## Bug tracker
+<a href="https://trello.com/b/XQcU1FLY/conecta-brennand" target="_blank">📌 Link do Backlog (Trello)</a> (Bug tracker presente em forma de lista e cartão)
 
 ## 👥 Equipe
 
