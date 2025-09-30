@@ -20,6 +20,7 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 </details>
 
 <a href="https://www.figma.com/design/oD8xXARlBrFMrmwXd5vwZ4/BRENANND?node-id=0-1&t=8y1TsaoAFsldXZ4M-1" target="_blank">📌 Link do Protótipo (Figma)</a>
+
 <a href="https://youtu.be/98x69mlxzLY" target="_blank">📌 Link do Screencast (Trello)</a>
 
 <details> 
