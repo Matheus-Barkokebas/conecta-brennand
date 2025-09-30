@@ -1,0 +1,129 @@
+<div class="dashboard-admin">
+  <div class="dashboard-header">
+    <div class="header-content">
+      <h2>Dashboard Administrativo</h2>
+      <p class="muted">Visão geral das atividades e métricas do parque</p>
+    </div>
+    <div class="header-actions">
+      <select class="date-filter" [(ngModel)]="selectedPeriod" (change)="onPeriodChange(selectedPeriod)">
+        <option value="today">Hoje</option>
+        <option value="week">Esta Semana</option>
+        <option value="month" selected>Este Mês</option>
+        <option value="quarter">Este Trimestre</option>
+        <option value="year">Este Ano</option>
+      </select>
+      <button mat-raised-button color="primary">
+        <mat-icon>download</mat-icon>
+        Exportar Relatório
+      </button>
+    </div>
+  </div>
+
+  <div class="kpis-grid">
+    <div class="kpi-card" *ngFor="let kpi of kpis">
+      <div class="kpi-header">
+        <div class="kpi-icon">
+          <mat-icon>{{kpi.icon}}</mat-icon>
+        </div>
+        <div class="trend" [class]="kpi.trend">
+          <mat-icon>{{kpi.trend === 'positive' ? 'trending_up' : 'trending_down'}}</mat-icon>
+          {{kpi.trend === 'positive' ? '+' : '-'}}
+        </div>
+      </div>
+      <div class="kpi-content">
+        <div class="value">{{kpi.value}}</div>
+        <div class="title">{{kpi.title}}</div>
+        <div class="subtitle">{{kpi.subtitle}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts-section">
+    <div class="chart-card">
+      <div class="chart-header">
+        <h3>Visitantes Mensais</h3>
+        <div class="chart-actions">
+          <button [class.active]="selectedPeriod === 'month'" (click)="onPeriodChange('month')">Mês</button>
+          <button [class.active]="selectedPeriod === 'quarter'" (click)="onPeriodChange('quarter')">Trimestre</button>
+          <button [class.active]="selectedPeriod === 'year'" (click)="onPeriodChange('year')">Ano</button>
+        </div>
+      </div>
+      <div class="chart-area">
+        <canvas baseChart
+                [data]="lineChartData"
+                [options]="lineChartOptions"
+                [type]="lineChartType">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-header">
+        <h3>Distribuição de Visitantes</h3>
+      </div>
+      <div class="chart-area">
+        <canvas baseChart
+                [data]="pieChartData"
+                [options]="pieChartOptions"
+                [type]="pieChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-section">
+    <div class="table-header">
+      <h3>Agendamentos Recentes</h3>
+      <div class="table-actions">
+        <div class="search-box">
+          <mat-icon>search</mat-icon>
+          <input type="text" placeholder="Buscar agendamentos...">
+        </div>
+        <button mat-stroked-button>
+          <mat-icon>filter_list</mat-icon>
+          Filtros
+        </button>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Data</th>
+            <th>Visitantes</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let booking of recentBookings">
+            <td>{{booking.id}}</td>
+            <td>{{booking.name}}</td>
+            <td>{{booking.type}}</td>
+            <td>{{booking.date}} às {{booking.time}}</td>
+            <td>{{booking.visitors}}</td>
+            <td>
+              <span class="status" [class]="booking.status">
+                <span class="dot"></span>
+                {{getStatusText(booking.status)}}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <div class="action-card" *ngFor="let action of quickActions" [routerLink]="action.route">
+      <div class="action-icon">
+        <mat-icon>{{action.icon}}</mat-icon>
+      </div>
+      <h4>{{action.title}}</h4>
+      <p>{{action.description}}</p>
+    </div>
+  </div>
+</div>

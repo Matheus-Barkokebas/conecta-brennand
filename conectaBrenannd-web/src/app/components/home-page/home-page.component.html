@@ -65,19 +65,7 @@
           <span>Área ADMIN</span>
         </div>
         <li>
-          <a href="#" class="nav-link" (click)="closeSidebarOnMobile()">
-            <mat-icon>contact_support</mat-icon>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link" (click)="closeSidebarOnMobile()">
-            <mat-icon>contact_support</mat-icon>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link" (click)="closeSidebarOnMobile()">
+          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/dashboard/view'">
             <mat-icon>contact_support</mat-icon>
             <span>Dashboard</span>
           </a>

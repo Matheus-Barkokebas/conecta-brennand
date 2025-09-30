@@ -17,6 +17,12 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+
   { path: 'login', component: LoginComponent, data: { title: 'Login' } },
 
   { path: 'home', component: HomePageComponent, data: { title: 'home' } },
@@ -34,6 +40,14 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./components/entity/ingresso/ingresso.routes').then(
         (m) => m.INGRESSO_ROUTES
+      ),
+  },
+
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./components/dashboard-admin/dashboard.routes').then(
+        (m) => m.DASHBOARD_ROUTES
       ),
   },
 ];
