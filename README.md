@@ -30,6 +30,7 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 
 ## Bug tracker
 <a href="https://trello.com/b/XQcU1FLY/conecta-brennand" target="_blank">📌 Link do Backlog (Trello)</a> (Bug tracker presente em forma de lista e cartão)
+https://github.com/Matheus-Barkokebas/conecta-brennand/issues (Bug tracker no github, servindo para revisão grupal do código em caso de correção de bugs)
 
 ## 👥 Equipe
 
