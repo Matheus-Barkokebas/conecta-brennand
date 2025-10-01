@@ -13,5 +13,5 @@ export class Ingresso {
   tipoIngresso: string = "";
   status: StatusIngresso = StatusIngresso.ATIVO;
   dataEmissao: Date = new Date();
-  dataVisita: Date = new Date();
+  dataUtilizacao: Date = new Date();
 }

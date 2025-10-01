@@ -1,5 +1,6 @@
 package com.conecta.brenannd.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,5 +17,9 @@ public interface IngressoRepository extends JpaRepository<Ingresso, Long>{
 	Optional<Ingresso> findByCpfToken(final String cpf);
 
 	Optional<Ingresso> findByStatus(final StatusIngresso status);
+	
+    List<Ingresso> findAllByUsuarioId(Long usuarioId);
+
+    Optional<Ingresso> findByIdAndUsuarioId(Long ingressoId, Long usuarioId);
 
 }

@@ -11,6 +11,10 @@ public interface IIngressoQueryService {
 	Ingresso findByCpf(final String cpf);
 
 	List<Ingresso> list();
+	
+	List<Ingresso> listByUser();
+	
+	public Ingresso findByIdFromSession(Long ingressoId);
 
 	void verifyCpf(final String cpf);
 

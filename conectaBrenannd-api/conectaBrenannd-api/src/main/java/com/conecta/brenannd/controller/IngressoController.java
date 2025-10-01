@@ -38,14 +38,12 @@ public class IngressoController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    @PreAuthorize("permitAll()")
     public IngressoDto save(@RequestBody @Validated final IngressoDto dto) {
         Ingresso entity = mapper.toEntity(dto);
         service.save(entity);
         return mapper.toDto(entity);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("{id}")
     public IngressoDto update(@PathVariable("id") final long id, @RequestBody @Validated final IngressoDto dto) {
         Ingresso entity = mapper.toEntity(dto);
@@ -53,28 +51,34 @@ public class IngressoController {
         return mapper.toDto(entity);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
     public void delete(@PathVariable("id") final long id) {
         service.delete(id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("{id}")
     public IngressoDto findById(@PathVariable("id") final long id) {
         Ingresso entity = queryService.findById(id);
         return mapper.toDto(entity);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/cpf/{cpf}")
     public IngressoDto findByCpf(@PathVariable("cpf") final String cpf) {
         Ingresso entity = queryService.findByCpf(cpf);
         return mapper.toDto(entity);
     }
+    
+    @GetMapping("/meus")
+    public List<Ingresso> meusIngressos() {
+        return queryService.listByUser();
+    }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/meus/{id}")
+    public Ingresso meuIngresso(@PathVariable Long id) {
+        return queryService.findByIdFromSession(id);
+    }
+
     @GetMapping
     public List<IngressoDto> list() {
         List<Ingresso> entities = queryService.list();

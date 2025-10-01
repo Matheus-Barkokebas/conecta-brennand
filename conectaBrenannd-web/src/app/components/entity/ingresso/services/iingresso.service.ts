@@ -13,4 +13,7 @@ export interface IIngressoService {
   findByID(id: number): Observable<Ingresso>;
 
   findByCPF(cpf: string): Observable<Ingresso[]>;
+  listByUser(): Observable<Ingresso[]>;
+
+  findMyIngressoById(id: number): Observable<Ingresso>;
 }

@@ -2,11 +2,16 @@ package com.conecta.brenannd.service.query.impl;
 
 import java.util.List;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
 
 import com.conecta.brenannd.entity.Ingresso;
+import com.conecta.brenannd.entity.Usuario;
 import com.conecta.brenannd.repository.IngressoRepository;
+import com.conecta.brenannd.security.services.UserDetailsImpl;
 import com.conecta.brenannd.service.query.IIngressoQueryService;
+import com.conecta.brenannd.service.query.IUsuarioQueryService;
 
 import lombok.AllArgsConstructor;
 
@@ -15,6 +20,7 @@ import lombok.AllArgsConstructor;
 public class IngressoQueryService implements IIngressoQueryService{
 	
 	private IngressoRepository repository;
+    private final IUsuarioQueryService usuarioQueryService;
 
 	@Override
 	public Ingresso findById(long id) {
@@ -30,6 +36,26 @@ public class IngressoQueryService implements IIngressoQueryService{
 	public List<Ingresso> list() {
 		return repository.findAll();
 	}
+	
+    @Override
+    public List<Ingresso> listByUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+
+        Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
+        return repository.findAllByUsuarioId(usuario.getId());
+    }
+
+    @Override
+    public Ingresso findByIdFromSession(Long ingressoId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+
+        Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
+
+        return repository.findByIdAndUsuarioId(ingressoId, usuario.getId())
+                .orElseThrow(() -> new RuntimeException("Ingresso não encontrado para este usuário"));
+    }
 
 	@Override
 	public void verifyCpf(String cpf) {

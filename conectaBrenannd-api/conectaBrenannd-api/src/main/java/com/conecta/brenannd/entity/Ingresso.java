@@ -1,5 +1,6 @@
 package com.conecta.brenannd.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.conecta.brenannd.entity.enums.StatusIngresso;
@@ -44,5 +45,5 @@ public class Ingresso {
     private LocalDateTime dataEmissao = LocalDateTime.now();
 
     @Column(name = "data_utilizacao")
-    private LocalDateTime dataUtilizacao;
+    private LocalDate dataUtilizacao;
 }

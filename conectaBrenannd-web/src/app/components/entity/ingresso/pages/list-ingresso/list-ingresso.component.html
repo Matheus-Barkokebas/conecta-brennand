@@ -1,1 +1,11 @@
-<p>list-ingresso works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-ingresso-table
+        [ingressos]="ingresso"
+        (onConfirmDelete)="delete($event)"
+        (onRequestUpdate)="update($event)">
+      </app-ingresso-table>
+    </div>
+  </div>
+</div>

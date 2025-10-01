@@ -68,13 +68,19 @@ export class IngressoFormComponent implements OnInit, OnDestroy {
     tipoIngresso: '',
     status: StatusIngresso.ATIVO,
     dataEmissao: new Date(),
-    dataVisita: new Date(),
+    dataUtilizacao: new Date(),
   };
 
    @Output() ingressoSubmited = new EventEmitter<Ingresso>();
 
-   onSubmit(_: NgForm) {
-    this.ingressoSubmited.emit(this.ingresso);
+  onSubmit() {
+    if (NgForm) {
+      this.ingressoSubmited.emit(this.ingresso);
+    } else {
+      this.snackbarManager.show(
+        'Por favor, preencha todos os campos obrigatórios!'
+      );
+    }
   }
 
   ngOnInit(): void {

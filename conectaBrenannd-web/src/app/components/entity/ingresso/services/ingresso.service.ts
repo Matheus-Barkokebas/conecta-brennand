@@ -8,7 +8,7 @@ import { IIngressoService } from './iingresso.service';
 @Injectable({
   providedIn: 'root',
 })
-export class IngressoService implements IIngressoService{
+export class IngressoService implements IIngressoService {
   private readonly basePath = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
@@ -35,5 +35,13 @@ export class IngressoService implements IIngressoService{
 
   findByCPF(cpf: string): Observable<Ingresso[]> {
     return this.http.get<Ingresso[]>(`${this.basePath}ingressos/cpf/${cpf}`);
+  }
+
+  listByUser(): Observable<Ingresso[]> {
+    return this.http.get<Ingresso[]>(`${this.basePath}ingressos/meus`);
+  }
+
+  findMyIngressoById(id: number): Observable<Ingresso> {
+    return this.http.get<Ingresso>(`${this.basePath}ingressos/meus/${id}`);
   }
 }
