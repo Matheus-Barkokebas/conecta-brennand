@@ -27,6 +27,7 @@ import { IDialogManagerService } from '../../../../../service/ui/idialog-manger.
 import { AuthService } from '../../../../../service/auth/auth.service';
 import { YesNoDialogComponent } from '../../../../commons/yes-no-dialog/yes-no-dialog.component';
 import { DialogManagerService } from '../../../../../service/ui/dialog-manager.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ingresso-table',
@@ -54,7 +55,6 @@ export class IngressoTableComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  // Paginação
   pageSize = 6;
   pageSizeOptions = [3, 6, 12, 24];
   paginatedIngressos: Ingresso[] = [];
@@ -66,7 +66,8 @@ export class IngressoTableComponent {
     @Inject(SERVICES_TOKEN.DIALOG)
     private readonly dialogManagerService: IDialogManagerService,
     private dialog: MatDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -125,5 +126,9 @@ export class IngressoTableComponent {
   downloadIngresso(ingresso: Ingresso) {
     // dps implementar logica para download
     console.log('Download ingresso:', ingresso);
+  }
+
+    onBack(){
+    this.router.navigate(['/home']);
   }
 }

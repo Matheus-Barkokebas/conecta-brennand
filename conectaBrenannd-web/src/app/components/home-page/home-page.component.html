@@ -3,15 +3,12 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  <button mat-fab class="floating-menu-btn" *ngIf="!sidebarVisible && !isMobile" (click)="toggleSidebar()">
+  <button mat-fab class="floating-menu-btn d-none d-md-flex" *ngIf="!sidebarVisible && !isMobile" (click)="toggleSidebar()">
     <mat-icon>menu</mat-icon>
   </button>
 
   <aside class="sidebar" [class.sidebar-hidden]="!sidebarVisible">
     <div class="sidebar-header">
-      <div class="logo">
-        <span>Parque de Esculturas</span>
-      </div>
       <button mat-icon-button class="close-sidebar" (click)="toggleSidebar()">
         <mat-icon>close</mat-icon>
       </button>
@@ -20,7 +17,7 @@
     <nav class="nav">
       <ul>
         <li>
-          <a href="#" class="nav-link active" (click)="closeSidebarOnMobile()">
+          <a class="nav-link active" (click)="closeSidebarOnMobile()" [routerLink]="'home'">
             <mat-icon>home</mat-icon>
             <span>Início</span>
           </a>
@@ -32,7 +29,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link" (click)="closeSidebarOnMobile()">
+          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/ingressos/new'">
             <mat-icon>event_available</mat-icon>
             <span>Agendar Visita</span>
           </a>
@@ -61,9 +58,11 @@
             <span>Contato</span>
           </a>
         </li>
+
         <div class="divider">
           <span>Área ADMIN</span>
         </div>
+
         <li>
           <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/dashboard/view'">
             <mat-icon>contact_support</mat-icon>
@@ -78,112 +77,80 @@
 
   <main class="main-content" [class.content-expanded]="!sidebarVisible">
     <section class="hero-section">
-      <div class="hero-content">
-        <h1 class="hero-title">
-          Descubra a Magia das Esculturas ao Ar Livre
-        </h1>
-        <p class="hero-subtitle">
-          No coração do Recife, o Parque Francisco Brennand oferece uma experiência única
-          onde arte, natureza e cultura se encontram em perfeita harmonia.
-        </p>
-        <div class="hero-actions">
-          <button mat-raised-button color="primary" class="cta-button" [routerLink]="'/ingressos/new'">
-            <mat-icon>event_available</mat-icon>
-            Agendar Visita
-          </button>
-          <button mat-stroked-button class="secondary-button">
-            <mat-icon>play_circle</mat-icon>
-            Tour Virtual
-          </button>
+      <div class="">
+        <div class="row align-items-center">
+          <div class="col-lg-12 col-md-12">
+            <div class="hero-content">
+              <h1 class="hero-title">
+                Descubra a Magia das Esculturas ao Ar Livre
+              </h1>
+              <p class="hero-subtitle">
+                No coração do Recife, o Parque Francisco Brennand oferece uma experiência única onde arte, natureza e cultura se encontram em perfeita harmonia.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12">
+          </div>
         </div>
-      </div>
-      <div class="hero-image">
-        <img src="assets/hero-sculpture.jpg" alt="Escultura emblemática do parque">
       </div>
     </section>
 
     <section class="cards-section">
-      <h2 class="section-title">Como Visitar o Parque</h2>
-      <p class="section-subtitle">Escolha a melhor forma de vivenciar essa experiência única</p>
+      <div class="container">
+        <h2 class="section-title text-center">Como Visitar o Parque</h2>
+        <p class="section-subtitle text-center">Escolha a melhor forma de vivenciar essa experiência única</p>
 
-      <div class="cards-grid">
-        <mat-card class="feature-card">
-          <div class="card-image">
-            <img mat-card-image src="assets/parque1.jpg" alt="Escultura">
-            <div class="card-badge">Novidade</div>
+        <div class="row justify-content-center">
+          <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
+            <mat-card class="feature-card h-100">
+              <mat-card-content class="text-center">
+                <div class="card-icon" style="margin-top: 1px;">
+                  <mat-icon>calendar_today</mat-icon>
+                </div>
+                <h3>Visita Individual</h3>
+                <p>Agende sua visita com antecedência e evite filas. Escolha a data e horário que melhor se encaixam na sua agenda.</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-raised-button color="primary" class="full-width-button" [routerLink]="'/ingressos/new'">
+                  Reservar Agora
+                </button>
+              </mat-card-actions>
+            </mat-card>
           </div>
-          <mat-card-content>
-            <div class="card-icon">
-              <mat-icon style="margin-top: 13px;">calendar_today</mat-icon>
-            </div>
-            <h3>Visita Individual</h3>
-            <p>Agende sua visita com antecedência e evite filas. Escolha a data e horário que melhor se encaixam na sua
-              agenda.</p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button color="primary" class="full-width-button" [routerLink]="'/ingressos/new'">
-              Reservar Agora
-            </button>
-          </mat-card-actions>
-        </mat-card>
 
-        <mat-card class="feature-card">
-          <div class="card-image">
-            <img mat-card-image src="assets/grupo.jpg" alt="Grupo">
-            <div class="card-badge">Novidade</div>
+          <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
+            <mat-card class="feature-card h-100">
+              <mat-card-content class="text-center">
+                <div class="card-icon" style="margin-top: 1px;">
+                  <mat-icon>groups</mat-icon>
+                </div>
+                <h3>Visita em Grupo</h3>
+                <p>Perfeito para escolas, empresas ou excursões. Descontos especiais para grupos acima de 10 pessoas.</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-raised-button color="accent" class="full-width-button">
+                  Solicitar Grupo
+                </button>
+              </mat-card-actions>
+            </mat-card>
           </div>
-          <mat-card-content>
-            <div class="card-icon">
-              <mat-icon style="margin-top: 13px;">groups</mat-icon>
-            </div>
-            <h3>Visita em Grupo</h3>
-            <p>Perfeito para escolas, empresas ou excursões. Descontos especiais para grupos acima de 10 pessoas.</p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button color="accent" class="full-width-button">
-              Solicitar Grupo
-            </button>
-          </mat-card-actions>
-        </mat-card>
 
-        <mat-card class="feature-card">
-          <div class="card-image">
-            <img mat-card-image src="assets/checkin.jpg" alt="Check-in">
-            <div class="card-badge">Novidade</div>
+          <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
+            <mat-card class="feature-card h-100">
+              <mat-card-content class="text-center">
+                <div class="card-icon" style="margin-top: 1px;">
+                  <mat-icon>speed</mat-icon>
+                </div>
+                <h3>Check-in Rápido</h3>
+                <p>Digite seu token clicando no botao abaixo e tenha acesso imediato ao parque. Digital e prático!</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-stroked-button color="primary" class="full-width-button">
+                  Saiba Mais
+                </button>
+              </mat-card-actions>
+            </mat-card>
           </div>
-          <mat-card-content>
-            <div class="card-icon">
-              <mat-icon style="margin-top: 13px;">speed</mat-icon>
-            </div>
-            <h3>Check-in Rápido</h3>
-            <p>Digite seu token clicando no botao abaixo e tenha acesso imediato ao parque. Digital e prático!</p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-stroked-button color="primary" class="full-width-button">
-              Saiba Mais
-            </button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-    </section>
-
-    <section class="stats-section">
-      <div class="stats-container">
-        <div class="stat-item">
-          <div class="stat-number">90+</div>
-          <div class="stat-label">Esculturas</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">25</div>
-          <div class="stat-label">Anos de História</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">50k+</div>
-          <div class="stat-label">Visitantes/Ano</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">4.8</div>
-          <div class="stat-label">Avaliação</div>
         </div>
       </div>
     </section>

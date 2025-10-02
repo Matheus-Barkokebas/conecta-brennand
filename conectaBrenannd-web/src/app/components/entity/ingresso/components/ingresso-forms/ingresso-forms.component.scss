@@ -1,9 +1,15 @@
+$primary: #633207;
+$primary-light: #977554;
+$accent: #E67E22;
+$background: #F9F7F4;
+$text-primary: #2D2D2D;
+$text-secondary: #5D5D5D;
+
 .ingresso-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa, #e4ebf1);
+  min-height: calc(100vh - 120px);
   padding: 2rem;
 }
 
@@ -12,44 +18,103 @@
   max-width: 480px;
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  background: #fff;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   text-align: center;
+  transition: all 0.3s ease;
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 0.5rem;
+    color: $text-primary;
+    margin-bottom: 0.75rem;
   }
 
   p {
-    font-size: 0.95rem;
-    color: #555;
-    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: $text-secondary;
+    margin-bottom: 2rem;
   }
 }
 
 .ingresso-form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.25rem;
 
   .full-width {
     width: 100%;
   }
 
   mat-form-field {
-    font-size: 0.95rem;
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      border-radius: 10px;
+    }
+
+    mat-label {
+      font-weight: 500;
+      color: $text-secondary;
+    }
+
+    input {
+      font-size: 1rem;
+      color: $text-primary;
+    }
   }
 
-  button.btn-full {
+  .btn-full {
     width: 100%;
-    padding: 0.9rem;
-    border-radius: 8px;
+    padding: 0.85rem;
     font-size: 1rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+    color: white !important;
     font-weight: 600;
     letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(135deg, $primary-light 0%, $primary 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    &:disabled {
+      background: #ccc !important;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.back-button {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 1200;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 50% !important;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    color: $primary;
+    font-size: 22px;
+  }
+
+  &:hover {
+    background: $primary;
+
+    mat-icon {
+      color: white;
+    }
   }
 }
 
@@ -58,7 +123,7 @@
     padding: 1.5rem;
   }
 
-  h2 {
-    font-size: 1.3rem;
+  .ingresso-form {
+    gap: 1rem;
   }
 }

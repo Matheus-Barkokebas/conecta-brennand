@@ -19,30 +19,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent {
-  features = [
-    {
-      title: 'Visita Individual',
-      description: 'Agende sua visita com antecedência e evite filas.',
-      icon: 'calendar_today',
-      image: 'assets/parque1.jpg',
-      badge: 'Mais Popular',
-    },
-    {
-      title: 'Visita em Grupo',
-      description: 'Descontos especiais para grupos acima de 10 pessoas.',
-      icon: 'groups',
-      image: 'assets/grupo.jpg',
-      badge: 'Economize 20%',
-    },
-    {
-      title: 'Check-in Rápido',
-      description: 'Apresente seu QR code na entrada.',
-      icon: 'qr_code',
-      image: 'assets/checkin.jpg',
-      badge: 'Novidade',
-    },
-  ];
-
   sidebarVisible = true;
   isMobile = false;
 
@@ -57,7 +33,6 @@ export class HomePageComponent {
 
   private checkScreenSize() {
     this.isMobile = window.innerWidth <= 768;
-
     if (this.isMobile) {
       this.sidebarVisible = false;
     } else {

@@ -26,6 +26,7 @@ import { Ingresso, StatusIngresso } from '../../models/ingresso.models';
 import { Usuario } from '../../../usuario/models/usuario.models';
 import { UsuarioService } from '../../../usuario/services/usuario.service';
 import { IUsuarioService } from '../../../usuario/services/iusuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ingresso-form',
@@ -40,7 +41,7 @@ import { IUsuarioService } from '../../../usuario/services/iusuario.service';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCardModule,
-  ],
+],
   templateUrl: './ingresso-forms.component.html',
   styleUrl: './ingresso-forms.component.scss',
   providers: [
@@ -58,7 +59,8 @@ export class IngressoFormComponent implements OnInit, OnDestroy {
     @Inject(SERVICES_TOKEN.HTTP.USUARIO)
     private readonly httpServiceSecretaria: IUsuarioService,
     @Inject(SERVICES_TOKEN.SNACKBAR)
-    private readonly snackbarManager: ISnackbarManagerService
+    private readonly snackbarManager: ISnackbarManagerService,
+    private router: Router
   ) {}
 
    @Input() ingresso: Ingresso = {
@@ -93,5 +95,9 @@ export class IngressoFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.httpSubscriptions.forEach((s) => s.unsubscribe());
+  }
+
+  onBack(){
+    this.router.navigate(['/home']);
   }
 }
