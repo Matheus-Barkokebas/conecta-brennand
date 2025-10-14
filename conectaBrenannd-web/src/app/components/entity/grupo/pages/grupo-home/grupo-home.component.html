@@ -1,0 +1,18 @@
+<div class="grupo-home">
+  <mat-card class="menu-card">
+    <h2>Gerenciar Grupos</h2>
+    <p>Escolha o que deseja fazer:</p>
+
+    <div class="menu-buttons">
+      <button mat-raised-button color="primary" [routerLink]="'/grupos/new'">
+        <mat-icon>group_add</mat-icon>
+        Cadastrar Novo Grupo
+      </button>
+
+      <button mat-raised-button color="accent" [routerLink]="'/grupos/meus'">
+        <mat-icon>list</mat-icon>
+        Listar Grupos
+      </button>
+    </div>
+  </mat-card>
+</div>

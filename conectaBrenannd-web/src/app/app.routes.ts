@@ -44,6 +44,14 @@ export const routes: Routes = [
   },
 
   {
+    path: 'grupos',
+    loadChildren: () =>
+      import('./components/entity/grupo/grupo.routes').then(
+        (m) => m.GRUPO_ROUTES
+      ),
+  },
+
+  {
     path: 'dashboard',
     loadChildren: () =>
       import('./components/dashboard-admin/dashboard.routes').then(

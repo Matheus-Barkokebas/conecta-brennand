@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-grupo-table
+        [grupos]="grupo"
+        (onConfirmDelete)="delete($event)"
+        (onRequestUpdate)="update($event)">
+      </app-grupo-table>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,7 @@
 package com.conecta.brenannd.entity;
 
+import com.conecta.brenannd.entity.enums.TipoGrupo;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -27,9 +29,10 @@ public class Grupo {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo", nullable = false)
-    private TipoGrupo tipo;
+    private TipoGrupo tipoGrupo = TipoGrupo.AMIGOS;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario dono;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    private Usuario usuario;
+    
 }

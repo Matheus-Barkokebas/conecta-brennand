@@ -1,0 +1,28 @@
+.grupo-table-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th {
+    font-weight: 600;
+  }
+
+  .empty-message {
+    text-align: center;
+    margin-top: 2rem;
+    font-style: italic;
+    color: #777;
+  }
+}

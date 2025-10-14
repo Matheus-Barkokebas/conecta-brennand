@@ -1,4 +1,4 @@
-package com.conecta.brenannd.entity;
+package com.conecta.brenannd.entity.enums;
 
 public enum TipoGrupo {
     AMIGOS,

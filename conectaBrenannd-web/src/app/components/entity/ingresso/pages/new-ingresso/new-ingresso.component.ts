@@ -38,7 +38,7 @@ export class NewIngressoComponent implements OnDestroy {
 
   onSubmitIngresso(value: Ingresso) {
     this.httpSubscription = this.httpService.save(value).subscribe((_) => {
-      this.snackBarManager.show('Ingressp criado com sucesso');
+      this.snackBarManager.show('Ingresso criado com sucesso');
       this.ingressoSubmited.emit();
     });
   }
