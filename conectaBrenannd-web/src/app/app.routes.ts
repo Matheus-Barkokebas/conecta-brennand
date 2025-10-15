@@ -19,6 +19,12 @@ export const routes: Routes = [
 
   {
     path: '',
+    redirectTo: 'dependentes',
+    pathMatch: 'full',
+  },
+
+  {
+    path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
@@ -48,6 +54,14 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./components/entity/grupo/grupo.routes').then(
         (m) => m.GRUPO_ROUTES
+      ),
+  },
+
+  {
+    path: 'dependentes',
+    loadChildren: () =>
+      import('./components/entity/dependente/dependente.routes').then(
+        (m) => m.DEPENDENTE_ROUTES
       ),
   },
 

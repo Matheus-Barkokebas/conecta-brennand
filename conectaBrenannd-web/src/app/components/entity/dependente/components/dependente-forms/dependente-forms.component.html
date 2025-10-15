@@ -1,0 +1,105 @@
+<div class="dependente-form-container">
+
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="dependente-form">
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nome</mat-label>
+        <input
+          matInput
+          type="text"
+          name="nome"
+          [(ngModel)]="dependente.nome"
+          required
+        />
+        <mat-error *ngIf="form.submitted && !dependente.nome">
+          Nome é obrigatório.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Idade</mat-label>
+        <input
+          matInput
+          type="number"
+          name="idade"
+          [(ngModel)]="dependente.idade"
+          required
+        />
+        <mat-error *ngIf="form.submitted && !dependente.idade">
+          Idade é obrigatória.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Segunda linha: CPF e Parentesco -->
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>CPF</mat-label>
+        <input
+          matInput
+          type="text"
+          name="cpf"
+          maxlength="14"
+          [(ngModel)]="dependente.cpf"
+          required
+        />
+        <mat-error *ngIf="form.submitted && !dependente.cpf">
+          CPF é obrigatório.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Parentesco</mat-label>
+        <input
+          matInput
+          type="text"
+          name="parentesco"
+          [(ngModel)]="dependente.parentesco"
+          required
+        />
+        <mat-error *ngIf="form.submitted && !dependente.parentesco">
+          Parentesco é obrigatório.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Terceira linha: Grupo (ocupa linha inteira) -->
+    <div class="form-row full-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Grupo</mat-label>
+        <mat-select
+          name="grupo"
+          [(ngModel)]="dependente.grupo"
+          required
+        >
+          <mat-option *ngFor="let g of grupo" [value]="g">
+            {{ g.nome }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.submitted && !dependente.grupo">
+          Selecione um grupo.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit">
+        Salvar
+      </button>
+      <button
+        mat-stroked-button
+        color="accent"
+        type="button"
+        (click)="onBack()"
+      >
+        Voltar
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Botão voltar flutuante -->
+<button class="back-button" (click)="onBack()">
+  <mat-icon>arrow_back</mat-icon>
+</button>

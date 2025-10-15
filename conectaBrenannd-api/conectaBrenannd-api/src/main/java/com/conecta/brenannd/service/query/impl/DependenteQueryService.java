@@ -6,34 +6,34 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.conecta.brenannd.entity.Grupo;
+import com.conecta.brenannd.entity.Dependente;
 import com.conecta.brenannd.entity.Usuario;
-import com.conecta.brenannd.repository.GrupoRepository;
+import com.conecta.brenannd.repository.DependentesRepository;
 import com.conecta.brenannd.security.services.UserDetailsImpl;
-import com.conecta.brenannd.service.query.IGrupoQueryService;
+import com.conecta.brenannd.service.query.IDependenteQueryService;
 import com.conecta.brenannd.service.query.IUsuarioQueryService;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class GrupoQueryService implements IGrupoQueryService{
+public class DependenteQueryService implements IDependenteQueryService{
 	
-	private GrupoRepository repository;
+	private DependentesRepository repository;
 	private final IUsuarioQueryService usuarioQueryService;
 	
 	@Override
-	public Grupo findById(long id) {
+	public Dependente findById(long id) {
 		return repository.findById(id).orElseThrow();
 	}
 	
 	@Override
-	public List<Grupo> list() {
+	public List<Dependente> list() {
 		return repository.findAll();
 	}
 	
     @Override
-    public List<Grupo> listByUser() {
+    public List<Dependente> listByUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 

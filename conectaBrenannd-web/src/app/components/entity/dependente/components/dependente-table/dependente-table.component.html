@@ -1,0 +1,73 @@
+<div class="dependente-table-container" *ngIf="dependentes?.length; else noData">
+  <table mat-table [dataSource]="dependentes" class="mat-elevation-z2">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let d"> {{ d.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let d"> {{ d.nome }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="idade">
+      <th mat-header-cell *matHeaderCellDef> Idade </th>
+      <td mat-cell *matCellDef="let d"> {{ d.idade }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="parentesco">
+      <th mat-header-cell *matHeaderCellDef> Parentesco </th>
+      <td mat-cell *matCellDef="let d"> {{ d.parentesco }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cpf">
+      <th mat-header-cell *matHeaderCellDef> CPF </th>
+      <td mat-cell *matCellDef="let d"> {{ d.cpf }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="token">
+      <th mat-header-cell *matHeaderCellDef> Token </th>
+      <td mat-cell *matCellDef="let d"> {{ d.token || '-' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="grupo">
+      <th mat-header-cell *matHeaderCellDef> Grupo </th>
+      <td mat-cell *matCellDef="let d">
+        {{ d.grupo?.nome || '-' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="actions-header"> Ações </th>
+      <td mat-cell *matCellDef="let d" class="actions-cell">
+        <button
+          mat-icon-button
+          color="primary"
+          matTooltip="Editar dependente"
+          (click)="update(d)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          matTooltip="Excluir dependente"
+          (click)="delete(d)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+<ng-template #noData>
+  <div class="no-data">
+    <mat-icon>group_off</mat-icon>
+    <p>Nenhum dependente cadastrado.</p>
+  </div>
+</ng-template>

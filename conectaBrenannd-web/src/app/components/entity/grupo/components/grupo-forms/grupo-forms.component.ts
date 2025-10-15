@@ -11,10 +11,11 @@ import { Grupo, TipoGrupo } from '../../models/grupo.models';
 import { Usuario } from '../../../usuario/models/usuario.models';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-grupo-forms',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIconModule],
   templateUrl: './grupo-forms.component.html',
   styleUrl: './grupo-forms.component.scss',
   providers: [
@@ -70,6 +71,6 @@ export class GrupoFormsComponent implements OnInit, OnDestroy {
   }
 
   onBack() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/grupos/homeGrupos']);
   }
 }

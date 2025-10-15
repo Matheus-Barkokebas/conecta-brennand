@@ -1,37 +1,183 @@
+$primary: #633207;
+$primary-light: #977554;
+$accent: #E67E22;
+$background: #F9F7F4;
+$text-primary: #2D2D2D;
+$text-secondary: #5D5D5D;
+
 .grupo-home {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  min-height: calc(100vh - 120px);
+  padding: 2rem;
+}
+
+.menu-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 2.5rem;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  text-align: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: $text-secondary;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+  }
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  button {
+    width: 100%;
+    padding: 1.25rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+
+    mat-icon {
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &[color="primary"] {
+      background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+      color: white;
+
+      &:hover {
+        background: linear-gradient(135deg, $primary-light 0%, $primary 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(99, 50, 7, 0.25);
+      }
+    }
+
+    &[color="accent"] {
+      background: transparent;
+      color: $accent;
+      border: 2px solid $accent;
+
+      &:hover {
+        background: $accent;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(230, 126, 34, 0.25);
+      }
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.back-button {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 1200;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 50% !important;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  mat-icon {
+    color: $primary;
+    font-size: 22px;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background: $primary;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    mat-icon {
+      color: white;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .grupo-home {
+    padding: 1rem;
+  }
 
   .menu-card {
-    text-align: center;
-    padding: 2rem;
-    width: 400px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    padding: 2rem 1.5rem;
 
     h2 {
-      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
     }
 
     p {
+      font-size: 0.95rem;
       margin-bottom: 2rem;
-      color: #555;
     }
+  }
 
-    .menu-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+  .menu-buttons {
+    gap: 1rem;
 
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        font-size: 16px;
+    button {
+      padding: 1rem;
+      font-size: 1rem;
+
+      mat-icon {
+        font-size: 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
       }
     }
+  }
+}
+
+.grupo-home {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

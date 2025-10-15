@@ -1,28 +1,111 @@
-.grupo-table-container {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.elegant-table-container {
+  padding: 16px;
+  border-radius: 8px;
+  background: white;
+}
 
-  h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
+.elegant-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  .table-header {
+    font-weight: 500;
+    color: #2f5b9c;
+    font-size: 14px;
+    border-bottom: 2px solid #e0e9f5;
+    padding: 16px;
+    text-align: left;
+    background-color: #f8fafd;
+
+    &.actions-header {
+      text-align: center;
+    }
   }
 
-  table {
-    width: 100%;
+  .table-cell {
+    padding: 16px;
+    font-size: 14px;
+    color: #4a4a4a;
+    border-bottom: 1px solid #f0f4fa;
+
+    &.actions-cell {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
   }
 
-  th {
-    font-weight: 600;
+  .header-row {
+    height: 56px;
   }
 
-  .empty-message {
-    text-align: center;
-    margin-top: 2rem;
-    font-style: italic;
-    color: #777;
+  .data-row {
+    height: 52px;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: #f5f9ff;
+    }
+
+    &:last-child {
+      .table-cell {
+        border-bottom: none;
+      }
+    }
   }
+}
+
+.delete-button {
+  color: #d32f2f !important;
+  background-color: transparent !important;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #ffeeee !important;
+  }
+
+  mat-icon {
+    font-size: 20px;
+  }
+}
+
+.edit-button {
+  color: #2f5b9c !important;
+  background-color: transparent !important;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #f0f5ff !important;
+  }
+
+  mat-icon {
+    font-size: 20px;
+  }
+}
+
+.elegant-paginator {
+  margin-top: 16px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid #e0e9f5;
+
+  .mat-paginator-container {
+    justify-content: center;
+  }
+
+  .mat-paginator-page-size,
+  .mat-paginator-range-actions {
+    .mat-button {
+      color: #2f5b9c;
+      min-width: 32px;
+
+      &:hover {
+        background-color: #f0f5ff;
+      }
+    }
+  }
+}
+
+.mat-icon {
+  opacity: 0.9;
 }

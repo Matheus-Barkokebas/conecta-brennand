@@ -5,7 +5,7 @@ $background: #F9F7F4;
 $text-primary: #2D2D2D;
 $text-secondary: #5D5D5D;
 
-.grupo-container {
+.dependente-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,78 +13,94 @@ $text-secondary: #5D5D5D;
   padding: 2rem;
 }
 
-.grupo-card {
+.dependente-form-container::before {
+  position: absolute;
   width: 100%;
-  max-width: 480px;
+  max-width: 600px;
   padding: 2rem;
   border-radius: 16px;
   background: white;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
-
-  h2 {
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: $text-primary;
-    margin-bottom: 0.75rem;
-    text-align: center;
-  }
 }
 
-.grupo-form {
+.form-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: 2rem;
+}
+
+.dependente-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 1;
 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  .full-width {
+    width: 100%;
+  }
 
-    label {
-      font-weight: 500;
-      color: $text-primary;
-      font-size: 0.95rem;
-    }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
 
-    .form-control {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      font-size: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      background: white;
-      color: $text-primary;
-      transition: all 0.3s ease;
-      box-sizing: border-box;
-
-      &:focus {
-        outline: none;
-        border-color: $primary;
-        box-shadow: 0 0 0 3px rgba(99, 50, 7, 0.1);
-      }
-
-      &::placeholder {
-        color: #999;
-      }
-    }
-
-    select.form-control {
-      cursor: pointer;
-      appearance: none;
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      background-size: 12px;
+    &.full-row {
+      grid-template-columns: 1fr;
     }
   }
 
-  .buttons {
+  mat-form-field {
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      border-radius: 10px;
+      background: white;
+    }
+
+    ::ng-deep .mat-mdc-form-field-outline {
+      color: rgba(0, 0, 0, 0.12);
+    }
+
+    ::ng-deep .mat-mdc-form-field-flex:hover .mat-mdc-form-field-outline {
+      color: $primary;
+    }
+
+    ::ng-deep .mat-mdc-form-field-outline-thick {
+      color: $primary;
+    }
+
+    mat-label {
+      font-weight: 500;
+      color: $text-secondary;
+    }
+
+    input, .mat-select-value {
+      font-size: 1rem;
+      color: $text-primary;
+    }
+
+    ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+      mat-error {
+        color: #f44336;
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+      }
+    }
+  }
+
+  mat-select {
+    ::ng-deep .mat-mdc-select-arrow {
+      color: $text-secondary;
+    }
+  }
+
+  .form-actions {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
 
-    .btn {
+    button {
       flex: 1;
       padding: 0.85rem;
       font-size: 1rem;
@@ -94,9 +110,8 @@ $text-secondary: #5D5D5D;
       transition: all 0.3s ease;
       border: none;
       cursor: pointer;
-      text-align: center;
 
-      &.btn-primary {
+      &[mat-raised-button] {
         background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
         color: white;
 
@@ -107,7 +122,7 @@ $text-secondary: #5D5D5D;
         }
       }
 
-      &.btn-secondary {
+      &[mat-stroked-button] {
         background: transparent;
         color: $text-secondary;
         border: 1px solid #ddd;
@@ -161,19 +176,29 @@ $text-secondary: #5D5D5D;
   }
 }
 
-@media (max-width: 600px) {
-  .grupo-container {
+@media (max-width: 768px) {
+  .dependente-form-container {
     padding: 1rem;
+
+    &::before {
+      padding: 1.5rem;
+      max-width: 100%;
+    }
   }
 
-  .grupo-card {
-    padding: 1.5rem;
+  .form-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
-  .grupo-form {
-    gap: 1.25rem;
+  .dependente-form {
+    gap: 1rem;
 
-    .buttons {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .form-actions {
       flex-direction: column;
       gap: 0.75rem;
     }

@@ -1,0 +1,44 @@
+.dependente-table-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+  }
+
+  th.mat-header-cell {
+    font-weight: 600;
+    color: #555;
+  }
+
+  td.mat-cell {
+    color: #333;
+  }
+
+  .actions-header {
+    text-align: center;
+  }
+
+  .actions-cell {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+}
+
+.no-data {
+  text-align: center;
+  color: #777;
+  margin-top: 2rem;
+  mat-icon {
+    font-size: 48px;
+    color: #bbb;
+    display: block;
+    margin: 0 auto 0.5rem;
+  }
+}
