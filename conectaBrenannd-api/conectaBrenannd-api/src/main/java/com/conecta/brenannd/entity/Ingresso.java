@@ -42,7 +42,7 @@ public class Ingresso {
     private StatusIngresso status = StatusIngresso.ATIVO;
 
     @Column(name = "data_emissao")
-    private LocalDateTime dataEmissao = LocalDateTime.now();
+    private LocalDate dataEmissao;
 
     @Column(name = "data_utilizacao")
     private LocalDate dataUtilizacao;

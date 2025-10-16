@@ -1,5 +1,6 @@
 package com.conecta.brenannd.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,5 +22,8 @@ public interface IngressoRepository extends JpaRepository<Ingresso, Long>{
     List<Ingresso> findAllByUsuarioId(Long usuarioId);
 
     Optional<Ingresso> findByIdAndUsuarioId(Long ingressoId, Long usuarioId);
+    
+    Optional<Ingresso> findByCpfTokenAndDataEmissaoAndStatus(String cpfToken, LocalDate dataEmissao, StatusIngresso status);
+
 
 }
