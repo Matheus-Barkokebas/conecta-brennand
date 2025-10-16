@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Ingresso } from '../models/ingresso.models';
+import { Ingresso, ValidacaoIngressoResponse } from '../models/ingresso.models';
 
 export interface IIngressoService {
   save(request: Ingresso): Observable<Ingresso>;
@@ -16,4 +16,6 @@ export interface IIngressoService {
   listByUser(): Observable<Ingresso[]>;
 
   findMyIngressoById(id: number): Observable<Ingresso>;
+
+  validarIngresso(cpfToken: string): Observable<ValidacaoIngressoResponse>;
 }

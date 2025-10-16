@@ -31,6 +31,12 @@ public class IngressoQueryService implements IIngressoQueryService{
 	public Ingresso findByCpf(String cpf) {
 		return repository.findByCpfToken(cpf).orElseThrow();
 	}
+	
+	@Override
+    public Ingresso findByCpfToken(String cpfToken) {
+        return repository.findByCpfToken(cpfToken)
+                .orElseThrow(() -> new RuntimeException("Ingresso não encontrado."));
+    }
 
 	@Override
 	public List<Ingresso> list() {

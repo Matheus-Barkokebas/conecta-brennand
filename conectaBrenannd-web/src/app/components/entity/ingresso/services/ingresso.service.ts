@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Ingresso } from '../models/ingresso.models';
+import { Ingresso, ValidacaoIngressoResponse } from '../models/ingresso.models';
 import { environment } from '../../../../../environment/environment';
 import { IIngressoService } from './iingresso.service';
 
@@ -43,5 +43,12 @@ export class IngressoService implements IIngressoService {
 
   findMyIngressoById(id: number): Observable<Ingresso> {
     return this.http.get<Ingresso>(`${this.basePath}ingressos/meus/${id}`);
+  }
+
+  validarIngresso(cpfToken: string): Observable<ValidacaoIngressoResponse> {
+    return this.http.post<ValidacaoIngressoResponse>(
+      `${this.basePath}ingressos/validar?cpfToken=${cpfToken}`,
+      {}
+    );
   }
 }

@@ -14,7 +14,7 @@ public interface IngressoRepository extends JpaRepository<Ingresso, Long>{
 	
 	boolean existsByCpfToken(final String cpf);
 	
-	Optional<Ingresso> findByCpfToken(final String cpf);
+	Optional<Ingresso> findByCpfToken(final String cpfToken);
 
 	Optional<Ingresso> findByStatus(final StatusIngresso status);
 	

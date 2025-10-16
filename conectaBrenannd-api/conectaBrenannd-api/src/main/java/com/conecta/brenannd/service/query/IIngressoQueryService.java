@@ -19,5 +19,7 @@ public interface IIngressoQueryService {
 	void verifyCpf(final String cpf);
 
 	void verifyCpf(final long id, final String cpf);
+	
+	Ingresso findByCpfToken(String cpfToken);
 
 }
