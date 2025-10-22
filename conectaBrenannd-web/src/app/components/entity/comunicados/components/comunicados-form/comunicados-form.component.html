@@ -1,0 +1,47 @@
+<mat-card class="comunicados-card">
+  <h2 class="titulo">Cadastrar Comunicado</h2>
+
+  <form #formComunicado="ngForm" (ngSubmit)="onSubmit()" class="comunicado-form">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Título</mat-label>
+      <input matInput placeholder="Digite o título do comunicado" name="titulo" [(ngModel)]="comunicados.titulo"
+        required />
+      <mat-icon matSuffix>title</mat-icon>
+      <mat-error *ngIf="formComunicado.submitted && !comunicados.titulo">
+        O título é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Descrição</mat-label>
+      <textarea matInput rows="4" placeholder="Digite a descrição do comunicado" name="descricao"
+        [(ngModel)]="comunicados.descricao" required></textarea>
+      <mat-icon matSuffix>description</mat-icon>
+      <mat-error *ngIf="formComunicado.submitted && !comunicados.descricao">
+        A descrição é obrigatória
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Data de Postagem</mat-label>
+      <input matInput [matDatepicker]="picker" name="dataPostagem" [(ngModel)]="comunicados.dataPostagem" required />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="formComunicado.submitted && !comunicados.dataPostagem">
+        A data é obrigatória
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit">
+        <mat-icon>save</mat-icon>
+        Salvar
+      </button>
+
+      <button mat-button color="warn" type="button" (click)="onBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Voltar
+      </button>
+    </div>
+  </form>
+</mat-card>

@@ -29,6 +29,18 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 
+  {
+    path: '',
+    redirectTo: 'comunicados',
+    pathMatch: 'full',
+  },
+
+  {
+    path: '',
+    redirectTo: 'pesquisas',
+    pathMatch: 'full',
+  },
+
   { path: 'login', component: LoginComponent, data: { title: 'Login' } },
 
   { path: 'home', component: HomePageComponent, data: { title: 'home' } },
@@ -70,6 +82,22 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./components/dashboard-admin/dashboard.routes').then(
         (m) => m.DASHBOARD_ROUTES
+      ),
+  },
+
+  {
+    path: 'comunicados',
+    loadChildren: () =>
+      import('./components/entity/comunicados/comunicados.routes').then(
+        (m) => m.COMUNICADOS_ROUTES
+      ),
+  },
+
+  {
+    path: 'pesquisas',
+    loadChildren: () =>
+      import('./components/entity/pesquisa/pesquisa.routes').then(
+        (m) => m.PESQUISA_ROUTES
       ),
   },
 ];

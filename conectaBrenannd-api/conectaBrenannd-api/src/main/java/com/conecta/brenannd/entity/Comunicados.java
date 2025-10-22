@@ -19,7 +19,7 @@ public class Comunicados {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_comunicado", nullable = false, unique = true)
+	@Column(name = "id_comunicados", nullable = false, unique = true)
 	private Long id;
 
 	@Column(name = "titulo")

@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-comunicados-table [comunicados]="comunicados" (onConfirmDelete)="delete($event)"
+        (onRequestUpdate)="update($event)">
+      </app-comunicados-table>
+    </div>
+  </div>
+</div>
