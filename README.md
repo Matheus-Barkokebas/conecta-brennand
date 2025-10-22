@@ -4,6 +4,8 @@
 
 O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de Informação, com o propósito de unir arte, cultura e tecnologia. Nosso foco é transformar a experiência de visitação ao Parque de Esculturas Francisco Brennand, tornando-a mais acessível, interativa e conectada.
 
+# Entregas 1 e 2
+
 ## 📋 Backlog 
 
 <a href="https://trello.com/b/XQcU1FLY/conecta-brennand" target="_blank">📌 Link do Backlog (Trello)</a> 
@@ -34,6 +36,20 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 <a href="https://trello.com/b/XQcU1FLY/conecta-brennand" target="_blank">📌 Link do Backlog (Trello)</a> (Bug tracker presente em forma de lista e cartão)
 
 <a href="https://github.com/Matheus-Barkokebas/conecta-brennand/issues" target="_blank">📌 Link do issues github</a> (Bug tracker no github, servindo para revisão grupal do código em caso de correção de bugs)
+
+# Entrega 3
+
+<a href="https://youtu.be/Z3DHngNrD3E?si=22O8SHDcayx3vbsu" target="_blank">📌 Link do Screencast para Entrega 3 (Youtube)</a>
+
+<a href="https://www.youtube.com/watch?v=5MTQUZJf3V8" target="_blank">📌 Link para os Teste Automatizados (Youtube)</a>
+
+<a href="https://trello.com/b/XQcU1FLY/conecta-brennand" target="_blank">📌 Link do Bug tracker (Trello)</a> (Bug tracker presente em forma de lista e cartão)
+
+![banner](arq_readme/imgs/bugTrello.jpg)
+
+<a href="https://github.com/Matheus-Barkokebas/conecta-brennand/issues" target="_blank">📌 Link do issues github</a> (Bug tracker no github, servindo para revisão grupal do código em caso de correção de bugs)
+
+![banner](arq_readme/imgs/bugIssue.jpg)
 
 ## 👥 Equipe
 
