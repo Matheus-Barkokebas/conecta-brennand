@@ -17,35 +17,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.conecta.brenannd.controller.dto.GrupoDto;
-import com.conecta.brenannd.entity.Grupo;
-import com.conecta.brenannd.entity.mapper.IGrupoMapper;
-import com.conecta.brenannd.service.impl.GrupoService;
-import com.conecta.brenannd.service.query.impl.GrupoQueryService;
+import com.conecta.brenannd.controller.dto.ComunicadosDto;
+import com.conecta.brenannd.entity.Comunicados;
+import com.conecta.brenannd.entity.mapper.IComunicadosMapper;
+import com.conecta.brenannd.service.impl.ComunicadosService;
+import com.conecta.brenannd.service.query.impl.ComunicadosQueryService;
 
 import lombok.AllArgsConstructor;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/grupos")
+@RequestMapping("/comunicados")
 @AllArgsConstructor
-public class GrupoController {
-	
-	private final GrupoService service;
-	private final GrupoQueryService queryService;
-	private final IGrupoMapper mapper;
+public class ComunicadosController {
 
+	private final ComunicadosService service;
+	private final ComunicadosQueryService queryService;
+	private final IComunicadosMapper mapper;
+	
 	@PostMapping
 	@ResponseStatus(CREATED)
-	public GrupoDto save(@RequestBody @Validated final GrupoDto dto) {
-		Grupo entity = mapper.toEntity(dto);
+	public ComunicadosDto save(@RequestBody @Validated final ComunicadosDto dto) {
+		Comunicados entity = mapper.toEntity(dto);
 		service.save(entity);
 		return mapper.toDto(entity);
 	}
 
 	@PutMapping("{id}")
-	public GrupoDto update(@PathVariable("id") final long id, @RequestBody @Validated final GrupoDto dto) {
-		Grupo entity = mapper.toEntity(dto);
+	public ComunicadosDto update(@PathVariable("id") final long id, @RequestBody @Validated final ComunicadosDto dto) {
+		Comunicados entity = mapper.toEntity(dto);
 		service.update(id, entity);
 		return mapper.toDto(entity);
 	}
@@ -57,20 +57,15 @@ public class GrupoController {
 	}
 
 	@GetMapping("{id}")
-	public GrupoDto findById(@PathVariable("id") final long id) {
-		Grupo entity = queryService.findById(id);
+	public ComunicadosDto findById(@PathVariable("id") final long id) {
+		Comunicados entity = queryService.findById(id);
 		return mapper.toDto(entity);
 	}
 
 	@GetMapping
-	public List<GrupoDto> list() {
-		List<Grupo> entities = queryService.list();
+	public List<Comunicados> list() {
+		List<Comunicados> entities = queryService.list();
 		return mapper.toDtoList(entities);
 	}
-	
-    @GetMapping("/meus")
-    public List<Grupo> meusGrupos() {
-        return queryService.listByUser();
-    }
 
 }

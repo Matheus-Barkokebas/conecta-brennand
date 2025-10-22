@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-grupo-home',
@@ -10,4 +10,10 @@ import { RouterLink } from '@angular/router';
   templateUrl: './grupo-home.component.html',
   styleUrl: './grupo-home.component.scss',
 })
-export class GrupoHomeComponent {}
+export class GrupoHomeComponent {
+  constructor(private router: Router) {}
+
+  onBack() {
+    this.router.navigate(['/home']);
+  }
+}

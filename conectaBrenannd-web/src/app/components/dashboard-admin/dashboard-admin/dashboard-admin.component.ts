@@ -15,7 +15,7 @@ import {
 import { DataService, DayCount } from '../service/data.service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -232,9 +232,13 @@ export class DashboardAdminComponent implements OnInit {
   selectedPeriod: string = 'month';
   searchTerm: string = '';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  onBack() {
+    this.router.navigate(['/home']);
   }
 
   onPeriodChange(period: string): void {

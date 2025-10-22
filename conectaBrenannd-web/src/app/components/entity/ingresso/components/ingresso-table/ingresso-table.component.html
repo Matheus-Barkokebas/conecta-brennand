@@ -54,14 +54,6 @@
         </mat-card-content>
 
         <mat-card-actions class="d-flex justify-content-between px-3 pb-3">
-          <button mat-button
-                  color="primary"
-                  class="flex-grow-1 me-2"
-                  (click)="update(ingresso)">
-            <mat-icon>edit</mat-icon>
-            Editar
-          </button>
-
           <button mat-icon-button
                   [matMenuTriggerFor]="menu"
                   class="more-actions">
@@ -69,14 +61,6 @@
           </button>
 
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="shareIngresso(ingresso)">
-              <mat-icon>share</mat-icon>
-              <span>Compartilhar</span>
-            </button>
-            <button mat-menu-item (click)="downloadIngresso(ingresso)">
-              <mat-icon>download</mat-icon>
-              <span>Download</span>
-            </button>
             <button mat-menu-item
                     color="warn"
                     (click)="delete(ingresso)">

@@ -1,17 +1,17 @@
-import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Inject, Input, Output } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { MatButtonModule } from "@angular/material/button";
-import { MatIconModule } from "@angular/material/icon";
-import { MatTableModule } from "@angular/material/table";
-import { MatTooltipModule } from "@angular/material/tooltip";
-import { RouterLink } from "@angular/router";
-import { SERVICES_TOKEN } from "../../../../../service/service.token";
-import { DialogManagerService } from "../../../../../service/ui/dialog-manager.service";
-import { Grupo } from "../../models/grupo.models";
-import { Subscription } from "rxjs";
-import { IDialogManagerService } from "../../../../../service/ui/idialog-manger.service";
-import { YesNoDialogComponent } from "../../../../commons/yes-no-dialog/yes-no-dialog.component";
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { Router, RouterLink } from '@angular/router';
+import { SERVICES_TOKEN } from '../../../../../service/service.token';
+import { DialogManagerService } from '../../../../../service/ui/dialog-manager.service';
+import { Grupo } from '../../models/grupo.models';
+import { Subscription } from 'rxjs';
+import { IDialogManagerService } from '../../../../../service/ui/idialog-manger.service';
+import { YesNoDialogComponent } from '../../../../commons/yes-no-dialog/yes-no-dialog.component';
 
 @Component({
   selector: 'app-grupo-table',
@@ -23,8 +23,8 @@ import { YesNoDialogComponent } from "../../../../commons/yes-no-dialog/yes-no-d
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    RouterLink
-],
+    RouterLink,
+  ],
   templateUrl: './grupo-table.component.html',
   styleUrl: './grupo-table.component.scss',
   providers: [
@@ -48,7 +48,8 @@ export class GrupoTableComponent {
 
   constructor(
     @Inject(SERVICES_TOKEN.DIALOG)
-    private readonly dialogManagerService: IDialogManagerService
+    private readonly dialogManagerService: IDialogManagerService,
+    private router: Router
   ) {}
 
   ngOnDestroy(): void {
@@ -70,5 +71,9 @@ export class GrupoTableComponent {
           this.onConfirmDelete.emit(grupo);
         }
       });
+  }
+
+  onBack() {
+    this.router.navigate(['/home']);
   }
 }

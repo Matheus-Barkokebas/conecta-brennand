@@ -1,7 +1,6 @@
 package com.conecta.brenannd.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import com.conecta.brenannd.entity.enums.StatusIngresso;
 

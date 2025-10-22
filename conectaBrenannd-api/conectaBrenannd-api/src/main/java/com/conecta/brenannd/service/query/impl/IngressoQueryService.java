@@ -2,9 +2,9 @@ package com.conecta.brenannd.service.query.impl;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.security.core.Authentication;
 
 import com.conecta.brenannd.entity.Ingresso;
 import com.conecta.brenannd.entity.Usuario;

@@ -3,7 +3,8 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  <button mat-fab class="floating-menu-btn d-none d-md-flex" *ngIf="!sidebarVisible && !isMobile" (click)="toggleSidebar()">
+  <button mat-fab class="floating-menu-btn d-none d-md-flex" *ngIf="!sidebarVisible && !isMobile"
+    (click)="toggleSidebar()">
     <mat-icon>menu</mat-icon>
   </button>
 
@@ -35,13 +36,19 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/grupos/homeGrupos'" homeGrupos>
+          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/grupos/homeGrupos'" homeGrupos>
             <mat-icon>groups</mat-icon>
             <span>Grupos</span>
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link" (click)="closeSidebarOnMobile()">
+          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/grupos/homeGrupos'" homeGrupos>
+            <mat-icon>groups</mat-icon>
+            <span>Comunicados</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" (click)="closeSidebarOnMobile()">
             <mat-icon>photo_library</mat-icon>
             <span>Galeria</span>
           </a>
@@ -85,7 +92,8 @@
                 Descubra a Magia das Esculturas ao Ar Livre
               </h1>
               <p class="hero-subtitle">
-                No coração do Recife, o Parque Francisco Brennand oferece uma experiência única onde arte, natureza e cultura se encontram em perfeita harmonia.
+                No coração do Recife, o Parque Francisco Brennand oferece uma experiência única onde arte, natureza e
+                cultura se encontram em perfeita harmonia.
               </p>
             </div>
           </div>
@@ -108,7 +116,8 @@
                   <mat-icon>calendar_today</mat-icon>
                 </div>
                 <h3>Visita Individual</h3>
-                <p>Agende sua visita com antecedência e evite filas. Escolha a data e horário que melhor se encaixam na sua agenda.</p>
+                <p>Agende sua visita com antecedência e evite filas. Escolha a data e horário que melhor se encaixam na
+                  sua agenda.</p>
               </mat-card-content>
               <mat-card-actions>
                 <button mat-raised-button color="primary" class="full-width-button" [routerLink]="'/ingressos/new'">
@@ -125,10 +134,11 @@
                   <mat-icon>groups</mat-icon>
                 </div>
                 <h3>Visita em Grupo</h3>
-                <p>Perfeito para escolas, empresas ou excursões. Descontos especiais para grupos acima de 10 pessoas.</p>
+                <p>Perfeito para escolas, empresas ou excursões. Descontos especiais para grupos acima de 10 pessoas.
+                </p>
               </mat-card-content>
               <mat-card-actions>
-                <button mat-raised-button color="accent" class="full-width-button">
+                <button disabled mat-raised-button color="accent" class="full-width-button">
                   Solicitar Grupo
                 </button>
               </mat-card-actions>
@@ -145,7 +155,7 @@
                 <p>Digite seu token clicando no botao abaixo e tenha acesso imediato ao parque. Digital e prático!</p>
               </mat-card-content>
               <mat-card-actions>
-                <button mat-stroked-button color="primary" class="full-width-button">
+                <button disabled mat-stroked-button color="primary" class="full-width-button">
                   Saiba Mais
                 </button>
               </mat-card-actions>

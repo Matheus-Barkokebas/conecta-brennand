@@ -7,8 +7,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.conecta.brenannd.entity.Ingresso;
-import com.conecta.brenannd.entity.Usuario;
-import com.conecta.brenannd.entity.enums.Permissao;
 import com.conecta.brenannd.entity.enums.StatusIngresso;
 
 public interface IngressoRepository extends JpaRepository<Ingresso, Long>{
