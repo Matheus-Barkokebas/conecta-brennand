@@ -113,10 +113,6 @@
             <mat-icon>groups</mat-icon>
             Visita em Grupo
           </button>
-          <button mat-stroked-button color="primary" class="secondary-button" [routerLink]="'/contato'">
-            <mat-icon>contact_support</mat-icon>
-            Fale Conosco
-          </button>
         </div>
       </div>
       <div class="hero-decor hero-decor-left"></div>
@@ -156,7 +152,7 @@
               <p class="card-desc">Compartilhe momentos. Conexão, alegria e memórias.</p>
             </div>
             <div class="card-action">
-              <button disabled mat-raised-button color="accent" class="card-btn">
+              <button mat-raised-button color="accent" class="card-btn" [routerLink]="'/grupos/homeGrupos'">
                 <mat-icon>groups</mat-icon>
                 Solicitar
               </button>
@@ -173,7 +169,7 @@
               <p class="card-desc">Acesse sem filas. Praticidade e tecnologia ao seu favor.</p>
             </div>
             <div class="card-action">
-              <button disabled mat-stroked-button color="primary" class="card-btn">
+              <button  mat-stroked-button color="primary" class="card-btn" [routerLink]="'/ingressos/validar'">
                 <mat-icon>info</mat-icon>
                 Saiba Mais
               </button>

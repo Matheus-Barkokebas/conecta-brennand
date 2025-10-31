@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { IDialogManagerService } from '../../../../../service/ui/idialog-manger.service';
 import { YesNoDialogComponent } from '../../../../commons/yes-no-dialog/yes-no-dialog.component';
 import { Dependente } from '../../models/dependente.models';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dependente-table',
@@ -49,7 +50,8 @@ export class DependenteTableComponent {
 
   constructor(
     @Inject(SERVICES_TOKEN.DIALOG)
-    private readonly dialogManagerService: IDialogManagerService
+    private readonly dialogManagerService: IDialogManagerService,
+    private router: Router
   ) {}
 
   ngOnDestroy(): void {
@@ -71,5 +73,9 @@ export class DependenteTableComponent {
           this.onConfirmDelete.emit(dependente);
         }
       });
+  }
+
+  onBack() {
+    this.router.navigate(['/home']);
   }
 }

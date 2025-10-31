@@ -1,3 +1,5 @@
+<button mat-icon-button class="back-button" (click)="onBack()"> <mat-icon>arrow_back</mat-icon> </button>
+
 <div class="dependente-table-container" *ngIf="dependentes?.length; else noData">
   <table mat-table [dataSource]="dependentes" class="mat-elevation-z2">
 
