@@ -1,206 +1,406 @@
+// Variáveis de cores baseadas no #633207
 $primary: #633207;
 $primary-light: #977554;
-$accent: #E67E22;
-$background: #F9F7F4;
-$text-primary: #2D2D2D;
-$text-secondary: #5D5D5D;
+$accent: #e67e22;
+$background: #ffffff;
+$text-primary: #2d2d2d;
+$text-secondary: #5d5d5d;
 
 .dependente-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 120px);
+  min-height: 100vh;
   padding: 2rem;
-}
-
-.dependente-form-container::before {
-  position: absolute;
-  width: 100%;
-  max-width: 600px;
-  padding: 2rem;
-  border-radius: 16px;
-  background: white;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.form-title {
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: $text-primary;
-  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #fefaf5 0%, #fff8f0 100%);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(99, 50, 7, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(151, 117, 84, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+  }
 }
 
 .dependente-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  max-width: 600px;
+  width: 100%;
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(99, 50, 7, 0.12),
+    0 2px 8px rgba(99, 50, 7, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(230, 211, 179, 0.4);
   position: relative;
   z-index: 1;
-
-  .full-width {
-    width: 100%;
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #633207, #977554, #e6d3b3);
+    border-radius: 24px 24px 0 0;
   }
+}
 
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+// Campos do formulário
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 
-    &.full-row {
-      grid-template-columns: 1fr;
+  &.full-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+// Estilização dos campos do Angular Material
+mat-form-field {
+  width: 100%;
+  
+  ::ng-deep .mat-form-field-outline {
+    color: rgba(99, 50, 7, 0.2);
+  }
+  
+  ::ng-deep .mat-form-field-outline-thick {
+    color: #633207;
+  }
+  
+  ::ng-deep .mat-form-field-label {
+    color: #8b6b4c;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  ::ng-deep .mat-input-element {
+    color: #2d2d2d;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    
+    &::placeholder {
+      color: #b0a699;
     }
   }
-
-  mat-form-field {
-    ::ng-deep .mat-mdc-text-field-wrapper {
-      border-radius: 10px;
-      background: white;
-    }
-
-    ::ng-deep .mat-mdc-form-field-outline {
-      color: rgba(0, 0, 0, 0.12);
-    }
-
-    ::ng-deep .mat-mdc-form-field-flex:hover .mat-mdc-form-field-outline {
-      color: $primary;
-    }
-
-    ::ng-deep .mat-mdc-form-field-outline-thick {
-      color: $primary;
-    }
-
-    mat-label {
-      font-weight: 500;
-      color: $text-secondary;
-    }
-
-    input, .mat-select-value {
-      font-size: 1rem;
-      color: $text-primary;
-    }
-
-    ::ng-deep .mat-mdc-form-field-subscript-wrapper {
-      mat-error {
-        color: #f44336;
-        font-size: 0.85rem;
-        margin-top: 0.25rem;
-      }
+  
+  ::ng-deep .mat-form-field-flex {
+    background: rgba(255, 248, 240, 0.6);
+    border-radius: 12px;
+    padding: 0 0.75rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: rgba(255, 248, 240, 0.9);
     }
   }
-
-  mat-select {
-    ::ng-deep .mat-mdc-select-arrow {
-      color: $text-secondary;
-    }
+  
+  ::ng-deep .mat-form-field-infix {
+    padding: 0.75rem 0;
+    border-top: 0.5em solid transparent;
   }
+}
 
-  .form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
+// Estilização específica para o select
+mat-select {
+  ::ng-deep .mat-select-value {
+    color: #2d2d2d;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  ::ng-deep .mat-select-arrow {
+    color: #977554;
+  }
+}
 
-    button {
-      flex: 1;
-      padding: 0.85rem;
-      font-size: 1rem;
-      border-radius: 10px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-
-      &[mat-raised-button] {
-        background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
-        color: white;
-
-        &:hover:not(:disabled) {
-          background: linear-gradient(135deg, $primary-light 0%, $primary 100%);
-          transform: translateY(-2px);
-          box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-        }
-      }
-
-      &[mat-stroked-button] {
-        background: transparent;
-        color: $text-secondary;
-        border: 1px solid #ddd;
-
-        &:hover {
-          background: #f5f5f5;
-          border-color: #ccc;
-          transform: translateY(-1px);
-        }
-      }
-
-      &:disabled {
-        background: #ccc !important;
-        cursor: not-allowed;
-        transform: none;
-        box-shadow: none;
-        color: #666;
-      }
+// Painel do select
+::ng-deep .mat-select-panel {
+  border-radius: 12px !important;
+  box-shadow: 
+    0 8px 32px rgba(99, 50, 7, 0.15),
+    0 4px 16px rgba(99, 50, 7, 0.1) !important;
+  border: 1px solid rgba(230, 211, 179, 0.4) !important;
+  
+  .mat-option {
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+    
+    &:hover:not(.mat-option-disabled) {
+      background: rgba(255, 248, 240, 0.6) !important;
+    }
+    
+    &.mat-selected:not(.mat-option-multiple) {
+      background: rgba(99, 50, 7, 0.1) !important;
+      color: #633207 !important;
     }
   }
 }
 
+// Botão voltar
 .back-button {
   position: fixed;
   top: 1.5rem;
   left: 1.5rem;
   z-index: 1200;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 50% !important;
-  width: 44px;
-  height: 44px;
+  background: linear-gradient(135deg, #633207 0%, #977554 100%) !important;
+  color: white !important;
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 4px 12px rgba(99, 50, 7, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  cursor: pointer;
-
-  mat-icon {
-    color: $primary;
-    font-size: 22px;
-  }
 
   &:hover {
-    background: $primary;
+    transform: scale(1.05) rotate(-5deg);
+    box-shadow: 0 6px 20px rgba(99, 50, 7, 0.4);
+  }
 
-    mat-icon {
+  mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// Ações do formulário
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(230, 211, 179, 0.4);
+  
+  button {
+    flex: 1;
+    border-radius: 12px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    padding: 1rem 2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: none;
+    cursor: pointer;
+    
+    &:first-child {
+      background: linear-gradient(135deg, #633207 0%, #977554 100%);
       color: white;
+      box-shadow: 0 4px 16px rgba(99, 50, 7, 0.3);
+      
+      &:hover:not([disabled]) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(99, 50, 7, 0.4);
+      }
+      
+      &:active {
+        transform: translateY(0);
+      }
+    }
+    
+    &:last-child {
+      color: #633207;
+      border: 1px solid #e6d3b3;
+      background: rgba(255, 255, 255, 0.8);
+      
+      &:hover {
+        background: rgba(99, 50, 7, 0.05);
+        border-color: #977554;
+        transform: translateY(-2px);
+      }
+    }
+    
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
     }
   }
 }
 
+// Estados de erro
+::ng-deep .mat-form-field.mat-form-field-invalid {
+  .mat-form-field-outline {
+    color: #d32f2f !important;
+  }
+  
+  .mat-form-field-label {
+    color: #d32f2f !important;
+  }
+}
+
+mat-error {
+  color: #d32f2f;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+// Efeitos de foco
+::ng-deep .mat-form-field-appearance-outline.mat-focused {
+  .mat-form-field-outline-thick {
+    color: #633207 !important;
+  }
+  
+  .mat-form-field-label {
+    color: #633207 !important;
+  }
+}
+
+// Animações
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Animar os campos individualmente
+.form-row {
+  animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+}
+
+// Responsividade
 @media (max-width: 768px) {
   .dependente-form-container {
     padding: 1rem;
-
-    &::before {
-      padding: 1.5rem;
-      max-width: 100%;
-    }
-  }
-
-  .form-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    align-items: flex-start;
+    min-height: 100vh;
   }
 
   .dependente-form {
+    padding: 1.5rem;
+    border-radius: 20px;
+    margin-top: 4rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
     gap: 1rem;
+    margin-bottom: 1rem;
+  }
 
-    .form-row {
-      grid-template-columns: 1fr;
+  .form-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+    
+    button {
+      width: 100%;
     }
+  }
 
-    .form-actions {
-      flex-direction: column;
-      gap: 0.75rem;
+  .back-button {
+    top: 1rem;
+    left: 1rem;
+    width: 44px;
+    height: 44px;
+    
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
     }
+  }
+}
+
+@media (max-width: 480px) {
+  .dependente-form-container {
+    padding: 0.5rem;
+  }
+
+  .dependente-form {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+}
+
+// Placeholder estilizado
+::placeholder {
+  color: #b0a699 !important;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #b0a699 !important;
+}
+
+::-ms-input-placeholder {
+  color: #b0a699 !important;
+}
+
+// Focus states para acessibilidade
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick,
+mat-form-field:focus-within {
+  outline: 2px solid #633207;
+  outline-offset: 2px;
+}
+
+// Número específico para campo idade
+input[type="number"] {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  &[type=number] {
+    -moz-appearance: textfield;
+  }
+}
+
+// CPF com máscara visual
+input[name="cpf"] {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+// Loading state para o select
+mat-select:disabled {
+  ::ng-deep .mat-select-value {
+    color: #b0a699 !important;
   }
 }

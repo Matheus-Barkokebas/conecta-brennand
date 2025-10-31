@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../../../../service/auth/auth.service';
 import { Router } from '@angular/router';
 import { YesNoDialogComponent } from '../../../../commons/yes-no-dialog/yes-no-dialog.component';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-comunicados-table',
@@ -28,6 +29,8 @@ import { YesNoDialogComponent } from '../../../../commons/yes-no-dialog/yes-no-d
     MatChipsModule,
     MatTooltipModule,
     MatMenuModule,
+    MatFormField,
+    MatLabel,
   ],
   templateUrl: './comunicados-table.component.html',
   styleUrl: './comunicados-table.component.scss',

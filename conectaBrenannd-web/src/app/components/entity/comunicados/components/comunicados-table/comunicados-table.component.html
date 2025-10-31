@@ -1,69 +1,76 @@
-<mat-card class="comunicados-table-container">
-  <div class="header">
-    <h2>Lista de Comunicados</h2>
-    <button mat-raised-button color="primary" (click)="onBack()">
+<div class="comunicados-premium-bg"></div>
+<div class="comunicados-premium-container">
+  <div class="comunicados-premium-bar">
+    <div class="comunicados-premium-bar-left">
+      <mat-icon class="comunicados-premium-bar-icon">campaign</mat-icon>
+      <h2 class="comunicados-premium-title">Comunicados</h2>
+    </div>
+    <button mat-stroked-button color="primary" class="comunicados-premium-back" (click)="onBack()">
       <mat-icon>arrow_back</mat-icon>
       Voltar
     </button>
   </div>
 
   <div *ngIf="paginatedComunicados.length > 0; else emptyList">
-    <div class="comunicados-grid">
-      <mat-card
-        class="comunicado-card"
+    <div class="comunicados-premium-grid">
+      <div
+        class="comunicado-premium-card"
         *ngFor="let comunicado of paginatedComunicados"
         matTooltip="Clique para ver detalhes"
+        tabindex="0"
       >
-        <div class="card-header">
-          <h3>{{ comunicado.titulo }}</h3>
-          <button
-            mat-icon-button
-            [matMenuTriggerFor]="menu"
-            matTooltip="Ações"
-          >
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="update(comunicado)">
-              <mat-icon>edit</mat-icon>
-              Editar
+        <div class="comunicado-premium-card-glass"></div>
+        <div class="comunicado-premium-card-content">
+          <div class="comunicado-premium-card-header">
+            <mat-icon class="comunicado-premium-card-header-icon">announcement</mat-icon>
+            <h3 class="comunicado-premium-card-title">{{ comunicado.titulo }}</h3>
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              matTooltip="Ações"
+              class="comunicado-premium-card-menu"
+            >
+              <mat-icon>more_vert</mat-icon>
             </button>
-            <button mat-menu-item color="warn" (click)="delete(comunicado)">
-              <mat-icon>delete</mat-icon>
-              Excluir
-            </button>
-          </mat-menu>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="update(comunicado)">
+                <mat-icon>edit</mat-icon>
+                Editar
+              </button>
+              <button mat-menu-item color="warn" (click)="delete(comunicado)">
+                <mat-icon>delete</mat-icon>
+                Excluir
+              </button>
+            </mat-menu>
+          </div>
+          <div class="comunicado-premium-card-desc">{{ comunicado.descricao }}</div>
+          <div class="comunicado-premium-card-footer">
+            <div class="comunicado-premium-card-author">
+              <mat-icon>person</mat-icon>
+              <span>{{ comunicado.usuario.nome || 'Usuário não informado' }}</span>
+            </div>
+            <div class="comunicado-premium-card-date">
+              <mat-icon>calendar_today</mat-icon>
+              <span>{{ comunicado.dataPostagem | date: 'dd/MM/yyyy' }}</span>
+            </div>
+          </div>
         </div>
-
-        <p class="descricao">{{ comunicado.descricao }}</p>
-
-        <div class="detalhes">
-          <mat-chip color="primary" selected>
-            <mat-icon>person</mat-icon>
-            {{ comunicado.usuario.nome || 'Usuário não informado' }}
-          </mat-chip>
-
-          <mat-chip color="accent" selected>
-            <mat-icon>calendar_today</mat-icon>
-            {{ comunicado.dataPostagem | date: 'dd/MM/yyyy' }}
-          </mat-chip>
-        </div>
-      </mat-card>
+      </div>
     </div>
-
     <mat-paginator
       [length]="comunicados.length"
       [pageSize]="pageSize"
       [pageSizeOptions]="pageSizeOptions"
       (page)="onPageChange($event)"
+      class="comunicados-premium-paginator"
     >
     </mat-paginator>
   </div>
 
   <ng-template #emptyList>
-    <div class="empty-state">
-      <mat-icon class="empty-icon">announcement</mat-icon>
+    <div class="comunicados-premium-empty">
+      <mat-icon class="comunicados-premium-empty-icon">announcement</mat-icon>
       <p>Nenhum comunicado encontrado.</p>
     </div>
   </ng-template>
-</mat-card>
+</div>

@@ -1,21 +1,86 @@
+.back-button {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 100;
+  background: linear-gradient(135deg, #633207 0%, #977554 100%) !important;
+  color: white !important;
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 4px 12px rgba(99, 50, 7, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.05) rotate(-5deg);
+    box-shadow: 0 6px 20px rgba(99, 50, 7, 0.4);
+  }
+
+  mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .elegant-table-container {
-  padding: 16px;
-  border-radius: 8px;
-  background: white;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 
+    0 8px 32px rgba(99, 50, 7, 0.12),
+    0 2px 8px rgba(99, 50, 7, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(230, 211, 179, 0.4);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #633207, #977554, #e6d3b3);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #633207;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #633207 0%, #977554 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 .elegant-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
 
   .table-header {
-    font-weight: 500;
-    color: #2f5b9c;
-    font-size: 14px;
-    border-bottom: 2px solid #e0e9f5;
-    padding: 16px;
+    font-weight: 600;
+    color: #633207;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    border-bottom: 2px solid rgba(230, 211, 179, 0.6);
+    padding: 1.25rem 1rem;
     text-align: left;
-    background-color: #f8fafd;
+    background: rgba(255, 248, 240, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 
     &.actions-header {
       text-align: center;
@@ -23,28 +88,43 @@
   }
 
   .table-cell {
-    padding: 16px;
-    font-size: 14px;
-    color: #4a4a4a;
-    border-bottom: 1px solid #f0f4fa;
+    padding: 1.25rem 1rem;
+    font-size: 0.95rem;
+    color: #2d2d2d;
+    font-family: 'Inter', sans-serif;
+    border-bottom: 1px solid rgba(230, 211, 179, 0.3);
+    transition: all 0.3s ease;
+
+    &:first-child {
+      font-weight: 600;
+      color: #633207;
+    }
 
     &.actions-cell {
       display: flex;
       justify-content: center;
-      gap: 8px;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(230, 211, 179, 0.3);
     }
   }
 
   .header-row {
-    height: 56px;
+    height: 60px;
   }
 
   .data-row {
-    height: 52px;
-    transition: background-color 0.15s ease;
+    height: 64px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 
     &:hover {
-      background-color: #f5f9ff;
+      background: rgba(255, 248, 240, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(99, 50, 7, 0.1);
+      
+      .table-cell {
+        border-bottom-color: rgba(151, 117, 84, 0.4);
+      }
     }
 
     &:last-child {
@@ -55,57 +135,280 @@
   }
 }
 
+// Botões de ação
+.edit-button {
+  color: #633207 !important;
+  background: rgba(99, 50, 7, 0.1) !important;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background: rgba(99, 50, 7, 0.2) !important;
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 4px 12px rgba(99, 50, 7, 0.2);
+  }
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
 .delete-button {
   color: #d32f2f !important;
-  background-color: transparent !important;
-  transition: all 0.2s;
+  background: rgba(211, 47, 47, 0.1) !important;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background-color: #ffeeee !important;
+    background: rgba(211, 47, 47, 0.2) !important;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
   }
 
   mat-icon {
     font-size: 20px;
+    width: 20px;
+    height: 20px;
   }
 }
 
-.edit-button {
-  color: #2f5b9c !important;
-  background-color: transparent !important;
-  transition: all 0.2s;
+// Botão de adicionar dependente (primeiro botão)
+button:first-child.edit-button {
+  color: #2e7d32 !important;
+  background: rgba(46, 125, 50, 0.1) !important;
 
   &:hover {
-    background-color: #f0f5ff !important;
-  }
-
-  mat-icon {
-    font-size: 20px;
+    background: rgba(46, 125, 50, 0.2) !important;
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
   }
 }
 
+// Mensagem de lista vazia
+.empty-message {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #977554;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  background: rgba(255, 248, 240, 0.6);
+  border-radius: 16px;
+  border: 2px dashed rgba(230, 211, 179, 0.6);
+  
+  &::before {
+    content: '📋';
+    display: block;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+}
+
+// Paginator (caso tenha)
 .elegant-paginator {
-  margin-top: 16px;
-  border-radius: 8px;
-  background: transparent;
-  border: 1px solid #e0e9f5;
+  margin-top: 2rem;
+  border-radius: 16px;
+  background: rgba(255, 248, 240, 0.6);
+  border: 1px solid rgba(230, 211, 179, 0.4);
+  padding: 1rem;
 
-  .mat-paginator-container {
+  ::ng-deep .mat-paginator-container {
     justify-content: center;
+    color: #633207;
+    font-family: 'Inter', sans-serif;
   }
 
-  .mat-paginator-page-size,
-  .mat-paginator-range-actions {
+  ::ng-deep .mat-paginator-page-size,
+  ::ng-deep .mat-paginator-range-actions {
     .mat-button {
-      color: #2f5b9c;
-      min-width: 32px;
+      color: #633207;
+      min-width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
 
       &:hover {
-        background-color: #f0f5ff;
+        background: rgba(99, 50, 7, 0.1);
+      }
+
+      &.mat-paginator-navigation-previous,
+      &.mat-paginator-navigation-next {
+        background: rgba(99, 50, 7, 0.05);
+        
+        &:hover {
+          background: rgba(99, 50, 7, 0.15);
+        }
       }
     }
   }
 }
 
-.mat-icon {
-  opacity: 0.9;
+// Animações
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.elegant-table-container {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideInRow {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.data-row {
+  animation: slideInRow 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+// Responsividade
+@media (max-width: 1024px) {
+  .elegant-table-container {
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+
+  .table-cell {
+    padding: 1rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .back-button {
+    top: 1rem;
+    left: 1rem;
+    width: 44px;
+    height: 44px;
+    
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .elegant-table-container {
+    margin: 0.5rem;
+    padding: 1.25rem;
+    border-radius: 16px;
+    
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .elegant-table {
+    .table-header {
+      padding: 1rem 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .table-cell {
+      padding: 0.875rem 0.5rem;
+      font-size: 0.85rem;
+
+      &.actions-cell {
+        gap: 0.25rem;
+      }
+    }
+
+    .edit-button,
+    .delete-button {
+      width: 36px;
+      height: 36px;
+      
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  // Ocultar algumas colunas em mobile
+  .table-header:nth-child(1), // ID
+  .table-cell:nth-child(1) {
+    display: none;
+  }
+
+  .displayed-columns {
+    grid-template-columns: 1fr 1fr auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .elegant-table-container {
+    padding: 1rem;
+  }
+
+  .table-header:nth-child(3), // Tipo Grupo
+  .table-cell:nth-child(3) {
+    display: none;
+  }
+
+  .empty-message {
+    padding: 3rem 1rem;
+    font-size: 1.1rem;
+  }
+}
+
+// Tooltip personalizado
+::ng-deep .mat-tooltip {
+  background: rgba(99, 50, 7, 0.9) !important;
+  color: white !important;
+  font-size: 0.8rem !important;
+  font-family: 'Inter', sans-serif !important;
+  border-radius: 8px !important;
+  padding: 0.5rem 0.75rem !important;
+}
+
+// Scrollbar personalizada para a tabela
+.elegant-table-container {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(99, 50, 7, 0.05);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(99, 50, 7, 0.2);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 50, 7, 0.3);
+  }
 }

@@ -96,82 +96,89 @@
 
   <main class="main-content" [class.content-expanded]="!sidebarVisible">
     <section class="hero-section">
-      <div class="">
-        <div class="row align-items-center">
-          <div class="col-lg-12 col-md-12">
-            <div class="hero-content">
-              <h1 class="hero-title">
-                Descubra a Magia das Esculturas ao Ar Livre
-              </h1>
-              <p class="hero-subtitle">
-                No coração do Recife, o Parque Francisco Brennand oferece uma experiência única onde arte, natureza e
-                cultura se encontram em perfeita harmonia.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-12">
-          </div>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Descubra a Magia das Esculturas ao Ar Livre
+        </h1>
+        <p class="hero-subtitle">
+          No coração do Recife, o Parque Francisco Brennand oferece uma experiência única onde arte, natureza e
+          cultura se encontram em perfeita harmonia.
+        </p>
+        <div class="hero-actions">
+          <button mat-raised-button color="primary" class="cta-button" [routerLink]="'/ingressos/new'">
+            <mat-icon>event_available</mat-icon>
+            Agendar Visita
+          </button>
+          <button mat-stroked-button color="accent" class="secondary-button" [routerLink]="'/grupos/homeGrupos'">
+            <mat-icon>groups</mat-icon>
+            Visita em Grupo
+          </button>
+          <button mat-stroked-button color="primary" class="secondary-button" [routerLink]="'/contato'">
+            <mat-icon>contact_support</mat-icon>
+            Fale Conosco
+          </button>
         </div>
       </div>
+      <div class="hero-decor hero-decor-left"></div>
+      <div class="hero-decor hero-decor-right"></div>
     </section>
 
     <section class="cards-section">
-      <div class="container">
-        <h2 class="section-title text-center">Como Visitar o Parque</h2>
-        <p class="section-subtitle text-center">Escolha a melhor forma de vivenciar essa experiência única</p>
-
-        <div class="row justify-content-center">
-          <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
-            <mat-card class="feature-card h-100">
-              <mat-card-content class="text-center">
-                <div class="card-icon" style="margin-top: 1px;">
-                  <mat-icon>calendar_today</mat-icon>
-                </div>
-                <h3>Visita Individual</h3>
-                <p>Agende sua visita com antecedência e evite filas. Escolha a data e horário que melhor se encaixam na
-                  sua agenda.</p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-raised-button color="primary" class="full-width-button" [routerLink]="'/ingressos/new'">
-                  Reservar Agora
-                </button>
-              </mat-card-actions>
-            </mat-card>
+      <div class="park-experience-bg"></div>
+      <div class="park-experience-container">
+        <h2 class="park-experience-title">Como você quer viver essa experiência?</h2>
+        <p class="park-experience-subtitle">Escolha seu caminho e sinta a magia do parque.</p>
+        <div class="park-experience-cards">
+          <div class="park-experience-card individual" tabindex="0">
+            <div class="card-visual">
+              <span class="card-visual-icon"><mat-icon>calendar_today</mat-icon></span>
+              <span class="card-visual-glow"></span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Visita Individual</h3>
+              <p class="card-desc">Explore no seu ritmo. Descubra, contemple, inspire-se.</p>
+            </div>
+            <div class="card-action">
+              <button mat-raised-button color="primary" class="card-btn" [routerLink]="'/ingressos/new'">
+                <mat-icon>event_available</mat-icon>
+                Reservar
+              </button>
+            </div>
+            <div class="card-ambient-light"></div>
           </div>
-
-          <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
-            <mat-card class="feature-card h-100">
-              <mat-card-content class="text-center">
-                <div class="card-icon" style="margin-top: 1px;">
-                  <mat-icon>groups</mat-icon>
-                </div>
-                <h3>Visita em Grupo</h3>
-                <p>Perfeito para escolas, empresas ou excursões. Descontos especiais para grupos acima de 10 pessoas.
-                </p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button disabled mat-raised-button color="accent" class="full-width-button">
-                  Solicitar Grupo
-                </button>
-              </mat-card-actions>
-            </mat-card>
+          <div class="park-experience-card grupo" tabindex="0">
+            <div class="card-visual">
+              <span class="card-visual-icon"><mat-icon>groups</mat-icon></span>
+              <span class="card-visual-glow"></span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Visita em Grupo</h3>
+              <p class="card-desc">Compartilhe momentos. Conexão, alegria e memórias.</p>
+            </div>
+            <div class="card-action">
+              <button disabled mat-raised-button color="accent" class="card-btn">
+                <mat-icon>groups</mat-icon>
+                Solicitar
+              </button>
+            </div>
+            <div class="card-ambient-light"></div>
           </div>
-
-          <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
-            <mat-card class="feature-card h-100">
-              <mat-card-content class="text-center">
-                <div class="card-icon" style="margin-top: 1px;">
-                  <mat-icon>speed</mat-icon>
-                </div>
-                <h3>Check-in Rápido</h3>
-                <p>Digite seu token clicando no botao abaixo e tenha acesso imediato ao parque. Digital e prático!</p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button disabled mat-stroked-button color="primary" class="full-width-button">
-                  Saiba Mais
-                </button>
-              </mat-card-actions>
-            </mat-card>
+          <div class="park-experience-card checkin" tabindex="0">
+            <div class="card-visual">
+              <span class="card-visual-icon"><mat-icon>speed</mat-icon></span>
+              <span class="card-visual-glow"></span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Check-in Rápido</h3>
+              <p class="card-desc">Acesse sem filas. Praticidade e tecnologia ao seu favor.</p>
+            </div>
+            <div class="card-action">
+              <button disabled mat-stroked-button color="primary" class="card-btn">
+                <mat-icon>info</mat-icon>
+                Saiba Mais
+              </button>
+            </div>
+            <div class="card-ambient-light"></div>
           </div>
         </div>
       </div>
