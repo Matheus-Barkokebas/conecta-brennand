@@ -749,8 +749,63 @@ $card-bg: #ffffff;
 }
 
 * {
-scrollbar-width: none;
+  scrollbar-width: none;
 }
 
-* {-ms-overflow-style: none;
+* {
+  -ms-overflow-style: none;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  button {
+    width: 15rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+
+    mat-icon {
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &[color="primary"] {
+      background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+      color: white;
+
+      &:hover {
+        background: linear-gradient(135deg, $primary-light 0%, $primary 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(99, 50, 7, 0.25);
+      }
+    }
+
+    &[color="accent"] {
+      background: transparent;
+      color: $accent;
+      border: 2px solid $accent;
+
+      &:hover {
+        background: $accent;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(230, 126, 34, 0.25);
+      }
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
 }
