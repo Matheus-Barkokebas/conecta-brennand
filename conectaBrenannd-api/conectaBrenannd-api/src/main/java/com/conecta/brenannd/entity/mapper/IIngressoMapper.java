@@ -10,14 +10,14 @@ import com.conecta.brenannd.entity.Ingresso;
 
 @Mapper(componentModel = "spring")
 public interface IIngressoMapper {
-	
+
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "usuario.id", source = "usuarioId")
 	Ingresso toEntity(IngressoDto dto);
-	
+
 	@Mapping(target = "usuarioId", source = "usuario.id")
 	IngressoDto toDto(Ingresso entity);
-	
+
 	List<IngressoDto> toDtoList(List<Ingresso> entities);
 
 }

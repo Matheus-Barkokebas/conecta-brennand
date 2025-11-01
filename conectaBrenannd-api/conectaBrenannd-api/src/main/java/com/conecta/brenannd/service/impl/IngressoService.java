@@ -24,83 +24,80 @@ import java.util.Optional;
 @AllArgsConstructor
 public class IngressoService implements IIngressoService {
 
-    @Autowired
-    private UsuarioQueryService usuarioQueryService;
+	@Autowired
+	private UsuarioQueryService usuarioQueryService;
 
-    private final IngressoRepository repository;
-    private final IIngressoQueryService queryService;
+	private final IngressoRepository repository;
+	private final IIngressoQueryService queryService;
 
-    @Override
-    public Ingresso save(Ingresso entity) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+	@Override
+	public Ingresso save(Ingresso entity) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-        Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
+		Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
 
-        entity.setUsuario(usuario);
-        entity.setCpfToken(userPrincipal.getCpf());
+		entity.setUsuario(usuario);
+		entity.setCpfToken(userPrincipal.getCpf());
 
-        if (entity.getDataEmissao() == null) {
-            entity.setDataEmissao(LocalDate.now());
-        }
+		if (entity.getDataEmissao() == null) {
+			entity.setDataEmissao(LocalDate.now());
+		}
 
-        Optional<Ingresso> ingressoExistente = repository
-                .findByCpfTokenAndDataEmissaoAndStatus(userPrincipal.getCpf(),
-                        entity.getDataEmissao(), StatusIngresso.ATIVO);
+		Optional<Ingresso> ingressoExistente = repository.findByCpfTokenAndDataEmissaoAndStatus(userPrincipal.getCpf(),
+				entity.getDataEmissao(), StatusIngresso.ATIVO);
 
-        if (ingressoExistente.isPresent()) {
-            throw new RuntimeException("Já existe um ingresso ativo para este CPF na data informada.");
-        }
+		if (ingressoExistente.isPresent()) {
+			throw new RuntimeException("Já existe um ingresso ativo para este CPF na data informada.");
+		}
 
-        entity.setStatus(StatusIngresso.ATIVO);
+		entity.setStatus(StatusIngresso.ATIVO);
 
-        return repository.save(entity);
-    }
+		return repository.save(entity);
+	}
 
-    @Override
-    public Ingresso update(long id, Ingresso entity) {
-        var stored = queryService.findById(id);
+	@Override
+	public Ingresso update(long id, Ingresso entity) {
+		var stored = queryService.findById(id);
 
-        stored.setUsuario(entity.getUsuario());
-        stored.setCpfToken(entity.getCpfToken());
-        stored.setDataEmissao(entity.getDataEmissao());
-        stored.setDataUtilizacao(entity.getDataUtilizacao());
-        stored.setStatus(entity.getStatus());
+		stored.setUsuario(entity.getUsuario());
+		stored.setCpfToken(entity.getCpfToken());
+		stored.setDataEmissao(entity.getDataEmissao());
+		stored.setDataUtilizacao(entity.getDataUtilizacao());
+		stored.setStatus(entity.getStatus());
 
-        return repository.save(stored);
-    }
+		return repository.save(stored);
+	}
 
-    @Override
-    public void delete(long id) {
-        queryService.findById(id);
-        repository.deleteById(id);
-    }
+	@Override
+	public void delete(long id) {
+		queryService.findById(id);
+		repository.deleteById(id);
+	}
 
-    @Override
-    public ValidacaoIngressoResponseDTO validarIngresso(String cpfToken) {
-        var ingresso = queryService.findByCpfToken(cpfToken);
-        if (ingresso == null) {
-            return new ValidacaoIngressoResponseDTO("Ingresso não encontrado para o CPF informado.", null, null);
-        }
+	@Override
+	public ValidacaoIngressoResponseDTO validarIngresso(String cpfToken) {
+		var ingresso = queryService.findByCpfToken(cpfToken);
+		if (ingresso == null) {
+			return new ValidacaoIngressoResponseDTO("Ingresso não encontrado para o CPF informado.", null, null);
+		}
 
-        if (ingresso.getStatus() == StatusIngresso.USADO) {
-            return new ValidacaoIngressoResponseDTO("Ingresso já foi utilizado!",
-                    ingresso.getStatus(), ingresso.getDataUtilizacao());
-        }
+		if (ingresso.getStatus() == StatusIngresso.USADO) {
+			return new ValidacaoIngressoResponseDTO("Ingresso já foi utilizado!", ingresso.getStatus(),
+					ingresso.getDataUtilizacao());
+		}
 
-        if (ingresso.getStatus() == StatusIngresso.CANCELADO) {
-            return new ValidacaoIngressoResponseDTO("Ingresso foi cancelado e não é mais válido!",
-                    ingresso.getStatus(), ingresso.getDataUtilizacao());
-        }
+		if (ingresso.getStatus() == StatusIngresso.CANCELADO) {
+			return new ValidacaoIngressoResponseDTO("Ingresso foi cancelado e não é mais válido!", ingresso.getStatus(),
+					ingresso.getDataUtilizacao());
+		}
 
-        ingresso.setStatus(StatusIngresso.USADO);
-        ingresso.setDataUtilizacao(LocalDate.now());
-        ingresso.setCpfToken("USADO");
-        repository.save(ingresso);
+		ingresso.setStatus(StatusIngresso.USADO);
+		ingresso.setDataUtilizacao(LocalDate.now());
+		ingresso.setCpfToken("USADO");
+		repository.save(ingresso);
 
-        return new ValidacaoIngressoResponseDTO(
-                "Acesso liberado! Ingresso validado com sucesso.",
-                ingresso.getStatus(),
-                ingresso.getDataUtilizacao());
-    }
+		return new ValidacaoIngressoResponseDTO("Acesso liberado! Ingresso validado com sucesso.", ingresso.getStatus(),
+				ingresso.getDataUtilizacao());
+	}
 }

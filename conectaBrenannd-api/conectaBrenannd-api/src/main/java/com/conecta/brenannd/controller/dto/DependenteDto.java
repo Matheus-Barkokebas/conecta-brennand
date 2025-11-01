@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DependenteDto {
 
-    private Long id;
-    private String nome;
-    private Integer idade;
-    private String parentesco;
-    private String cpf;
-    private Grupo grupo;
-    private Long usuarioId;
+	private Long id;
+	private String nome;
+	private Integer idade;
+	private String parentesco;
+	private String cpf;
+	private Grupo grupo;
+	private Long usuarioId;
 
 }

@@ -16,7 +16,7 @@ import lombok.Data;
 @Data
 @Table(name = "tb_comunicados")
 public class Comunicados {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_comunicados", nullable = false, unique = true)
@@ -30,9 +30,9 @@ public class Comunicados {
 
 	@Column(name = "data_postagem")
 	private LocalDate dataPostagem;
-	
-    @ManyToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    private Usuario usuario;
+
+	@ManyToOne
+	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+	private Usuario usuario;
 
 }

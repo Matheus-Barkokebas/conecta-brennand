@@ -26,30 +26,21 @@ public class UserDetailsImpl implements UserDetails {
 
 	@JsonIgnore
 	private String password;
-	
+
 	private String cpf;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
 	public static UserDetailsImpl build(Usuario user) {
-	    GrantedAuthority authority = new SimpleGrantedAuthority(user.getPermissao().name());
-	    List<GrantedAuthority> authorities = List.of(authority);
+		GrantedAuthority authority = new SimpleGrantedAuthority(user.getPermissao().name());
+		List<GrantedAuthority> authorities = List.of(authority);
 
-	    return new UserDetailsImpl(
-	        user.getId(),
-	        user.getNome(),
-	        user.getEmail(),
-	        user.getSenha(),
-	        user.getCpf(),
-	        authorities
-	    );
+		return new UserDetailsImpl(user.getId(), user.getNome(), user.getEmail(), user.getSenha(), user.getCpf(),
+				authorities);
 	}
-	
+
 	public String getPermissao() {
-	    return authorities.stream()
-	        .findFirst()
-	        .map(GrantedAuthority::getAuthority)
-	        .orElse(null);
+		return authorities.stream().findFirst().map(GrantedAuthority::getAuthority).orElse(null);
 	}
 
 	@Override

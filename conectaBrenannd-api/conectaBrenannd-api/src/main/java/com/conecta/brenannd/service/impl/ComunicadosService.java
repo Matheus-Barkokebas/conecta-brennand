@@ -17,41 +17,41 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class ComunicadosService implements IComunicadosService{
-	
-    @Autowired
-    private UsuarioQueryService usuarioQueryService;
-	
-    private final ComunicadosRepository repository;
-    private final IComunicadosQueryService queryService;
+public class ComunicadosService implements IComunicadosService {
 
-    @Override
-    public Comunicados save(Comunicados entity) {
-    	
-    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+	@Autowired
+	private UsuarioQueryService usuarioQueryService;
 
-        Usuario usuario = usuarioQueryService.findById(userPrincipal.getId());
+	private final ComunicadosRepository repository;
+	private final IComunicadosQueryService queryService;
 
-        entity.setUsuario(usuario);
+	@Override
+	public Comunicados save(Comunicados entity) {
 
-        return repository.save(entity);
-    }
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-    @Override
-    public Comunicados update(long id, Comunicados entity) {
-        var stored = queryService.findById(id);  
-        
-        stored.setTitulo(entity.getTitulo());
-        stored.setDescricao(entity.getDescricao());
-        
-        return repository.save(stored);
-    }
+		Usuario usuario = usuarioQueryService.findById(userPrincipal.getId());
 
-    @Override
-    public void delete(long id) {
-        queryService.findById(id);
-        repository.deleteById(id);
-    }
+		entity.setUsuario(usuario);
+
+		return repository.save(entity);
+	}
+
+	@Override
+	public Comunicados update(long id, Comunicados entity) {
+		var stored = queryService.findById(id);
+
+		stored.setTitulo(entity.getTitulo());
+		stored.setDescricao(entity.getDescricao());
+
+		return repository.save(stored);
+	}
+
+	@Override
+	public void delete(long id) {
+		queryService.findById(id);
+		repository.deleteById(id);
+	}
 
 }

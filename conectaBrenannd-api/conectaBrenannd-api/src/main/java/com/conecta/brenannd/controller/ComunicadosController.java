@@ -34,7 +34,7 @@ public class ComunicadosController {
 	private final ComunicadosService service;
 	private final ComunicadosQueryService queryService;
 	private final IComunicadosMapper mapper;
-	
+
 	@PostMapping
 	@ResponseStatus(CREATED)
 	public ComunicadosDto save(@RequestBody @Validated final ComunicadosDto dto) {

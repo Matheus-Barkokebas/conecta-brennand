@@ -15,6 +15,6 @@ public class ComunicadosDto {
 	private String titulo;
 	private String descricao;
 	private LocalDate dataPostagem;
-    private Long usuarioId;
-	
+	private Long usuarioId;
+
 }

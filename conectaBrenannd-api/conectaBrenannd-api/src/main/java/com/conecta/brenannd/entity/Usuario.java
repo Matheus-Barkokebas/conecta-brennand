@@ -18,7 +18,7 @@ import lombok.Data;
 @Data
 @Table(name = "tb_usuarios")
 public class Usuario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario", nullable = false, unique = true)
@@ -53,8 +53,8 @@ public class Usuario {
 
 	@Column(name = "cep", length = 9)
 	private String cep;
-	
+
 	@Enumerated(EnumType.STRING)
-    @Column(name = "permissao")
+	@Column(name = "permissao")
 	private Permissao permissao = Permissao.VISITANTE;
 }

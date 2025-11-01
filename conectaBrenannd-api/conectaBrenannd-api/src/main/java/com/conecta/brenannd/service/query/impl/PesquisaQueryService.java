@@ -10,8 +10,8 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class PesquisaQueryService implements IPesquisaQueryService{
-	
+public class PesquisaQueryService implements IPesquisaQueryService {
+
 	private PesquisaRepository repository;
 
 	@Override

@@ -10,11 +10,11 @@ import com.conecta.brenannd.entity.Usuario;
 
 @Mapper(componentModel = "spring")
 public interface IUsuarioMapper {
-	
+
 	@Mapping(target = "id", ignore = true)
 	Usuario toEntity(UsuarioDto dto);
-	
+
 	UsuarioDto toDto(Usuario entity);
-	
+
 	List<UsuarioDto> toDtoList(List<Usuario> entities);
 }

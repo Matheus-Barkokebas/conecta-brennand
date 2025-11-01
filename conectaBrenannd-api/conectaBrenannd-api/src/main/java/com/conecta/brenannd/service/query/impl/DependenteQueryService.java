@@ -17,27 +17,27 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class DependenteQueryService implements IDependenteQueryService{
-	
+public class DependenteQueryService implements IDependenteQueryService {
+
 	private DependentesRepository repository;
 	private final IUsuarioQueryService usuarioQueryService;
-	
+
 	@Override
 	public Dependente findById(long id) {
 		return repository.findById(id).orElseThrow();
 	}
-	
+
 	@Override
 	public List<Dependente> list() {
 		return repository.findAll();
 	}
-	
-    @Override
-    public List<Dependente> listByUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-        Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
-        return repository.findAllByUsuarioId(usuario.getId());
-    }
+	@Override
+	public List<Dependente> listByUser() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+
+		Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
+		return repository.findAllByUsuarioId(usuario.getId());
+	}
 }

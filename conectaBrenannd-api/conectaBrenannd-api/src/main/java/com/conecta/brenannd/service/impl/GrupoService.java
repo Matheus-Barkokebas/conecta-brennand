@@ -17,41 +17,41 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class GrupoService implements IGrupoService{
-	
-    @Autowired
-    private UsuarioQueryService usuarioQueryService;
-	
-    private final GrupoRepository repository;
-    private final IGrupoQueryService queryService;
+public class GrupoService implements IGrupoService {
 
-    @Override
-    public Grupo save(Grupo entity) {
-    	
-    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+	@Autowired
+	private UsuarioQueryService usuarioQueryService;
 
-        Usuario usuario = usuarioQueryService.findById(userPrincipal.getId());
+	private final GrupoRepository repository;
+	private final IGrupoQueryService queryService;
 
-        entity.setUsuario(usuario);
+	@Override
+	public Grupo save(Grupo entity) {
 
-        return repository.save(entity);
-    }
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-    @Override
-    public Grupo update(long id, Grupo entity) {
-        var stored = queryService.findById(id);  
-        
-        stored.setNome(entity.getNome());
-        stored.setTipoGrupo(entity.getTipoGrupo());
-        
-        return repository.save(stored);
-    }
+		Usuario usuario = usuarioQueryService.findById(userPrincipal.getId());
 
-    @Override
-    public void delete(long id) {
-        queryService.findById(id);
-        repository.deleteById(id);
-    }
+		entity.setUsuario(usuario);
+
+		return repository.save(entity);
+	}
+
+	@Override
+	public Grupo update(long id, Grupo entity) {
+		var stored = queryService.findById(id);
+
+		stored.setNome(entity.getNome());
+		stored.setTipoGrupo(entity.getTipoGrupo());
+
+		return repository.save(stored);
+	}
+
+	@Override
+	public void delete(long id) {
+		queryService.findById(id);
+		repository.deleteById(id);
+	}
 
 }

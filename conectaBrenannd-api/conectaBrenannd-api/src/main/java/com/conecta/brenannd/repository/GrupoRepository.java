@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.conecta.brenannd.entity.Grupo;
 
-public interface GrupoRepository extends JpaRepository<Grupo, Long>{
+public interface GrupoRepository extends JpaRepository<Grupo, Long> {
 
 	List<Grupo> findAllByUsuarioId(Long usuarioId);
 }

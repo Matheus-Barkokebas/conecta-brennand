@@ -19,49 +19,49 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class DependenteService implements IDependenteService{
-	
-    @Autowired
-    private UsuarioQueryService usuarioQueryService;
-    
-    @Autowired
-    private GrupoQueryService grupoQueryService;
-	
-    private final DependentesRepository repository;
-    private final IDependenteQueryService queryService;
+public class DependenteService implements IDependenteService {
 
-    @Override
-    public Dependente save(Dependente entity) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+	@Autowired
+	private UsuarioQueryService usuarioQueryService;
 
-        Usuario usuario = usuarioQueryService.findById(userPrincipal.getId());
-        entity.setUsuario(usuario);
+	@Autowired
+	private GrupoQueryService grupoQueryService;
 
-        if (entity.getGrupo() == null || entity.getGrupo().getId() == null) {
-            throw new IllegalArgumentException("O grupo do dependente deve ser informado.");
-        }
+	private final DependentesRepository repository;
+	private final IDependenteQueryService queryService;
 
-        Grupo grupo = grupoQueryService.findById(entity.getGrupo().getId());
-        entity.setGrupo(grupo);
+	@Override
+	public Dependente save(Dependente entity) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-        return repository.save(entity);
-    }
+		Usuario usuario = usuarioQueryService.findById(userPrincipal.getId());
+		entity.setUsuario(usuario);
 
-    @Override
-    public Dependente update(long id, Dependente entity) {
-        var stored = queryService.findById(id);  
-        
-        stored.setNome(entity.getNome());
-        stored.setIdade(entity.getIdade());
-        
-        return repository.save(stored);
-    }
+		if (entity.getGrupo() == null || entity.getGrupo().getId() == null) {
+			throw new IllegalArgumentException("O grupo do dependente deve ser informado.");
+		}
 
-    @Override
-    public void delete(long id) {
-        queryService.findById(id);
-        repository.deleteById(id);
-    }
+		Grupo grupo = grupoQueryService.findById(entity.getGrupo().getId());
+		entity.setGrupo(grupo);
+
+		return repository.save(entity);
+	}
+
+	@Override
+	public Dependente update(long id, Dependente entity) {
+		var stored = queryService.findById(id);
+
+		stored.setNome(entity.getNome());
+		stored.setIdade(entity.getIdade());
+
+		return repository.save(stored);
+	}
+
+	@Override
+	public void delete(long id) {
+		queryService.findById(id);
+		repository.deleteById(id);
+	}
 
 }

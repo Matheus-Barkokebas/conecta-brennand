@@ -17,27 +17,27 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class GrupoQueryService implements IGrupoQueryService{
-	
+public class GrupoQueryService implements IGrupoQueryService {
+
 	private GrupoRepository repository;
 	private final IUsuarioQueryService usuarioQueryService;
-	
+
 	@Override
 	public Grupo findById(long id) {
 		return repository.findById(id).orElseThrow();
 	}
-	
+
 	@Override
 	public List<Grupo> list() {
 		return repository.findAll();
 	}
-	
-    @Override
-    public List<Grupo> listByUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-        Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
-        return repository.findAllByUsuarioId(usuario.getId());
-    }
+	@Override
+	public List<Grupo> listByUser() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+
+		Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
+		return repository.findAllByUsuarioId(usuario.getId());
+	}
 }

@@ -19,20 +19,20 @@ import lombok.Data;
 @Table(name = "tb_grupos")
 public class Grupo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_grupo")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_grupo")
+	private Long id;
 
-    @Column(name = "nome_grupo", nullable = false, length = 100)
-    private String nome;
+	@Column(name = "nome_grupo", nullable = false, length = 100)
+	private String nome;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipo", nullable = false)
-    private TipoGrupo tipoGrupo = TipoGrupo.AMIGOS;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo", nullable = false)
+	private TipoGrupo tipoGrupo = TipoGrupo.AMIGOS;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    private Usuario usuario;
-    
+	@ManyToOne
+	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+	private Usuario usuario;
+
 }

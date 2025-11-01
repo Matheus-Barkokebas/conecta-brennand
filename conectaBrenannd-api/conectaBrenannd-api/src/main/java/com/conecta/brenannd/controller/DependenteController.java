@@ -30,7 +30,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/dependentes")
 @AllArgsConstructor
 public class DependenteController {
-	
+
 	private final DependenteService service;
 	private final DependenteQueryService queryService;
 	private final IDependentesMapper mapper;
@@ -67,10 +67,10 @@ public class DependenteController {
 		List<Dependente> entities = queryService.list();
 		return mapper.toDtoList(entities);
 	}
-	
-    @GetMapping("/meus")
-    public List<Dependente> meusDependentes() {
-        return queryService.listByUser();
-    }
+
+	@GetMapping("/meus")
+	public List<Dependente> meusDependentes() {
+		return queryService.listByUser();
+	}
 
 }

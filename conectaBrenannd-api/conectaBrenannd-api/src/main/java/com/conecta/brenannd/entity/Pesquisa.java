@@ -25,9 +25,9 @@ public class Pesquisa {
 
 	@Column(name = "estrelas")
 	private Integer estrelas;
-	
-    @ManyToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    private Usuario usuario;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+	private Usuario usuario;
+
 }

@@ -13,17 +13,17 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class ComunicadosQueryService implements IComunicadosQueryService {
-	
+
 	private ComunicadosRepository repository;
-	
+
 	@Override
 	public Comunicados findById(long id) {
 		return repository.findById(id).orElseThrow();
 	}
-	
+
 	@Override
 	public List<Comunicados> list() {
 		return repository.findAll();
 	}
-	
+
 }

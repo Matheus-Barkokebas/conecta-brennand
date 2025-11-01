@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ValidacaoIngressoResponseDTO {
+	
 	private String mensagem;
 	private StatusIngresso status;
 	private LocalDate dataUtilizacao;

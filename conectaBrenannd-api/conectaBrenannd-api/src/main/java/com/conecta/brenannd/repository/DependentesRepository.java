@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.conecta.brenannd.entity.Dependente;
 
-public interface DependentesRepository extends JpaRepository<Dependente, Long>{
-	
+public interface DependentesRepository extends JpaRepository<Dependente, Long> {
+
 	List<Dependente> findAllByUsuarioId(Long usuarioId);
 
 }

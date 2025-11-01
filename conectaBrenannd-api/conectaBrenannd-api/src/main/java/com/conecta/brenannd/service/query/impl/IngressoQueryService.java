@@ -17,10 +17,10 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class IngressoQueryService implements IIngressoQueryService{
-	
+public class IngressoQueryService implements IIngressoQueryService {
+
 	private IngressoRepository repository;
-    private final IUsuarioQueryService usuarioQueryService;
+	private final IUsuarioQueryService usuarioQueryService;
 
 	@Override
 	public Ingresso findById(long id) {
@@ -31,37 +31,36 @@ public class IngressoQueryService implements IIngressoQueryService{
 	public Ingresso findByCpf(String cpf) {
 		return repository.findByCpfToken(cpf).orElseThrow();
 	}
-	
+
 	@Override
-    public Ingresso findByCpfToken(String cpfToken) {
-        return repository.findByCpfToken(cpfToken)
-                .orElseThrow(() -> new RuntimeException("Ingresso não encontrado."));
-    }
+	public Ingresso findByCpfToken(String cpfToken) {
+		return repository.findByCpfToken(cpfToken).orElseThrow(() -> new RuntimeException("Ingresso não encontrado."));
+	}
 
 	@Override
 	public List<Ingresso> list() {
 		return repository.findAll();
 	}
-	
-    @Override
-    public List<Ingresso> listByUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-        Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
-        return repository.findAllByUsuarioId(usuario.getId());
-    }
+	@Override
+	public List<Ingresso> listByUser() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-    @Override
-    public Ingresso findByIdFromSession(Long ingressoId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+		Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
+		return repository.findAllByUsuarioId(usuario.getId());
+	}
 
-        Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
+	@Override
+	public Ingresso findByIdFromSession(Long ingressoId) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-        return repository.findByIdAndUsuarioId(ingressoId, usuario.getId())
-                .orElseThrow(() -> new RuntimeException("Ingresso não encontrado para este usuário"));
-    }
+		Usuario usuario = usuarioQueryService.findByCpf(userPrincipal.getCpf());
+
+		return repository.findByIdAndUsuarioId(ingressoId, usuario.getId())
+				.orElseThrow(() -> new RuntimeException("Ingresso não encontrado para este usuário"));
+	}
 
 	@Override
 	public void verifyCpf(String cpf) {

@@ -30,7 +30,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/grupos")
 @AllArgsConstructor
 public class GrupoController {
-	
+
 	private final GrupoService service;
 	private final GrupoQueryService queryService;
 	private final IGrupoMapper mapper;
@@ -67,10 +67,10 @@ public class GrupoController {
 		List<Grupo> entities = queryService.list();
 		return mapper.toDtoList(entities);
 	}
-	
-    @GetMapping("/meus")
-    public List<Grupo> meusGrupos() {
-        return queryService.listByUser();
-    }
+
+	@GetMapping("/meus")
+	public List<Grupo> meusGrupos() {
+		return queryService.listByUser();
+	}
 
 }

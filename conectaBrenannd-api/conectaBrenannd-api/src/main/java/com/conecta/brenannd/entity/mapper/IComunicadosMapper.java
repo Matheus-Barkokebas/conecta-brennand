@@ -19,5 +19,5 @@ public interface IComunicadosMapper {
 	ComunicadosDto toDto(Comunicados entity);
 
 	List<Comunicados> toDtoList(List<Comunicados> entities);
-	
+
 }

@@ -16,24 +16,24 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class PesquisaService implements IPesquisaService{
-	
-    @Autowired
-    private UsuarioQueryService usuarioQueryService;
-	
-    private final PesquisaRepository repository;
+public class PesquisaService implements IPesquisaService {
 
-    @Override
-    public Pesquisa save(Pesquisa entity) {
-    	
-    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+	@Autowired
+	private UsuarioQueryService usuarioQueryService;
 
-        Usuario usuario = usuarioQueryService.findById(userPrincipal.getId());
+	private final PesquisaRepository repository;
 
-        entity.setUsuario(usuario);
+	@Override
+	public Pesquisa save(Pesquisa entity) {
 
-        return repository.save(entity);
-    }
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+
+		Usuario usuario = usuarioQueryService.findById(userPrincipal.getId());
+
+		entity.setUsuario(usuario);
+
+		return repository.save(entity);
+	}
 
 }

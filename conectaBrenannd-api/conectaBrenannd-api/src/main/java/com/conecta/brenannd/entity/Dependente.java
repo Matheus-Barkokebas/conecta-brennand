@@ -15,28 +15,28 @@ import lombok.Data;
 @Table(name = "tb_dependentes")
 public class Dependente {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_dependente")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_dependente")
+	private Long id;
 
-    @Column(name = "nome", nullable = false, length = 150)
-    private String nome;
+	@Column(name = "nome", nullable = false, length = 150)
+	private String nome;
 
-    @Column(name = "idade")
-    private Integer idade;
+	@Column(name = "idade")
+	private Integer idade;
 
-    @Column(name = "parentesco", length = 50)
-    private String parentesco;
-    
-    @Column(name = "cpf", length = 14)
-    private String cpf;
+	@Column(name = "parentesco", length = 50)
+	private String parentesco;
 
-    @ManyToOne
-    @JoinColumn(name = "id_grupo", nullable = false)
-    private Grupo grupo;
-    
-    @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario usuario;
+	@Column(name = "cpf", length = 14)
+	private String cpf;
+
+	@ManyToOne
+	@JoinColumn(name = "id_grupo", nullable = false)
+	private Grupo grupo;
+
+	@ManyToOne
+	@JoinColumn(name = "id_usuario", nullable = false)
+	private Usuario usuario;
 }

@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class IngressoDto {
 
-    private Long id;
-    private Long usuarioId;
-    private String cpfToken;
-    private String tipoIngresso;
-    private StatusIngresso status;
-    private LocalDateTime dataEmissao;
-    private LocalDate dataUtilizacao;
+	private Long id;
+	private Long usuarioId;
+	private String cpfToken;
+	private String tipoIngresso;
+	private StatusIngresso status;
+	private LocalDateTime dataEmissao;
+	private LocalDate dataUtilizacao;
 }

@@ -22,7 +22,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/pesquisas")
 @AllArgsConstructor
 public class PesquisaController {
-	
+
 	private final PesquisaService service;
 	private final IPesquisaMapper mapper;
 

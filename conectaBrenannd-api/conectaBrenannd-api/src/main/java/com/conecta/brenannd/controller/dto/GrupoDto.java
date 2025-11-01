@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GrupoDto {
-	
-    private Long id;
-    private Long usuarioId;
-    private String nome;
-    private TipoGrupo tipoGrupo;
+
+	private Long id;
+	private Long usuarioId;
+	private String nome;
+	private TipoGrupo tipoGrupo;
 
 }

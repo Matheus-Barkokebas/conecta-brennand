@@ -40,19 +40,15 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-	    http.csrf(csrf -> csrf.disable())
-	        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-	        .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
-	        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	        .authorizeHttpRequests(auth -> auth
-	            .requestMatchers("/api/auth/**", "/api/test/**").permitAll()
-	            .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
-	            .anyRequest().authenticated()
-	        )
-	        .authenticationProvider(authenticationProvider())
-	        .addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
+		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.configurationSource(corsConfigurationSource()))
+				.exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**", "/api/test/**").permitAll()
+						.requestMatchers(HttpMethod.POST, "/usuarios").permitAll().anyRequest().authenticated())
+				.authenticationProvider(authenticationProvider())
+				.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
-	    return http.build();
+		return http.build();
 	}
 
 	@Bean
@@ -72,18 +68,18 @@ public class WebSecurityConfig {
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 		return authConfig.getAuthenticationManager();
 	}
-	
+
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
-	    CorsConfiguration corsConfiguration = new CorsConfiguration();
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
 
-	    corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200"));
-	    corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-	    corsConfiguration.setAllowCredentials(true);
-	    corsConfiguration.setAllowedHeaders(List.of("*"));
-	    corsConfiguration.setMaxAge(3600L);
-	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	    source.registerCorsConfiguration("/**", corsConfiguration);
-	    return source;
+		corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200"));
+		corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+		corsConfiguration.setAllowCredentials(true);
+		corsConfiguration.setAllowedHeaders(List.of("*"));
+		corsConfiguration.setMaxAge(3600L);
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", corsConfiguration);
+		return source;
 	}
 }
