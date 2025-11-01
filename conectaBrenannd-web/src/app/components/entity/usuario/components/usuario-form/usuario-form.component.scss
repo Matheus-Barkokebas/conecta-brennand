@@ -1,129 +1,129 @@
 .cadastro-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    background: url('../../../../../assets/img/fundo.png') no-repeat center center;
-    background-size: cover;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: url('../../../../../assets/img/fundo.png') no-repeat center center;
+  background-size: cover;
+  box-sizing: border-box;
 }
 
 .cadastro-card {
-    width: 100%;
-    max-width: 500px;
-    padding: 24px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background: #fff;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  margin: 0 auto;
 }
 
 .cadastro-card h2 {
-    margin-bottom: 8px;
-    font-weight: 700;
-    font-size: 26px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 26px;
 }
 
 .cadastro-card p {
-    margin-bottom: 24px;
-    color: #555;
-    font-size: 14px;
+  margin-bottom: 24px;
+  color: #555;
+  font-size: 14px;
 }
 
 .cadastro-card h2,
 .cadastro-card p {
-    text-align: left;
+  text-align: left;
 }
 
 .full-width {
-    width: 100%;
-    margin-bottom: 16px;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 .form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .form-field {
-    flex: 1;
-    min-width: 150px;
+  flex: 1;
+  min-width: 150px;
 }
 
 .btn-full {
-    width: 100%;
-    height: 48px;
-    font-size: 16px;
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
 }
 
 .divider {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 24px 0;
-    color: #777;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 24px 0;
+  color: #777;
 }
 
 .divider::before,
 .divider::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid #ddd;
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ddd;
 }
 
 .divider:not(:empty)::before {
-    margin-right: .75em;
+  margin-right: .75em;
 }
 
 .divider:not(:empty)::after {
-    margin-left: .75em;
+  margin-left: .75em;
 }
 
 @media (max-width: 768px) {
-    .cadastro-container {
-        padding: 16px;
-        align-items: flex-start;
-        padding-top: 40px;
-    }
+  .cadastro-container {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
 
-    .cadastro-card {
-        padding: 20px;
-        max-width: 100%;
-    }
+  .cadastro-card {
+    padding: 20px;
+    max-width: 100%;
+  }
 
-    .form-row {
-        flex-direction: column;
-        gap: 12px;
-    }
+  .form-row {
+    flex-direction: column;
+    gap: 12px;
+  }
 
-    .form-field {
-        min-width: 100%;
-    }
+  .form-field {
+    min-width: 100%;
+  }
 
-    .cadastro-card h2 {
-        font-size: 22px;
-    }
+  .cadastro-card h2 {
+    font-size: 22px;
+  }
 }
 
 @media (max-width: 480px) {
-    .cadastro-container {
-        padding: 12px;
-        padding-top: 30px;
-    }
+  .cadastro-container {
+    padding: 12px;
+    padding-top: 30px;
+  }
 
-    .cadastro-card {
-        padding: 16px;
-    }
+  .cadastro-card {
+    padding: 16px;
+  }
 
-    .cadastro-card h2 {
-        font-size: 20px;
-    }
+  .cadastro-card h2 {
+    font-size: 20px;
+  }
 
-    .btn-full {
-        height: 44px;
-        font-size: 15px;
-    }
+  .btn-full {
+    height: 44px;
+    font-size: 15px;
+  }
 }

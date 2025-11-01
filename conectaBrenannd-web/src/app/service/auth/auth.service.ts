@@ -21,14 +21,16 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(credentials: LoginDto) {
-    return this.http.post<{usuarioLogado: string}>(this.loginUrl, credentials).pipe(
-      tap(response => {
-        localStorage.setItem('usuarioLogado', JSON.stringify(response));
-        this.loggedIn.next(true);
-        const permissao = this.getUserData()?.permissao ?? null;
-        this.userRole.next(permissao);
-      })
-    );
+    return this.http
+      .post<{ usuarioLogado: string }>(this.loginUrl, credentials)
+      .pipe(
+        tap((response) => {
+          localStorage.setItem('usuarioLogado', JSON.stringify(response));
+          this.loggedIn.next(true);
+          const permissao = this.getUserData()?.permissao ?? null;
+          this.userRole.next(permissao);
+        })
+      );
   }
 
   getToken(): string | null {

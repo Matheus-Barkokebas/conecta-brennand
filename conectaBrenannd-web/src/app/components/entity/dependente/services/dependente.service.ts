@@ -18,7 +18,10 @@ export class DependenteService implements IDependenteService {
   }
 
   update(id: number, request: Dependente): Observable<Dependente> {
-    return this.http.put<Dependente>(`${this.basePath}dependentes/${id}`, request);
+    return this.http.put<Dependente>(
+      `${this.basePath}dependentes/${id}`,
+      request
+    );
   }
 
   delete(id: number): Observable<void> {
@@ -36,10 +39,4 @@ export class DependenteService implements IDependenteService {
   listByUser(): Observable<Dependente[]> {
     return this.http.get<Dependente[]>(`${this.basePath}dependentes/meus`);
   }
-
-  /*
-  findMyDependenteById(id: number): Observable<Dependente> {
-    return this.http.get<Dependente>(`${this.basePath}dependentes/meus/${id}`);
-  }
-  */
 }

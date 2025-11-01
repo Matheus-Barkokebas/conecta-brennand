@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { environment } from "../../../../../environment/environment";
-import { IPesquisaService } from "./ipesquisa.service";
-import { HttpClient } from "@angular/common/http";
-import { Pesquisa } from "../models/pesquisa.models";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { environment } from '../../../../../environment/environment';
+import { IPesquisaService } from './ipesquisa.service';
+import { HttpClient } from '@angular/common/http';
+import { Pesquisa } from '../models/pesquisa.models';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

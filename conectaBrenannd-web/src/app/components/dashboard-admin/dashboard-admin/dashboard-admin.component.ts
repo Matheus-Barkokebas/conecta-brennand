@@ -1,19 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  Chart,
-  ChartConfiguration,
-  ChartOptions,
-  ChartType,
-  registerables,
-} from 'chart.js';
+import { Component, OnInit } from '@angular/core';
+import { Chart, ChartConfiguration, ChartType, registerables } from 'chart.js';
 import { CommonModule } from '@angular/common';
 import {
   BaseChartDirective,
   provideCharts,
   withDefaultRegisterables,
 } from 'ng2-charts';
-import { DataService, DayCount } from '../service/data.service';
-import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,7 +24,8 @@ Chart.register(...registerables);
     MatIconModule,
     MatButtonModule,
     MatSelectModule,
-    BaseChartDirective],
+    BaseChartDirective,
+  ],
   providers: [provideCharts(withDefaultRegisterables())],
   templateUrl: './dashboard-admin.component.html',
   styleUrl: './dashboard-admin.component.scss',
@@ -44,53 +37,69 @@ export class DashboardAdminComponent implements OnInit {
       value: '247',
       subtitle: '+12% em relação à ontem',
       trend: 'positive',
-      icon: 'people'
+      icon: 'people',
     },
     {
       title: 'Agendamentos',
       value: '89',
       subtitle: '15 pendentes de confirmação',
       trend: 'positive',
-      icon: 'event_available'
+      icon: 'event_available',
     },
     {
       title: 'Taxa de Ocupação',
       value: '68%',
       subtitle: 'Capacidade máxima: 500 pessoas',
       trend: 'negative',
-      icon: 'analytics'
+      icon: 'analytics',
     },
   ];
 
   lineChartData: ChartConfiguration['data'] = {
-    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    labels: [
+      'Jan',
+      'Fev',
+      'Mar',
+      'Abr',
+      'Mai',
+      'Jun',
+      'Jul',
+      'Ago',
+      'Set',
+      'Out',
+      'Nov',
+      'Dez',
+    ],
     datasets: [
       {
         label: 'Visitantes',
-        data: [1200, 1900, 1500, 2200, 1800, 2500, 2200, 2800, 2600, 3000, 3200, 3500],
+        data: [
+          1200, 1900, 1500, 2200, 1800, 2500, 2200, 2800, 2600, 3000, 3200,
+          3500,
+        ],
         borderColor: '#663C1F',
         backgroundColor: 'rgba(102, 60, 31, 0.1)',
         fill: true,
         tension: 0.4,
-        borderWidth: 2
-      }
-    ]
+        borderWidth: 2,
+      },
+    ],
   };
 
   pieChartData: ChartConfiguration['data'] = {
-    labels: ['Individual', 'Grupos Escolares', 'Excursões', 'Eventos Especiais'],
+    labels: [
+      'Individual',
+      'Grupos Escolares',
+      'Excursões',
+      'Eventos Especiais',
+    ],
     datasets: [
       {
         data: [45, 25, 20, 10],
-        backgroundColor: [
-          '#663C1F',
-          '#8B7355',
-          '#C4A484',
-          '#E5D5C5'
-        ],
-        borderWidth: 0
-      }
-    ]
+        backgroundColor: ['#663C1F', '#8B7355', '#C4A484', '#E5D5C5'],
+        borderWidth: 0,
+      },
+    ],
   };
 
   lineChartOptions: ChartConfiguration['options'] = {
@@ -98,35 +107,35 @@ export class DashboardAdminComponent implements OnInit {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false
+        display: false,
       },
       tooltip: {
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
         titleColor: '#fff',
         bodyColor: '#fff',
         borderColor: '#663C1F',
-        borderWidth: 1
-      }
+        borderWidth: 1,
+      },
     },
     scales: {
       x: {
         grid: {
-          display: false
+          display: false,
         },
         ticks: {
-          color: '#6b7280'
-        }
+          color: '#6b7280',
+        },
       },
       y: {
         beginAtZero: true,
         grid: {
-          color: 'rgba(0, 0, 0, 0.05)'
+          color: 'rgba(0, 0, 0, 0.05)',
         },
         ticks: {
-          color: '#6b7280'
-        }
-      }
-    }
+          color: '#6b7280',
+        },
+      },
+    },
   };
 
   pieChartOptions: ChartConfiguration['options'] = {
@@ -138,17 +147,17 @@ export class DashboardAdminComponent implements OnInit {
         labels: {
           color: '#111827',
           font: {
-            size: 12
+            size: 12,
           },
-          padding: 20
-        }
+          padding: 20,
+        },
       },
       tooltip: {
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
         titleColor: '#fff',
-        bodyColor: '#fff'
-      }
-    }
+        bodyColor: '#fff',
+      },
+    },
   };
 
   lineChartType: ChartType = 'line';
@@ -162,7 +171,7 @@ export class DashboardAdminComponent implements OnInit {
       date: '15 Nov 2024',
       time: '14:00',
       visitors: 2,
-      status: 'confirmed'
+      status: 'confirmed',
     },
     {
       id: '#00124',
@@ -171,7 +180,7 @@ export class DashboardAdminComponent implements OnInit {
       date: '16 Nov 2024',
       time: '10:00',
       visitors: 35,
-      status: 'pending'
+      status: 'pending',
     },
     {
       id: '#00125',
@@ -180,7 +189,7 @@ export class DashboardAdminComponent implements OnInit {
       date: '16 Nov 2024',
       time: '15:30',
       visitors: 4,
-      status: 'confirmed'
+      status: 'confirmed',
     },
     {
       id: '#00126',
@@ -189,7 +198,7 @@ export class DashboardAdminComponent implements OnInit {
       date: '17 Nov 2024',
       time: '11:00',
       visitors: 25,
-      status: 'confirmed'
+      status: 'confirmed',
     },
     {
       id: '#00127',
@@ -198,8 +207,8 @@ export class DashboardAdminComponent implements OnInit {
       date: '18 Nov 2024',
       time: '16:00',
       visitors: 50,
-      status: 'pending'
-    }
+      status: 'pending',
+    },
   ];
 
   quickActions = [
@@ -207,35 +216,34 @@ export class DashboardAdminComponent implements OnInit {
       title: 'Novo Agendamento',
       description: 'Criar nova reserva',
       icon: 'add_circle',
-      route: '/ingressos/new'
+      route: '/ingressos/new',
     },
     {
       title: 'Gerenciar Grupos',
       description: 'Visualizar e editar grupos',
       icon: 'groups',
-      route: '/grupos'
+      route: '/grupos',
     },
     {
       title: 'Relatórios',
       description: 'Gerar relatórios detalhados',
       icon: 'assessment',
-      route: '/relatorios'
+      route: '/relatorios',
     },
     {
       title: 'Configurações',
       description: 'Configurar parâmetros',
       icon: 'settings',
-      route: '/configuracoes'
-    }
+      route: '/configuracoes',
+    },
   ];
 
   selectedPeriod: string = 'month';
   searchTerm: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onBack() {
     this.router.navigate(['/home']);
@@ -249,7 +257,7 @@ export class DashboardAdminComponent implements OnInit {
   private updateChartData(period: string): void {
     console.log('Atualizando dados para o período:', period);
 
-    switch(period) {
+    switch (period) {
       case 'today':
         break;
       case 'week':
@@ -265,9 +273,9 @@ export class DashboardAdminComponent implements OnInit {
 
   getStatusText(status: string): string {
     const statusMap: { [key: string]: string } = {
-      'confirmed': 'Confirmado',
-      'pending': 'Pendente',
-      'cancelled': 'Cancelado'
+      confirmed: 'Confirmado',
+      pending: 'Pendente',
+      cancelled: 'Cancelado',
     };
     return statusMap[status] || status;
   }

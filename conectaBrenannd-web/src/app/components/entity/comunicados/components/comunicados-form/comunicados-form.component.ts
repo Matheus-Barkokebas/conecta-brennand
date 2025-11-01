@@ -40,7 +40,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   templateUrl: './comunicados-form.component.html',
   styleUrl: './comunicados-form.component.scss',

@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-validar-ingresso',
   imports: [CommonModule, FormsModule],
   templateUrl: './validar-ingresso.component.html',
-  styleUrl: './validar-ingresso.component.scss'
+  styleUrl: './validar-ingresso.component.scss',
 })
 export class ValidarIngressoComponent {
   cpfToken: string = '';

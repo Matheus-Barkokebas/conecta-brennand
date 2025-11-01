@@ -41,7 +41,7 @@ import { Router } from '@angular/router';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCardModule,
-],
+  ],
   templateUrl: './ingresso-forms.component.html',
   styleUrl: './ingresso-forms.component.scss',
   providers: [
@@ -55,7 +55,7 @@ export class IngressoFormComponent implements OnInit, OnDestroy {
 
   usuario: Usuario[] = [];
 
-   constructor(
+  constructor(
     @Inject(SERVICES_TOKEN.HTTP.USUARIO)
     private readonly httpServiceSecretaria: IUsuarioService,
     @Inject(SERVICES_TOKEN.SNACKBAR)
@@ -63,7 +63,7 @@ export class IngressoFormComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
 
-   @Input() ingresso: Ingresso = {
+  @Input() ingresso: Ingresso = {
     id: 0,
     usuario: new Usuario(),
     cpfToken: '',
@@ -73,7 +73,7 @@ export class IngressoFormComponent implements OnInit, OnDestroy {
     dataUtilizacao: new Date(),
   };
 
-   @Output() ingressoSubmited = new EventEmitter<Ingresso>();
+  @Output() ingressoSubmited = new EventEmitter<Ingresso>();
 
   onSubmit() {
     if (NgForm) {
@@ -97,7 +97,7 @@ export class IngressoFormComponent implements OnInit, OnDestroy {
     this.httpSubscriptions.forEach((s) => s.unsubscribe());
   }
 
-  onBack(){
+  onBack() {
     this.router.navigate(['/home']);
   }
 }

@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs';import { Usuario } from '../models/usuario.models';
+import { Observable } from 'rxjs';
+import { Usuario } from '../models/usuario.models';
 
 export interface IUsuarioService {
   save(request: Usuario): Observable<Usuario>;

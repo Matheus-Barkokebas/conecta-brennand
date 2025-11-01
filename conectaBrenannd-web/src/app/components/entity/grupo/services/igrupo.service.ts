@@ -1,5 +1,5 @@
-import { Observable } from "rxjs";
-import { Grupo } from "../models/grupo.models";
+import { Observable } from 'rxjs';
+import { Grupo } from '../models/grupo.models';
 
 export interface IGrupoService {
   save(request: Grupo): Observable<Grupo>;
@@ -13,6 +13,4 @@ export interface IGrupoService {
   findByID(id: number): Observable<Grupo>;
 
   listByUser(): Observable<Grupo[]>;
-
-  //findMyGrupoById(id: number): Observable<Grupo>;
 }

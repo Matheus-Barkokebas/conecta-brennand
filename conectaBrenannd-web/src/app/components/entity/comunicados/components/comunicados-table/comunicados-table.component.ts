@@ -1,11 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Inject, Input, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import {
+  MatPaginator,
+  MatPaginatorModule,
+  PageEvent,
+} from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SERVICES_TOKEN } from '../../../../../service/service.token';
 import { DialogManagerService } from '../../../../../service/ui/dialog-manager.service';
@@ -16,7 +27,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../../../../service/auth/auth.service';
 import { Router } from '@angular/router';
 import { YesNoDialogComponent } from '../../../../commons/yes-no-dialog/yes-no-dialog.component';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-comunicados-table',
@@ -29,8 +39,6 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
     MatChipsModule,
     MatTooltipModule,
     MatMenuModule,
-    MatFormField,
-    MatLabel,
   ],
   templateUrl: './comunicados-table.component.html',
   styleUrl: './comunicados-table.component.scss',
@@ -39,7 +47,6 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
   ],
 })
 export class ComunicadosTableComponent {
-
   @Input() comunicados: Comunicados[] = [];
   @Output() onConfirmDelete = new EventEmitter<Comunicados>();
   @Output() onRequestUpdate = new EventEmitter<Comunicados>();
@@ -56,8 +63,6 @@ export class ComunicadosTableComponent {
   constructor(
     @Inject(SERVICES_TOKEN.DIALOG)
     private readonly dialogManagerService: IDialogManagerService,
-    private dialog: MatDialog,
-    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -107,5 +112,4 @@ export class ComunicadosTableComponent {
   onBack() {
     this.router.navigate(['/home']);
   }
-
 }

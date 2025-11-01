@@ -4,14 +4,14 @@
   padding: 2.5rem;
   border-radius: 24px;
   background: #ffffff;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(99, 50, 7, 0.12),
     0 2px 8px rgba(99, 50, 7, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(230, 211, 179, 0.4);
   position: relative;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -45,48 +45,48 @@
 
 .form-field {
   width: 100%;
-  
+
   ::ng-deep .mat-form-field-outline {
     color: rgba(99, 50, 7, 0.2);
   }
-  
+
   ::ng-deep .mat-form-field-outline-thick {
     color: #633207;
   }
-  
+
   ::ng-deep .mat-form-field-label {
     color: #8b6b4c;
     font-weight: 500;
   }
-  
+
   ::ng-deep .mat-input-element {
     color: #2d2d2d;
     font-size: 1rem;
     font-family: 'Inter', sans-serif;
-    
+
     &::placeholder {
       color: #b0a699;
     }
   }
-  
+
   ::ng-deep .mat-form-field-suffix {
     .mat-icon {
       color: #977554;
       font-size: 1.25rem;
     }
   }
-  
+
   ::ng-deep .mat-form-field-flex {
     background: rgba(255, 248, 240, 0.6);
     border-radius: 12px;
     padding: 0 0.75rem;
     transition: all 0.3s ease;
-    
+
     &:hover {
       background: rgba(255, 248, 240, 0.9);
     }
   }
-  
+
   ::ng-deep .mat-form-field-infix {
     padding: 0.75rem 0;
     border-top: 0.5em solid transparent;
@@ -96,42 +96,42 @@
 // Estilização específica para o datepicker
 ::ng-deep .mat-datepicker-content {
   border-radius: 16px !important;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(99, 50, 7, 0.15),
     0 4px 16px rgba(99, 50, 7, 0.1) !important;
   border: 1px solid rgba(230, 211, 179, 0.4) !important;
-  
+
   .mat-calendar {
     background: #ffffff;
     border-radius: 16px;
-    
+
     .mat-calendar-header {
       background: linear-gradient(135deg, #633207 0%, #977554 100%);
       color: white;
       border-radius: 16px 16px 0 0;
-      
+
       .mat-calendar-controls {
         .mat-icon-button {
           color: white;
-          
+
           &:hover {
             background: rgba(255, 255, 255, 0.2);
           }
         }
       }
     }
-    
+
     .mat-calendar-body {
       .mat-calendar-body-cell {
         &:hover {
           background: rgba(99, 50, 7, 0.1) !important;
         }
-        
+
         &.mat-calendar-body-active {
           background: #633207 !important;
           color: white !important;
         }
-        
+
         .mat-calendar-body-today {
           border-color: #977554 !important;
         }
@@ -146,7 +146,7 @@
     color: #977554;
     border-radius: 8px;
     transition: all 0.3s ease;
-    
+
     &:hover {
       background: rgba(99, 50, 7, 0.1);
       color: #633207;
@@ -161,7 +161,7 @@
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(230, 211, 179, 0.4);
-  
+
   button {
     border-radius: 12px;
     font-weight: 600;
@@ -171,33 +171,33 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    
+
     mat-icon {
       font-size: 1.25rem;
       width: 1.25rem;
       height: 1.25rem;
     }
-    
+
     &:first-child {
       background: linear-gradient(135deg, #633207 0%, #977554 100%);
       color: white;
       box-shadow: 0 4px 16px rgba(99, 50, 7, 0.3);
-      
+
       &:hover:not([disabled]) {
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(99, 50, 7, 0.4);
       }
-      
+
       &:active {
         transform: translateY(0);
       }
     }
-    
+
     &:last-child {
       color: #633207;
       border: 1px solid #e6d3b3;
       background: rgba(255, 255, 255, 0.8);
-      
+
       &:hover {
         background: rgba(99, 50, 7, 0.05);
         border-color: #977554;
@@ -212,11 +212,11 @@
   .mat-form-field-outline {
     color: #d32f2f !important;
   }
-  
+
   .mat-form-field-label {
     color: #d32f2f !important;
   }
-  
+
   .mat-form-field-suffix .mat-icon {
     color: #d32f2f !important;
   }
@@ -235,6 +235,7 @@ mat-error {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -251,7 +252,7 @@ textarea.mat-input-element {
   min-height: 120px;
   line-height: 1.5;
   font-family: 'Inter', sans-serif;
-  
+
   &:focus {
     outline: none;
   }
@@ -267,11 +268,11 @@ input[matInput] {
   .mat-form-field-outline-thick {
     color: #633207 !important;
   }
-  
+
   .mat-form-field-label {
     color: #633207 !important;
   }
-  
+
   .mat-form-field-suffix .mat-icon {
     color: #633207 !important;
   }
@@ -284,21 +285,21 @@ input[matInput] {
     padding: 1.5rem;
     border-radius: 20px;
   }
-  
+
   .titulo {
     font-size: 1.75rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .form-actions {
     flex-direction: column;
-    
+
     button {
       width: 100%;
       justify-content: center;
     }
   }
-  
+
   .comunicado-form {
     gap: 1rem;
   }
@@ -310,7 +311,7 @@ input[matInput] {
     padding: 1.25rem;
     border-radius: 16px;
   }
-  
+
   .titulo {
     font-size: 1.5rem;
   }
@@ -320,7 +321,7 @@ input[matInput] {
 ::ng-deep .mat-form-field-suffix {
   .mat-icon {
     transition: all 0.3s ease;
-    
+
     &:hover {
       transform: scale(1.1);
     }

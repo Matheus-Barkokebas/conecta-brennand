@@ -8,9 +8,8 @@ describe('IngressoFormsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IngressoFormComponent]
-    })
-    .compileComponents();
+      imports: [IngressoFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(IngressoFormComponent);
     component = fixture.componentInstance;

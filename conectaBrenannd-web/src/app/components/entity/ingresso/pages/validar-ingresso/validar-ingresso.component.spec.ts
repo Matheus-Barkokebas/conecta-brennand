@@ -8,9 +8,8 @@ describe('ValidarIngressoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ValidarIngressoComponent]
-    })
-    .compileComponents();
+      imports: [ValidarIngressoComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ValidarIngressoComponent);
     component = fixture.componentInstance;

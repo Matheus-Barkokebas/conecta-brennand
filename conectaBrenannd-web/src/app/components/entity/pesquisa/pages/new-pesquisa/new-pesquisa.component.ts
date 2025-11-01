@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Inject, OnDestroy, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnDestroy,
+  Output,
+} from '@angular/core';
 import { SERVICES_TOKEN } from '../../../../../service/service.token';
 import { PesquisaService } from '../../services/pesquisa.service';
 import { SnackbarManagerService } from '../../../../../service/ui/snackbar-manager.service';

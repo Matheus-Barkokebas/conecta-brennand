@@ -1,4 +1,4 @@
-import { Usuario } from "../../usuario/models/usuario.models";
+import { Usuario } from '../../usuario/models/usuario.models';
 
 export class Comunicados {
   id: number = 0;

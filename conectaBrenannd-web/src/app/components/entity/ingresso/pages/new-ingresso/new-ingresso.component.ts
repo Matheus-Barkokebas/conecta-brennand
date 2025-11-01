@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Inject, OnDestroy, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnDestroy,
+  Output,
+} from '@angular/core';
 import { IngressoService } from '../../services/ingresso.service';
 import { SERVICES_TOKEN } from '../../../../../service/service.token';
 import { SnackbarManagerService } from '../../../../../service/ui/snackbar-manager.service';
@@ -6,7 +12,7 @@ import { Subscription } from 'rxjs';
 import { IIngressoService } from '../../services/iingresso.service';
 import { ISnackbarManagerService } from '../../../../../service/ui/isnackbar-manager.service';
 import { Ingresso } from '../../models/ingresso.models';
-import { IngressoFormComponent } from "../../components/ingresso-forms/ingresso-forms.component";
+import { IngressoFormComponent } from '../../components/ingresso-forms/ingresso-forms.component';
 
 @Component({
   selector: 'app-new-ingresso',

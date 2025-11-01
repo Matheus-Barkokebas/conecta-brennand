@@ -14,7 +14,7 @@ $text-secondary: #5d5d5d;
   padding: 2rem;
   background: linear-gradient(135deg, #fefaf5 0%, #fff8f0 100%);
   position: relative;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -22,7 +22,7 @@ $text-secondary: #5d5d5d;
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
+    background:
       radial-gradient(circle at 20% 80%, rgba(99, 50, 7, 0.03) 0%, transparent 50%),
       radial-gradient(circle at 80% 20%, rgba(151, 117, 84, 0.02) 0%, transparent 50%);
     pointer-events: none;
@@ -35,7 +35,7 @@ $text-secondary: #5d5d5d;
   padding: 2.5rem;
   background: #ffffff;
   border-radius: 24px;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(99, 50, 7, 0.12),
     0 2px 8px rgba(99, 50, 7, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -43,7 +43,7 @@ $text-secondary: #5d5d5d;
   position: relative;
   z-index: 1;
   animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -75,42 +75,42 @@ $text-secondary: #5d5d5d;
 // Estilização dos campos do Angular Material
 mat-form-field {
   width: 100%;
-  
+
   ::ng-deep .mat-form-field-outline {
     color: rgba(99, 50, 7, 0.2);
   }
-  
+
   ::ng-deep .mat-form-field-outline-thick {
     color: #633207;
   }
-  
+
   ::ng-deep .mat-form-field-label {
     color: #8b6b4c;
     font-weight: 500;
     font-family: 'Inter', sans-serif;
   }
-  
+
   ::ng-deep .mat-input-element {
     color: #2d2d2d;
     font-size: 1rem;
     font-family: 'Inter', sans-serif;
-    
+
     &::placeholder {
       color: #b0a699;
     }
   }
-  
+
   ::ng-deep .mat-form-field-flex {
     background: rgba(255, 248, 240, 0.6);
     border-radius: 12px;
     padding: 0 0.75rem;
     transition: all 0.3s ease;
-    
+
     &:hover {
       background: rgba(255, 248, 240, 0.9);
     }
   }
-  
+
   ::ng-deep .mat-form-field-infix {
     padding: 0.75rem 0;
     border-top: 0.5em solid transparent;
@@ -123,7 +123,7 @@ mat-select {
     color: #2d2d2d;
     font-family: 'Inter', sans-serif;
   }
-  
+
   ::ng-deep .mat-select-arrow {
     color: #977554;
   }
@@ -132,19 +132,19 @@ mat-select {
 // Painel do select
 ::ng-deep .mat-select-panel {
   border-radius: 12px !important;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(99, 50, 7, 0.15),
     0 4px 16px rgba(99, 50, 7, 0.1) !important;
   border: 1px solid rgba(230, 211, 179, 0.4) !important;
-  
+
   .mat-option {
     font-family: 'Inter', sans-serif;
     transition: all 0.2s ease;
-    
+
     &:hover:not(.mat-option-disabled) {
       background: rgba(255, 248, 240, 0.6) !important;
     }
-    
+
     &.mat-selected:not(.mat-option-multiple) {
       background: rgba(99, 50, 7, 0.1) !important;
       color: #633207 !important;
@@ -190,7 +190,7 @@ mat-select {
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(230, 211, 179, 0.4);
-  
+
   button {
     flex: 1;
     border-radius: 12px;
@@ -204,34 +204,34 @@ mat-select {
     gap: 0.5rem;
     border: none;
     cursor: pointer;
-    
+
     &:first-child {
       background: linear-gradient(135deg, #633207 0%, #977554 100%);
       color: white;
       box-shadow: 0 4px 16px rgba(99, 50, 7, 0.3);
-      
+
       &:hover:not([disabled]) {
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(99, 50, 7, 0.4);
       }
-      
+
       &:active {
         transform: translateY(0);
       }
     }
-    
+
     &:last-child {
       color: #633207;
       border: 1px solid #e6d3b3;
       background: rgba(255, 255, 255, 0.8);
-      
+
       &:hover {
         background: rgba(99, 50, 7, 0.05);
         border-color: #977554;
         transform: translateY(-2px);
       }
     }
-    
+
     &:disabled {
       opacity: 0.6;
       cursor: not-allowed;
@@ -246,7 +246,7 @@ mat-select {
   .mat-form-field-outline {
     color: #d32f2f !important;
   }
-  
+
   .mat-form-field-label {
     color: #d32f2f !important;
   }
@@ -265,7 +265,7 @@ mat-error {
   .mat-form-field-outline-thick {
     color: #633207 !important;
   }
-  
+
   .mat-form-field-label {
     color: #633207 !important;
   }
@@ -277,6 +277,7 @@ mat-error {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -288,6 +289,7 @@ mat-error {
     opacity: 0;
     transform: translateX(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -297,10 +299,18 @@ mat-error {
 // Animar os campos individualmente
 .form-row {
   animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-  
-  &:nth-child(1) { animation-delay: 0.1s; }
-  &:nth-child(2) { animation-delay: 0.2s; }
-  &:nth-child(3) { animation-delay: 0.3s; }
+
+  &:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.3s;
+  }
 }
 
 // Responsividade
@@ -326,7 +336,7 @@ mat-error {
   .form-actions {
     flex-direction: column;
     gap: 0.75rem;
-    
+
     button {
       width: 100%;
     }
@@ -337,7 +347,7 @@ mat-error {
     left: 1rem;
     width: 44px;
     height: 44px;
-    
+
     mat-icon {
       font-size: 20px;
       width: 20px;
@@ -380,14 +390,11 @@ mat-form-field:focus-within {
 
 // Número específico para campo idade
 input[type="number"] {
+
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-  }
-  
-  &[type=number] {
-    -moz-appearance: textfield;
   }
 }
 

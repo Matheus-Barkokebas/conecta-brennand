@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { IComunicadosService } from "./icomunicados.service";
-import { environment } from "../../../../../environment/environment";
-import { HttpClient } from "@angular/common/http";
-import { Comunicados } from "../models/comunicados.models";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { IComunicadosService } from './icomunicados.service';
+import { environment } from '../../../../../environment/environment';
+import { HttpClient } from '@angular/common/http';
+import { Comunicados } from '../models/comunicados.models';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,10 @@ export class ComunicadosService implements IComunicadosService {
   }
 
   update(id: number, request: Comunicados): Observable<Comunicados> {
-    return this.http.put<Comunicados>(`${this.basePath}comunicados/${id}`, request);
+    return this.http.put<Comunicados>(
+      `${this.basePath}comunicados/${id}`,
+      request
+    );
   }
 
   delete(id: number): Observable<void> {

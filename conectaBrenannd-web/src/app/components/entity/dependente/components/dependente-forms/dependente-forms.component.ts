@@ -40,7 +40,7 @@ import { Dependente } from '../../models/dependente.models';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-],
+  ],
   templateUrl: './dependente-forms.component.html',
   styleUrl: './dependente-forms.component.scss',
   providers: [
@@ -81,21 +81,23 @@ export class DependenteFormsComponent implements OnInit, OnDestroy {
 
   @Output() dependenteSubmited = new EventEmitter<Dependente>();
 
-onSubmit(form: NgForm) {
-  if (form.invalid) {
-    this.snackbarManager.show('Por favor, preencha todos os campos obrigatórios!');
-    return;
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      this.snackbarManager.show(
+        'Por favor, preencha todos os campos obrigatórios!'
+      );
+      return;
+    }
+
+    if (!this.dependente.grupo || !this.dependente.grupo.id) {
+      this.snackbarManager.show('Selecione um grupo antes de salvar!');
+      return;
+    }
+
+    console.log('Dependente enviado:', this.dependente);
+
+    this.dependenteSubmited.emit(this.dependente);
   }
-
-  if (!this.dependente.grupo || !this.dependente.grupo.id) {
-    this.snackbarManager.show('Selecione um grupo antes de salvar!');
-    return;
-  }
-
-  console.log('Dependente enviado:', this.dependente);
-
-  this.dependenteSubmited.emit(this.dependente);
-}
 
   ngOnInit(): void {
     const subUsuarios = this.httpServiceSecretaria.list().subscribe({

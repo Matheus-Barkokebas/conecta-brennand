@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <app-dependente-table
-        [dependentes]="dependente"
-        (onConfirmDelete)="delete($event)"
+      <app-dependente-table [dependentes]="dependente" (onConfirmDelete)="delete($event)"
         (onRequestUpdate)="update($event)">
       </app-dependente-table>
     </div>

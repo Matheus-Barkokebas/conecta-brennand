@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { SERVICES_TOKEN } from '../../../../../service/service.token';
 import { GrupoService } from '../../services/grupo.service';
 import { UsuarioService } from '../../../usuario/services/usuario.service';

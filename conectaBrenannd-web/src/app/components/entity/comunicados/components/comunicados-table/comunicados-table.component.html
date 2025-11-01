@@ -13,23 +13,14 @@
 
   <div *ngIf="paginatedComunicados.length > 0; else emptyList">
     <div class="comunicados-premium-grid">
-      <div
-        class="comunicado-premium-card"
-        *ngFor="let comunicado of paginatedComunicados"
-        matTooltip="Clique para ver detalhes"
-        tabindex="0"
-      >
+      <div class="comunicado-premium-card" *ngFor="let comunicado of paginatedComunicados"
+        matTooltip="Clique para ver detalhes" tabindex="0">
         <div class="comunicado-premium-card-glass"></div>
         <div class="comunicado-premium-card-content">
           <div class="comunicado-premium-card-header">
             <mat-icon class="comunicado-premium-card-header-icon">announcement</mat-icon>
             <h3 class="comunicado-premium-card-title">{{ comunicado.titulo }}</h3>
-            <button
-              mat-icon-button
-              [matMenuTriggerFor]="menu"
-              matTooltip="Ações"
-              class="comunicado-premium-card-menu"
-            >
+            <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Ações" class="comunicado-premium-card-menu">
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
@@ -57,13 +48,8 @@
         </div>
       </div>
     </div>
-    <mat-paginator
-      [length]="comunicados.length"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="pageSizeOptions"
-      (page)="onPageChange($event)"
-      class="comunicados-premium-paginator"
-    >
+    <mat-paginator [length]="comunicados.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+      (page)="onPageChange($event)" class="comunicados-premium-paginator">
     </mat-paginator>
   </div>
 

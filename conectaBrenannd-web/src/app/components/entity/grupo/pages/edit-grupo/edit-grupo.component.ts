@@ -8,7 +8,7 @@ import { SnackbarManagerService } from '../../../../../service/ui/snackbar-manag
 import { IGrupoService } from '../../services/igrupo.service';
 import { ISnackbarManagerService } from '../../../../../service/ui/isnackbar-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GrupoFormsComponent } from "../../components/grupo-forms/grupo-forms.component";
+import { GrupoFormsComponent } from '../../components/grupo-forms/grupo-forms.component';
 
 @Component({
   selector: 'app-edit-grupo',

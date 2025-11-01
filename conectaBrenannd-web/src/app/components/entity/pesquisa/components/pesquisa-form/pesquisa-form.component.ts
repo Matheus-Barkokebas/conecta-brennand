@@ -41,7 +41,7 @@ import { MatCard } from '@angular/material/card';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCard
+    MatCard,
   ],
   templateUrl: './pesquisa-form.component.html',
   styleUrl: './pesquisa-form.component.scss',

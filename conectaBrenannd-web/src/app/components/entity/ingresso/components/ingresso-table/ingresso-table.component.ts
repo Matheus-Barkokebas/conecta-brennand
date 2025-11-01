@@ -65,8 +65,6 @@ export class IngressoTableComponent {
   constructor(
     @Inject(SERVICES_TOKEN.DIALOG)
     private readonly dialogManagerService: IDialogManagerService,
-    private dialog: MatDialog,
-    private authService: AuthService,
     private router: Router
   ) {}
 

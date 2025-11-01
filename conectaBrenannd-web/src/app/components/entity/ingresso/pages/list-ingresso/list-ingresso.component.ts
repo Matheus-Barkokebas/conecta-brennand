@@ -48,7 +48,7 @@ export class ListIngressoComponent implements OnInit, OnDestroy {
     this.httpSubscriptions.forEach((s) => s.unsubscribe());
   }
 
-    update(ingresso: Ingresso) {
+  update(ingresso: Ingresso) {
     this.router.navigate(['/ingresso/edit', ingresso.id]);
   }
 

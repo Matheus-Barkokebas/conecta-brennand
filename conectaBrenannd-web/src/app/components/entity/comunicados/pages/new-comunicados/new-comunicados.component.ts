@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Inject, OnDestroy, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnDestroy,
+  Output,
+} from '@angular/core';
 import { ComunicadosFormComponent } from '../../components/comunicados-form/comunicados-form.component';
 import { ComunicadosService } from '../../service/comunicados.service';
 import { SnackbarManagerService } from '../../../../../service/ui/snackbar-manager.service';

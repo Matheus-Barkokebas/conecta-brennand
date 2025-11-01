@@ -9,7 +9,7 @@ import { Grupo } from '../../models/grupo.models';
 import { IGrupoService } from '../../services/igrupo.service';
 import { ISnackbarManagerService } from '../../../../../service/ui/isnackbar-manager.service';
 import { Router } from '@angular/router';
-import { GrupoTableComponent } from "../../components/grupo-table/grupo-table.component";
+import { GrupoTableComponent } from '../../components/grupo-table/grupo-table.component';
 
 @Component({
   selector: 'app-list-grupo',

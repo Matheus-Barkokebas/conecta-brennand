@@ -20,11 +20,19 @@ export class DataService {
     const today = new Date();
     const arr: DayCount[] = [];
     for (let i = 1; i <= days; i++) {
-      const d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
+      const d = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() + i
+      );
       const trend = Math.round(
         base + 10 * Math.sin(i / 2) + (Math.random() - 0.5) * variability
       );
-      arr.push({ date: d, label: this.formatDateLabel(d), count: Math.max(0, trend) });
+      arr.push({
+        date: d,
+        label: this.formatDateLabel(d),
+        count: Math.max(0, trend),
+      });
     }
     return arr;
   }

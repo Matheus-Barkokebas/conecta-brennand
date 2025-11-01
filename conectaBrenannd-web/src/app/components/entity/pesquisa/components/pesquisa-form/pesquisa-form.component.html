@@ -4,14 +4,8 @@
   <form #formPesquisa="ngForm" (ngSubmit)="onSubmit()" class="pesquisa-form">
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Descrição</mat-label>
-      <textarea
-        matInput
-        name="descricao"
-        rows="4"
-        required
-        [(ngModel)]="pesquisa.descricao"
-        placeholder="Digite a descrição ou comentário da pesquisa"
-      ></textarea>
+      <textarea matInput name="descricao" rows="4" required [(ngModel)]="pesquisa.descricao"
+        placeholder="Digite a descrição ou comentário da pesquisa"></textarea>
       <mat-icon matSuffix>description</mat-icon>
       <mat-error *ngIf="formPesquisa.submitted && !pesquisa.descricao">
         A descrição é obrigatória
@@ -21,13 +15,9 @@
     <div class="avaliacao-container">
       <label class="label">Avaliação</label>
       <div class="stars">
-        <mat-icon
-          *ngFor="let star of [1, 2, 3, 4, 5]"
-          (click)="pesquisa.estrelas = star"
-          [ngClass]="{ ativo: star <= pesquisa.estrelas }"
-        >
-          {{ star <= pesquisa.estrelas ? 'star' : 'star_border' }}
-        </mat-icon>
+        <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" (click)="pesquisa.estrelas = star"
+          [ngClass]="{ ativo: star <= pesquisa.estrelas }">
+          {{ star <= pesquisa.estrelas ? 'star' : 'star_border' }} </mat-icon>
       </div>
       <mat-error *ngIf="formPesquisa.submitted && pesquisa.estrelas === 0">
         É necessário selecionar ao menos uma estrela

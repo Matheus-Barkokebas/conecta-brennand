@@ -1,5 +1,5 @@
-import { Observable } from "rxjs";
-import { Comunicados } from "../models/comunicados.models";
+import { Observable } from 'rxjs';
+import { Comunicados } from '../models/comunicados.models';
 
 export interface IComunicadosService {
   save(request: Comunicados): Observable<Comunicados>;

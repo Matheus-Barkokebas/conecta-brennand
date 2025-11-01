@@ -4,7 +4,19 @@ import { ListUsuarioComponent } from './pages/list-usuario/list-usuario.componen
 import { EditUsuarioComponent } from './pages/edit-usuario/edit-usuario.component';
 
 export const USUARIO_ROUTES: Routes = [
-  { path: 'new', component: NewUsuarioComponent, data: { title: 'Cadastrar Usuario' } },
-  { path: 'list', component: ListUsuarioComponent, data: { title: 'Listar Usuario' } },
-  { path: 'edit/:id', component: EditUsuarioComponent, data: { title: 'Editar Usuario' } },
+  {
+    path: 'new',
+    component: NewUsuarioComponent,
+    data: { title: 'Cadastrar Usuario' },
+  },
+  {
+    path: 'list',
+    component: ListUsuarioComponent,
+    data: { title: 'Listar Usuario' },
+  },
+  {
+    path: 'edit/:id',
+    component: EditUsuarioComponent,
+    data: { title: 'Editar Usuario' },
+  },
 ];

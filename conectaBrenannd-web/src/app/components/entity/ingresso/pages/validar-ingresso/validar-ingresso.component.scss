@@ -4,13 +4,13 @@
   padding: 2.5rem;
   background: #ffffff;
   border-radius: 24px;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(99, 50, 7, 0.12),
     0 2px 8px rgba(99, 50, 7, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(230, 211, 179, 0.4);
   position: relative;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -36,21 +36,21 @@ input[type="text"] {
   outline: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(99, 50, 7, 0.05);
-  
+
   &::placeholder {
     color: #b0a699;
     font-weight: 400;
   }
-  
+
   &:focus {
     background: rgba(255, 248, 240, 0.95);
     border-color: #977554;
-    box-shadow: 
+    box-shadow:
       0 4px 16px rgba(99, 50, 7, 0.1),
       0 0 0 4px rgba(151, 117, 84, 0.1);
     transform: translateY(-2px);
   }
-  
+
   &:hover {
     border-color: rgba(151, 117, 84, 0.8);
     background: rgba(255, 248, 240, 0.9);
@@ -78,7 +78,7 @@ button {
   gap: 0.5rem;
   position: relative;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -89,21 +89,21 @@ button {
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: left 0.5s ease;
   }
-  
+
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(99, 50, 7, 0.4);
-    
+
     &::before {
       left: 100%;
     }
   }
-  
+
   &:active {
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(99, 50, 7, 0.4);
   }
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -120,34 +120,34 @@ div[ngIf="resposta"] {
   border-radius: 16px;
   border: 1px solid rgba(230, 211, 179, 0.4);
   animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  
+
   p {
     margin: 0.5rem 0;
     font-family: 'Inter', sans-serif;
     line-height: 1.5;
-    
+
     &:first-child {
       font-size: 1.2rem;
       font-weight: 600;
       color: #633207;
       margin-bottom: 1rem;
     }
-    
+
     &:nth-child(2) {
       font-weight: 500;
       color: #8b6b4c;
-      
+
       &::before {
         content: '📋 ';
         margin-right: 0.5rem;
       }
     }
-    
+
     &:last-child {
       font-size: 0.95rem;
       color: #977554;
       font-style: italic;
-      
+
       &::before {
         content: '🕒 ';
         margin-right: 0.5rem;
@@ -167,7 +167,7 @@ div[ngIf="resposta"] {
   font-weight: 500;
   font-family: 'Inter', sans-serif;
   animation: shake 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  
+
   &::before {
     content: '⚠️ ';
     margin-right: 0.5rem;
@@ -179,7 +179,7 @@ div[ngIf="resposta"] {
   div[ngIf="resposta"] {
     background: rgba(76, 175, 80, 0.1);
     border-color: rgba(76, 175, 80, 0.3);
-    
+
     p:first-child {
       color: #2e7d32;
     }
@@ -190,7 +190,7 @@ div[ngIf="resposta"] {
   div[ngIf="resposta"] {
     background: rgba(211, 47, 47, 0.1);
     border-color: rgba(211, 47, 47, 0.3);
-    
+
     p:first-child {
       color: #d32f2f;
     }
@@ -203,6 +203,7 @@ div[ngIf="resposta"] {
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -210,12 +211,16 @@ div[ngIf="resposta"] {
 }
 
 @keyframes shake {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0);
   }
+
   25% {
     transform: translateX(-5px);
   }
+
   75% {
     transform: translateX(5px);
   }
@@ -225,6 +230,7 @@ div[ngIf="resposta"] {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -238,7 +244,7 @@ div[ngIf="resposta"] {
 button:disabled {
   position: relative;
   color: transparent;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -255,6 +261,7 @@ button:disabled {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -267,12 +274,12 @@ button:disabled {
     padding: 1.5rem;
     border-radius: 20px;
   }
-  
+
   input[type="text"] {
     padding: 0.875rem 1.25rem;
     font-size: 1rem;
   }
-  
+
   button {
     padding: 0.875rem 1.5rem;
     font-size: 1rem;
@@ -285,7 +292,7 @@ button:disabled {
     padding: 1.25rem;
     border-radius: 16px;
   }
-  
+
   div[ngIf="resposta"],
   .erro {
     padding: 1rem;
@@ -294,7 +301,7 @@ button:disabled {
 
 // Efeitos visuais adicionais
 .validar-ingresso {
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 80%, rgba(99, 50, 7, 0.03) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(151, 117, 84, 0.02) 0%, transparent 50%);
 }

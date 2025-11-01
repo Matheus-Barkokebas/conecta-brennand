@@ -1,9 +1,5 @@
 <div class="validar-ingresso">
-  <input
-    type="text"
-    placeholder="Digite o CPF ou token do ingresso"
-    [(ngModel)]="cpfToken"
-  />
+  <input type="text" placeholder="Digite o CPF ou token do ingresso" [(ngModel)]="cpfToken" />
   <button (click)="validar()">Validar Ingresso</button>
 
   <div *ngIf="resposta">

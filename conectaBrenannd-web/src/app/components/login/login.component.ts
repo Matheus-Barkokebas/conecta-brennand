@@ -18,8 +18,6 @@ import { ISnackbarManagerService } from '../../service/ui/isnackbar-manager.serv
 import { MatDialog } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
-
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -31,7 +29,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonModule,
     MatIconModule,
     RouterLink,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',

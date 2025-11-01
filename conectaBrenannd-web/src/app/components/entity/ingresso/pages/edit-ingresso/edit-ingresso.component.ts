@@ -24,14 +24,14 @@ export class EditIngressoComponent implements OnInit, OnDestroy {
   private httpsubscriptions: Subscription[] = [];
 
   ingresso: Ingresso = {
-      id: 0,
-      usuario: new Usuario(),
-      cpfToken: '',
-      tipoIngresso: '',
-      status: StatusIngresso.ATIVO,
-      dataEmissao: new Date(),
-      dataUtilizacao: new Date(),
-    };
+    id: 0,
+    usuario: new Usuario(),
+    cpfToken: '',
+    tipoIngresso: '',
+    status: StatusIngresso.ATIVO,
+    dataEmissao: new Date(),
+    dataUtilizacao: new Date(),
+  };
 
   constructor(
     @Inject(SERVICES_TOKEN.HTTP.INGRESSO)

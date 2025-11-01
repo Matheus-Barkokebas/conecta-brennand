@@ -1,5 +1,5 @@
-import { Observable } from "rxjs";
-import { Dependente } from "../models/dependente.models";
+import { Observable } from 'rxjs';
+import { Dependente } from '../models/dependente.models';
 
 export interface IDependenteService {
   save(request: Dependente): Observable<Dependente>;
@@ -13,6 +13,4 @@ export interface IDependenteService {
   findByID(id: number): Observable<Dependente>;
 
   listByUser(): Observable<Dependente[]>;
-
-  //findMyGrupoById(id: number): Observable<Grupo>;
 }
