@@ -312,7 +312,6 @@
   background: rgba(99, 50, 7, 0.1);
 }
 
-/* Animações */
 @keyframes slideInDown {
   from {
     opacity: 0;
@@ -359,7 +358,6 @@
   }
 }
 
-/* Delay para animação em cascata dos cards */
 .comunicado-premium-card:nth-child(1) {
   animation-delay: 0.1s;
 }
@@ -384,7 +382,6 @@
   animation-delay: 0.35s;
 }
 
-/* Responsividade */
 @media (max-width: 1200px) {
   .comunicados-premium-grid {
     grid-template-columns: repeat(2, 1fr);

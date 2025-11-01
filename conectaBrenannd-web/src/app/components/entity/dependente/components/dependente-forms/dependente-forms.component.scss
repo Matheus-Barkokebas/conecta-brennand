@@ -1,4 +1,3 @@
-// Variáveis de cores baseadas no #633207
 $primary: #633207;
 $primary-light: #977554;
 $accent: #e67e22;
@@ -56,7 +55,6 @@ $text-secondary: #5d5d5d;
   }
 }
 
-// Campos do formulário
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -72,7 +70,6 @@ $text-secondary: #5d5d5d;
   width: 100%;
 }
 
-// Estilização dos campos do Angular Material
 mat-form-field {
   width: 100%;
 
@@ -117,7 +114,6 @@ mat-form-field {
   }
 }
 
-// Estilização específica para o select
 mat-select {
   ::ng-deep .mat-select-value {
     color: #2d2d2d;
@@ -129,7 +125,6 @@ mat-select {
   }
 }
 
-// Painel do select
 ::ng-deep .mat-select-panel {
   border-radius: 12px !important;
   box-shadow:
@@ -152,7 +147,6 @@ mat-select {
   }
 }
 
-// Botão voltar
 .back-button {
   position: fixed;
   top: 1.5rem;
@@ -183,7 +177,6 @@ mat-select {
   }
 }
 
-// Ações do formulário
 .form-actions {
   display: flex;
   gap: 1rem;
@@ -241,7 +234,6 @@ mat-select {
   }
 }
 
-// Estados de erro
 ::ng-deep .mat-form-field.mat-form-field-invalid {
   .mat-form-field-outline {
     color: #d32f2f !important;
@@ -260,7 +252,6 @@ mat-error {
   font-family: 'Inter', sans-serif;
 }
 
-// Efeitos de foco
 ::ng-deep .mat-form-field-appearance-outline.mat-focused {
   .mat-form-field-outline-thick {
     color: #633207 !important;
@@ -271,7 +262,6 @@ mat-error {
   }
 }
 
-// Animações
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -296,7 +286,6 @@ mat-error {
   }
 }
 
-// Animar os campos individualmente
 .form-row {
   animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 
@@ -313,7 +302,6 @@ mat-error {
   }
 }
 
-// Responsividade
 @media (max-width: 768px) {
   .dependente-form-container {
     padding: 1rem;
@@ -367,7 +355,6 @@ mat-error {
   }
 }
 
-// Placeholder estilizado
 ::placeholder {
   color: #b0a699 !important;
   opacity: 1;
@@ -381,14 +368,12 @@ mat-error {
   color: #b0a699 !important;
 }
 
-// Focus states para acessibilidade
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick,
 mat-form-field:focus-within {
   outline: 2px solid #633207;
   outline-offset: 2px;
 }
 
-// Número específico para campo idade
 input[type="number"] {
 
   &::-webkit-outer-spin-button,
@@ -398,14 +383,12 @@ input[type="number"] {
   }
 }
 
-// CPF com máscara visual
 input[name="cpf"] {
   font-family: 'Courier New', monospace;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
 
-// Loading state para o select
 mat-select:disabled {
   ::ng-deep .mat-select-value {
     color: #b0a699 !important;

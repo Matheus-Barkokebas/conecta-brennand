@@ -93,7 +93,6 @@
   }
 }
 
-// Estilização específica para o datepicker
 ::ng-deep .mat-datepicker-content {
   border-radius: 16px !important;
   box-shadow:
@@ -140,7 +139,6 @@
   }
 }
 
-// Botão do datepicker toggle
 ::ng-deep .mat-datepicker-toggle {
   .mat-icon-button {
     color: #977554;
@@ -207,7 +205,6 @@
   }
 }
 
-// Estados de erro
 ::ng-deep .mat-form-field.mat-form-field-invalid {
   .mat-form-field-outline {
     color: #d32f2f !important;
@@ -229,7 +226,6 @@ mat-error {
   margin-top: 0.5rem;
 }
 
-// Animações
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -246,7 +242,6 @@ mat-error {
   animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-// Textarea específico
 textarea.mat-input-element {
   resize: vertical;
   min-height: 120px;
@@ -258,12 +253,10 @@ textarea.mat-input-element {
   }
 }
 
-// Input específico para título
 input[matInput] {
   font-weight: 600;
 }
 
-// Efeitos de foco
 ::ng-deep .mat-form-field-appearance-outline.mat-focused {
   .mat-form-field-outline-thick {
     color: #633207 !important;
@@ -278,7 +271,6 @@ input[matInput] {
   }
 }
 
-// Responsividade
 @media (max-width: 768px) {
   .comunicados-card {
     margin: 1rem;
@@ -317,7 +309,6 @@ input[matInput] {
   }
 }
 
-// Ícones específicos para cada campo
 ::ng-deep .mat-form-field-suffix {
   .mat-icon {
     transition: all 0.3s ease;
@@ -328,7 +319,6 @@ input[matInput] {
   }
 }
 
-// Placeholder estilizado
 ::placeholder {
   color: #b0a699 !important;
   opacity: 1;

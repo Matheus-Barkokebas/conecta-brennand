@@ -29,14 +29,14 @@
   padding: 2rem;
   border-radius: 24px;
   background: #ffffff;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(99, 50, 7, 0.12),
     0 2px 8px rgba(99, 50, 7, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(230, 211, 179, 0.4);
   position: relative;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -121,7 +121,7 @@
       background: rgba(255, 248, 240, 0.6);
       transform: translateY(-2px);
       box-shadow: 0 4px 16px rgba(99, 50, 7, 0.1);
-      
+
       .table-cell {
         border-bottom-color: rgba(151, 117, 84, 0.4);
       }
@@ -135,7 +135,6 @@
   }
 }
 
-// Botões de ação
 .edit-button {
   color: #633207 !important;
   background: rgba(99, 50, 7, 0.1) !important;
@@ -178,7 +177,6 @@
   }
 }
 
-// Botão de adicionar dependente (primeiro botão)
 button:first-child.edit-button {
   color: #2e7d32 !important;
   background: rgba(46, 125, 50, 0.1) !important;
@@ -190,7 +188,6 @@ button:first-child.edit-button {
   }
 }
 
-// Mensagem de lista vazia
 .empty-message {
   text-align: center;
   padding: 4rem 2rem;
@@ -201,7 +198,7 @@ button:first-child.edit-button {
   background: rgba(255, 248, 240, 0.6);
   border-radius: 16px;
   border: 2px dashed rgba(230, 211, 179, 0.6);
-  
+
   &::before {
     content: '📋';
     display: block;
@@ -211,7 +208,6 @@ button:first-child.edit-button {
   }
 }
 
-// Paginator (caso tenha)
 .elegant-paginator {
   margin-top: 2rem;
   border-radius: 16px;
@@ -241,7 +237,7 @@ button:first-child.edit-button {
       &.mat-paginator-navigation-previous,
       &.mat-paginator-navigation-next {
         background: rgba(99, 50, 7, 0.05);
-        
+
         &:hover {
           background: rgba(99, 50, 7, 0.15);
         }
@@ -250,12 +246,12 @@ button:first-child.edit-button {
   }
 }
 
-// Animações
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -271,6 +267,7 @@ button:first-child.edit-button {
     opacity: 0;
     transform: translateX(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -279,7 +276,7 @@ button:first-child.edit-button {
 
 .data-row {
   animation: slideInRow 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-  
+
   @for $i from 1 through 10 {
     &:nth-child(#{$i}) {
       animation-delay: #{$i * 0.1}s;
@@ -287,7 +284,6 @@ button:first-child.edit-button {
   }
 }
 
-// Responsividade
 @media (max-width: 1024px) {
   .elegant-table-container {
     margin: 1rem;
@@ -307,7 +303,7 @@ button:first-child.edit-button {
     left: 1rem;
     width: 44px;
     height: 44px;
-    
+
     mat-icon {
       font-size: 20px;
       width: 20px;
@@ -319,7 +315,7 @@ button:first-child.edit-button {
     margin: 0.5rem;
     padding: 1.25rem;
     border-radius: 16px;
-    
+
     h2 {
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
@@ -345,7 +341,7 @@ button:first-child.edit-button {
     .delete-button {
       width: 36px;
       height: 36px;
-      
+
       mat-icon {
         font-size: 18px;
         width: 18px;
@@ -354,8 +350,7 @@ button:first-child.edit-button {
     }
   }
 
-  // Ocultar algumas colunas em mobile
-  .table-header:nth-child(1), // ID
+  .table-header:nth-child(1),
   .table-cell:nth-child(1) {
     display: none;
   }
@@ -370,7 +365,7 @@ button:first-child.edit-button {
     padding: 1rem;
   }
 
-  .table-header:nth-child(3), // Tipo Grupo
+  .table-header:nth-child(3),
   .table-cell:nth-child(3) {
     display: none;
   }
@@ -381,7 +376,6 @@ button:first-child.edit-button {
   }
 }
 
-// Tooltip personalizado
 ::ng-deep .mat-tooltip {
   background: rgba(99, 50, 7, 0.9) !important;
   color: white !important;
@@ -391,7 +385,6 @@ button:first-child.edit-button {
   padding: 0.5rem 0.75rem !important;
 }
 
-// Scrollbar personalizada para a tabela
 .elegant-table-container {
   &::-webkit-scrollbar {
     width: 6px;

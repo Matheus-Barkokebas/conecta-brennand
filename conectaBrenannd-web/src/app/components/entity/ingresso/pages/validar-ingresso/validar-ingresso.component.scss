@@ -23,7 +23,6 @@
   }
 }
 
-// Campo de entrada
 input[type="text"] {
   width: 100%;
   padding: 1rem 1.5rem;
@@ -57,7 +56,6 @@ input[type="text"] {
   }
 }
 
-// Botão de validação
 button {
   width: 100%;
   margin-top: 1.5rem;
@@ -112,7 +110,6 @@ button {
   }
 }
 
-// Container de resposta
 div[ngIf="resposta"] {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -156,7 +153,6 @@ div[ngIf="resposta"] {
   }
 }
 
-// Mensagem de erro
 .erro {
   margin-top: 1.5rem;
   padding: 1rem 1.5rem;
@@ -174,7 +170,6 @@ div[ngIf="resposta"] {
   }
 }
 
-// Estados de validação específicos
 :host-context(.validado) {
   div[ngIf="resposta"] {
     background: rgba(76, 175, 80, 0.1);
@@ -197,7 +192,6 @@ div[ngIf="resposta"] {
   }
 }
 
-// Animações
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -240,7 +234,6 @@ div[ngIf="resposta"] {
   animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-// Loading state
 button:disabled {
   position: relative;
   color: transparent;
@@ -267,7 +260,6 @@ button:disabled {
   }
 }
 
-// Responsividade
 @media (max-width: 768px) {
   .validar-ingresso {
     margin: 1rem;
@@ -299,21 +291,18 @@ button:disabled {
   }
 }
 
-// Efeitos visuais adicionais
 .validar-ingresso {
   background-image:
     radial-gradient(circle at 20% 80%, rgba(99, 50, 7, 0.03) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(151, 117, 84, 0.02) 0%, transparent 50%);
 }
 
-// Focus states para acessibilidade
 input[type="text"]:focus-visible,
 button:focus-visible {
   outline: 2px solid #633207;
   outline-offset: 2px;
 }
 
-// Status visual baseado na resposta
 .resposta-valida {
   border-left: 4px solid #4caf50;
 }
