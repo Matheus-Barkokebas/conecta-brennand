@@ -1,95 +1,240 @@
+<div *ngIf="permissao === 'ADMIN'">
+  <button mat-icon-button class="back-button" (click)="onBack()"> <mat-icon>arrow_back</mat-icon> </button>
+  <div class="container-fluid py-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2 style="color: #663c1f;" class="mb-0 fw-bold">Meus Ingressos</h2>
+          <span style="background-color: #663c1f;" class="badge fs-6">{{ ingressos.length }} ingressos</span>
+        </div>
+      </div>
+    </div>
 
-<button mat-icon-button class="back-button" (click)="onBack()"> <mat-icon>arrow_back</mat-icon> </button>
-<div class="container-fluid py-4">
-  <div class="row mb-4">
-    <div class="col-12">
-      <div class="d-flex justify-content-between align-items-center">
-        <h2 style="color: #663c1f;" class="mb-0 fw-bold">Meus Ingressos</h2>
-        <span style="background-color: #663c1f;" class="badge fs-6">{{ ingressos.length }} ingressos</span>
+    <div class="row g-3">
+      <div *ngFor="let ingresso of paginatedIngressos" class="col-12 col-md-6 col-lg-4">
+        <mat-card class="ingresso-card h-100 shadow-sm">
+          <mat-card-header class="pb-3">
+            <div class="d-flex justify-content-between align-items-start w-100">
+              <div>
+                <mat-card-title class="fs-6 fw-bold text-truncate">
+                  {{ ingresso.usuario.nome }}
+                </mat-card-title>
+                <mat-card-subtitle class="text-muted small">
+                  #{{ ingresso.id }}
+                </mat-card-subtitle>
+              </div>
+              <mat-chip variant="outlined" class="small">
+                {{ ingresso.status | titlecase }}
+              </mat-chip>
+            </div>
+          </mat-card-header>
+
+          <mat-card-content>
+            <div class="info-section mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <mat-icon class="text-muted me-2" style="font-size: 18px; width: 18px; height: 18px;">event</mat-icon>
+                <span class="small">{{ ingresso.dataUtilizacao | date:'dd/MM/yyyy - HH:mm' }}</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <mat-icon class="text-muted me-2"
+                  style="font-size: 18px; width: 18px; height: 18px;">location_on</mat-icon>
+                <span class="small text-truncate">Av. Brasília Formosa - Recife, PE</span>
+              </div>
+            </div>
+
+            <div class="qr-section text-center py-3 border-top border-bottom">
+              <div class="qr-code mx-auto mb-2">
+                {{ ingresso.cpfToken | slice:0:8 }}
+              </div>
+              <small class="text-muted">Código do ingresso</small>
+            </div>
+
+            <div class="cpf-section text-center py-2">
+              <small class="text-muted">CPF: {{ formatCpf(ingresso.usuario.cpf) }}</small>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions class="d-flex justify-content-between px-3 pb-3">
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="more-actions">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item color="warn" (click)="delete(ingresso)">
+                <mat-icon color="warn">delete</mat-icon>
+                <span>Excluir</span>
+              </button>
+            </mat-menu>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-12">
+        <mat-paginator [length]="ingressos.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+          [pageIndex]="currentPage" (page)="onPageChange($event)" class="custom-paginator">
+        </mat-paginator>
+      </div>
+    </div>
+
+    <div *ngIf="ingressos.length === 0" class="row mt-5">
+      <div class="col-12 text-center">
+        <mat-icon class="display-1 text-muted mb-3">confirmation_number</mat-icon>
+        <h4 class="text-muted">Nenhum ingresso encontrado</h4>
+        <p class="text-muted">Você ainda não possui ingressos cadastrados.</p>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="row g-3">
-    <div *ngFor="let ingresso of paginatedIngressos" class="col-12 col-md-6 col-lg-4">
-      <mat-card class="ingresso-card h-100 shadow-sm">
-        <mat-card-header class="pb-3">
-          <div class="d-flex justify-content-between align-items-start w-100">
-            <div>
-              <mat-card-title class="fs-6 fw-bold text-truncate">
-                {{ ingresso.usuario.nome }}
-              </mat-card-title>
-              <mat-card-subtitle class="text-muted small">
-                #{{ ingresso.id }}
-              </mat-card-subtitle>
+<div *ngIf="permissao === 'VISITANTE'" class="user-container">
+  <header class="navbar navbar-expand-xl navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+
+      <a class="navbar-brand d-flex align-items-center gap-2" [routerLink]="'home'">
+        <span class="material-icons fs-1">park</span>
+        <strong>Parque Brennand</strong>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#visitorNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="visitorNavbar">
+        <ul class="navbar-nav mx-auto gap-md-3">
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/home'" routerLinkActive="active">
+              <span class="material-icons">home</span> Início
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/ingressos/meus'" routerLinkActive="active">
+              <span class="material-icons">confirmation_number</span> Ingressos
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/ingressos/new'" routerLinkActive="active">
+              <span class="material-icons">event_available</span> Agendar
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/grupos/homeGrupos'" routerLinkActive="active">
+              <span class="material-icons">groups</span> Grupos
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/comunicados/list'" routerLinkActive="active">
+              <span class="material-icons">campaign</span> Comunicados
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/pesquisas/new'" routerLinkActive="active">
+              <span class="material-icons">poll</span> Pesquisas
+            </a>
+          </li>
+
+        </ul>
+
+        <div class="d-flex">
+          <a class="btn btn-outline-danger d-flex align-items-center gap-1" [routerLink]="'/logout'">
+            <span class="material-icons">logout</span> Sair
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid py-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2 style="color: #663c1f;" class="mb-0 fw-bold">Meus Ingressos</h2>
+          <span style="background-color: #663c1f;" class="badge fs-6">{{ ingressos.length }} ingressos</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div *ngFor="let ingresso of paginatedIngressos" class="col-12 col-md-6 col-lg-3">
+        <mat-card class="ingresso-card h-100 shadow-sm">
+          <mat-card-header class="pb-3">
+            <div class="d-flex justify-content-between align-items-start w-100">
+              <div>
+                <mat-card-title class="fs-6 fw-bold text-truncate">
+                  {{ ingresso.usuario.nome }}
+                </mat-card-title>
+                <mat-card-subtitle class="text-muted small">
+                  #{{ ingresso.id }}
+                </mat-card-subtitle>
+              </div>
+              <mat-chip variant="outlined" class="small">
+                {{ ingresso.status | titlecase }}
+              </mat-chip>
             </div>
-            <mat-chip variant="outlined" class="small">
-              {{ ingresso.status | titlecase }}
-            </mat-chip>
-          </div>
-        </mat-card-header>
+          </mat-card-header>
 
-        <mat-card-content>
-          <div class="info-section mb-3">
-            <div class="d-flex align-items-center mb-2">
-              <mat-icon class="text-muted me-2" style="font-size: 18px; width: 18px; height: 18px;">event</mat-icon>
-              <span class="small">{{ ingresso.dataUtilizacao | date:'dd/MM/yyyy - HH:mm' }}</span>
+          <mat-card-content>
+            <div class="info-section mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <mat-icon class="text-muted me-2" style="font-size: 18px; width: 18px; height: 18px;">event</mat-icon>
+                <span class="small">{{ ingresso.dataUtilizacao | date:'dd/MM/yyyy - HH:mm' }}</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <mat-icon class="text-muted me-2"
+                  style="font-size: 18px; width: 18px; height: 18px;">location_on</mat-icon>
+                <span class="small text-truncate">Av. Brasília Formosa - Recife, PE</span>
+              </div>
             </div>
-            <div class="d-flex align-items-center">
-              <mat-icon class="text-muted me-2" style="font-size: 18px; width: 18px; height: 18px;">location_on</mat-icon>
-              <span class="small text-truncate">Av. Brasília Formosa - Recife, PE</span>
+
+            <div class="qr-section text-center py-3 border-top border-bottom">
+              <div class="qr-code mx-auto mb-2">
+                {{ ingresso.cpfToken | slice:0:8 }}
+              </div>
+              <small class="text-muted">Código do ingresso</small>
             </div>
-          </div>
 
-          <div class="qr-section text-center py-3 border-top border-bottom">
-            <div class="qr-code mx-auto mb-2">
-              {{ ingresso.cpfToken | slice:0:8 }}
+            <div class="cpf-section text-center py-2">
+              <small class="text-muted">CPF: {{ formatCpf(ingresso.usuario.cpf) }}</small>
             </div>
-            <small class="text-muted">Código do ingresso</small>
-          </div>
+          </mat-card-content>
 
-          <div class="cpf-section text-center py-2">
-            <small class="text-muted">CPF: {{ formatCpf(ingresso.usuario.cpf) }}</small>
-          </div>
-        </mat-card-content>
-
-        <mat-card-actions class="d-flex justify-content-between px-3 pb-3">
-          <button mat-icon-button
-                  [matMenuTriggerFor]="menu"
-                  class="more-actions">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item
-                    color="warn"
-                    (click)="delete(ingresso)">
-              <mat-icon color="warn">delete</mat-icon>
-              <span>Excluir</span>
+          <mat-card-actions class="d-flex justify-content-between px-3 pb-3">
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="more-actions">
+              <mat-icon>more_vert</mat-icon>
             </button>
-          </mat-menu>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  </div>
 
-  <div class="row mt-4">
-    <div class="col-12">
-      <mat-paginator [length]="ingressos.length"
-                     [pageSize]="pageSize"
-                     [pageSizeOptions]="pageSizeOptions"
-                     [pageIndex]="currentPage"
-                     (page)="onPageChange($event)"
-                     class="custom-paginator">
-      </mat-paginator>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item color="warn" (click)="delete(ingresso)">
+                <mat-icon color="warn">delete</mat-icon>
+                <span>Excluir</span>
+              </button>
+            </mat-menu>
+          </mat-card-actions>
+        </mat-card>
+      </div>
     </div>
-  </div>
 
-  <div *ngIf="ingressos.length === 0" class="row mt-5">
-    <div class="col-12 text-center">
-      <mat-icon class="display-1 text-muted mb-3">confirmation_number</mat-icon>
-      <h4 class="text-muted">Nenhum ingresso encontrado</h4>
-      <p class="text-muted">Você ainda não possui ingressos cadastrados.</p>
+    <div class="row mt-4">
+      <div class="col-12">
+        <mat-paginator [length]="ingressos.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+          [pageIndex]="currentPage" (page)="onPageChange($event)" class="custom-paginator">
+        </mat-paginator>
+      </div>
+    </div>
+
+    <div *ngIf="ingressos.length === 0" class="row mt-5">
+      <div class="col-12 text-center">
+        <mat-icon class="display-1 text-muted mb-3">confirmation_number</mat-icon>
+        <h4 class="text-muted">Nenhum ingresso encontrado</h4>
+        <p class="text-muted">Você ainda não possui ingressos cadastrados.</p>
+      </div>
     </div>
   </div>
 </div>

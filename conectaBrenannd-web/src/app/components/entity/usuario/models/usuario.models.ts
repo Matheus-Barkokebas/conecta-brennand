@@ -1,7 +1,7 @@
 export enum Permissoes {
   ADMIN = 'ADMIN',
   RECEPCIONISTA = 'RECEPCIONISTA',
-  USUARIO = 'USUARIO',
+  VISITANTE = 'VISITANTE',
 }
 
 export class Usuario {
@@ -16,5 +16,5 @@ export class Usuario {
   cidade: string = '';
   estado: string = '';
   cep: string = '';
-  permissao: Permissoes = Permissoes.USUARIO;
+  permissao: Permissoes = Permissoes.VISITANTE;
 }

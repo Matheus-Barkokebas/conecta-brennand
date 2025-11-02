@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
+  HostListener,
   Inject,
   Input,
   OnDestroy,
@@ -24,10 +25,11 @@ import { PesquisaService } from '../../services/pesquisa.service';
 import { Subscription } from 'rxjs';
 import { IUsuarioService } from '../../../usuario/services/iusuario.service';
 import { ISnackbarManagerService } from '../../../../../service/ui/isnackbar-manager.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Usuario } from '../../../usuario/models/usuario.models';
 import { Pesquisa } from '../../models/pesquisa.models';
 import { MatCard } from '@angular/material/card';
+import { AuthService } from '../../../../../service/auth/auth.service';
 @Component({
   selector: 'app-pesquisa-form',
   imports: [
@@ -42,9 +44,13 @@ import { MatCard } from '@angular/material/card';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCard,
+    RouterLink
   ],
   templateUrl: './pesquisa-form.component.html',
-  styleUrl: './pesquisa-form.component.scss',
+  styleUrls: [
+    './pesquisa-form.component.scss',
+    './pesquisa-form-visitante.component.scss',
+  ],
   providers: [
     { provide: SERVICES_TOKEN.HTTP.PESQUISA, useClass: PesquisaService },
     { provide: SERVICES_TOKEN.HTTP.USUARIO, useClass: UsuarioService },
@@ -53,14 +59,25 @@ import { MatCard } from '@angular/material/card';
 })
 export class PesquisaFormComponent implements OnInit, OnDestroy {
   private httpSubscriptions: Subscription[] = [];
+
+  sidebarVisible = true;
+  isMobile = false;
+
+  permissao: string | null = null;
+  isLoggedIn: boolean = false;
+  private subscriptions = new Subscription();
+  mobileMenuOpen = false;
+
   usuario: Usuario[] = [];
   constructor(
     @Inject(SERVICES_TOKEN.HTTP.USUARIO)
     private readonly httpServiceSecretaria: IUsuarioService,
     @Inject(SERVICES_TOKEN.SNACKBAR)
     private readonly snackbarManager: ISnackbarManagerService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
+
   @Input() pesquisa: Pesquisa = {
     id: 0,
     descricao: '',
@@ -83,11 +100,50 @@ export class PesquisaFormComponent implements OnInit, OnDestroy {
         .list()
         .subscribe((data) => (this.usuario = data))
     );
+
+    this.checkScreenSize();
+
+    this.subscriptions.add(
+      this.authService.userRole$.subscribe((role) => (this.permissao = role))
+    );
   }
   ngOnDestroy(): void {
     this.httpSubscriptions.forEach((s) => s.unsubscribe());
   }
   onBack() {
     this.router.navigate(['/home']);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    } else {
+      this.sidebarVisible = true;
+      this.mobileMenuOpen = false;
+    }
+  }
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  closeSidebarOnMobile() {
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    }
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
   }
 }

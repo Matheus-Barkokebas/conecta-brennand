@@ -66,7 +66,7 @@ export class UsuarioFormComponent implements OnDestroy {
     cidade: '',
     estado: '',
     cep: '',
-    permissao: Permissoes.USUARIO,
+    permissao: Permissoes.VISITANTE,
   };
 
   @Output() usuarioSubmited = new EventEmitter<Usuario>();

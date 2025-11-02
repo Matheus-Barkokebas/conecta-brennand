@@ -1,15 +1,33 @@
-<div class="app-container">
-  <button mat-icon-button class="menu-toggle" (click)="toggleSidebar()">
-    <mat-icon>menu</mat-icon>
-  </button>
-
-  <button mat-fab class="floating-menu-btn d-none d-md-flex" *ngIf="!sidebarVisible && !isMobile"
-    (click)="toggleSidebar()">
-    <mat-icon>menu</mat-icon>
-  </button>
+<div *ngIf="permissao === 'ADMIN'" class="app-container">
+  <header class="admin-header">
+    <div class="header-left">
+      <button mat-icon-button class="menu-toggle" (click)="toggleSidebar()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1 class="header-title">Painel Administrativo</h1>
+    </div>
+    <div class="header-right">
+      <button mat-icon-button class="header-action">
+        <mat-icon>notifications</mat-icon>
+        <span class="notification-badge">3</span>
+      </button>
+      <button mat-icon-button class="header-action">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+  </header>
 
   <aside class="sidebar" [class.sidebar-hidden]="!sidebarVisible">
     <div class="sidebar-header">
+      <div class="admin-info">
+        <div class="admin-avatar">
+          <mat-icon>admin_panel_settings</mat-icon>
+        </div>
+        <div class="admin-details">
+          <span class="admin-name">Administrador</span>
+          <span class="admin-role">Super Admin</span>
+        </div>
+      </div>
       <button mat-icon-button class="close-sidebar" (click)="toggleSidebar()">
         <mat-icon>close</mat-icon>
       </button>
@@ -19,73 +37,38 @@
       <ul>
         <li>
           <a class="nav-link active" (click)="closeSidebarOnMobile()" [routerLink]="'home'">
-            <mat-icon>home</mat-icon>
-            <span>Início</span>
+            <mat-icon>dashboard</mat-icon>
+            <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/ingressos/meus'">
-            <mat-icon>explore</mat-icon>
-            <span>Meus Ingressos</span>
+          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/ingressos/validar'">
+            <mat-icon>confirmation_number</mat-icon>
+            <span>Ingressos</span>
           </a>
         </li>
         <li>
-          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/ingressos/new'">
-            <mat-icon>event_available</mat-icon>
-            <span>Agendar Visita</span>
+          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/comunicados/list'">
+            <mat-icon>campaign</mat-icon>
+            <span>Comunicados</span>
           </a>
         </li>
         <li>
-          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/grupos/homeGrupos'" homeGrupos>
+          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/grupos/homeGrupos'">
             <mat-icon>groups</mat-icon>
             <span>Grupos</span>
           </a>
         </li>
         <li>
-          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/comunicados/list'" homeGrupos>
-            <mat-icon>groups</mat-icon>
-            <span>Comunicados</span>
+          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/relatorios/view'">
+            <mat-icon>assessment</mat-icon>
+            <span>Relatórios</span>
           </a>
         </li>
         <li>
-          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/pesquisas/new'" homeGrupos>
-            <mat-icon>groups</mat-icon>
-            <span>Pesquisa de Satisfação</span>
-          </a>
-        </li>
-        <li>
-          <a class="nav-link" (click)="closeSidebarOnMobile()">
-            <mat-icon>photo_library</mat-icon>
-            <span>Galeria</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link" (click)="closeSidebarOnMobile()">
-            <mat-icon>info</mat-icon>
-            <span>Sobre</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link" (click)="closeSidebarOnMobile()">
-            <mat-icon>contact_support</mat-icon>
-            <span>Contato</span>
-          </a>
-        </li>
-
-        <div class="divider">
-          <span>Área ADMIN</span>
-        </div>
-
-        <li>
-          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/dashboard/view'">
-            <mat-icon>contact_support</mat-icon>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/comunicados/new'">
-            <mat-icon>contact_support</mat-icon>
-            <span>Cadastrar Comunicados</span>
+          <a class="nav-link" (click)="closeSidebarOnMobile()" [routerLink]="'/configuracoes/view'">
+            <mat-icon>settings</mat-icon>
+            <span>Configurações</span>
           </a>
         </li>
       </ul>
@@ -93,88 +76,354 @@
   </aside>
 
   <div class="sidebar-overlay" [class.overlay-visible]="sidebarVisible && isMobile" (click)="toggleSidebar()"></div>
-
   <main class="main-content" [class.content-expanded]="!sidebarVisible">
-    <section class="hero-section">
-      <div class="hero-content">
-        <h1 class="hero-title">
-          Descubra a Magia das Esculturas ao Ar Livre
-        </h1>
-        <p class="hero-subtitle">
-          No coração do Recife, o Parque Francisco Brennand oferece uma experiência única onde arte, natureza e
-          cultura se encontram em perfeita harmonia.
-        </p>
-        <div class="hero-actions">
-          <button mat-raised-button color="primary" class="cta-button" [routerLink]="'/ingressos/new'">
-            <mat-icon>event_available</mat-icon>
-            Agendar Visita
-          </button>
-          <button mat-stroked-button color="accent" class="secondary-button" [routerLink]="'/grupos/homeGrupos'">
+    <section class="metrics-section">
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon">
+            <mat-icon>confirmation_number</mat-icon>
+          </div>
+          <div class="metric-info">
+            <h3 class="metric-value">1,248</h3>
+            <p class="metric-label">Ingressos Hoje</p>
+          </div>
+          <div class="metric-trend positive">
+            <mat-icon>trending_up</mat-icon>
+            <span>12%</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">
             <mat-icon>groups</mat-icon>
-            Visita em Grupo
-          </button>
+          </div>
+          <div class="metric-info">
+            <h3 class="metric-value">324</h3>
+            <p class="metric-label">Grupos Ativos</p>
+          </div>
+          <div class="metric-trend positive">
+            <mat-icon>trending_up</mat-icon>
+            <span>5%</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">
+            <mat-icon>event_available</mat-icon>
+          </div>
+          <div class="metric-info">
+            <h3 class="metric-value">87%</h3>
+            <p class="metric-label">Capacidade</p>
+          </div>
+          <div class="metric-trend negative">
+            <mat-icon>trending_down</mat-icon>
+            <span>3%</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">
+            <mat-icon>attach_money</mat-icon>
+          </div>
+          <div class="metric-info">
+            <h3 class="metric-value">R$ 24,580</h3>
+            <p class="metric-label">Receita do Dia</p>
+          </div>
+          <div class="metric-trend positive">
+            <mat-icon>trending_up</mat-icon>
+            <span>8%</span>
+          </div>
         </div>
       </div>
-      <div class="hero-decor hero-decor-left"></div>
-      <div class="hero-decor hero-decor-right"></div>
     </section>
 
-    <section class="cards-section">
-      <div class="park-experience-bg"></div>
-      <div class="park-experience-container">
-        <h2 class="park-experience-title">Como você quer viver essa experiência?</h2>
-        <p class="park-experience-subtitle">Escolha seu caminho e sinta a magia do parque.</p>
-        <div class="park-experience-cards">
-          <div class="park-experience-card individual" tabindex="0">
-            <div class="card-visual">
-              <span class="card-visual-icon"><mat-icon>calendar_today</mat-icon></span>
-              <span class="card-visual-glow"></span>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Visita Individual</h3>
-              <p class="card-desc">Explore no seu ritmo. Descubra, contemple, inspire-se.</p>
-            </div>
-            <div class="menu-buttons">
-              <button mat-raised-button color="primary" class="card-btn" [routerLink]="'/ingressos/new'">
-                <mat-icon>event_available</mat-icon>
-                Reservar
-              </button>
-            </div>
-            <div class="card-ambient-light"></div>
+    <section class="quick-actions-section">
+      <h2 class="section-title">Ações Rápidas</h2>
+      <div class="actions-grid">
+        <button class="action-card" [routerLink]="'/ingressos/new'">
+          <div class="action-icon">
+            <mat-icon>add_circle</mat-icon>
           </div>
-          <div class="park-experience-card grupo" tabindex="0">
-            <div class="card-visual">
-              <span class="card-visual-icon"><mat-icon>groups</mat-icon></span>
-              <span class="card-visual-glow"></span>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Visita em Grupo</h3>
-              <p class="card-desc">Compartilhe momentos. Conexão, alegria e memórias.</p>
-            </div>
-            <div class="menu-buttons">
-              <button mat-stroked-button color="primary" class="card-btn" [routerLink]="'/grupos/homeGrupos'">
-                <mat-icon>groups</mat-icon>
-                Solicitar
-              </button>
-            </div>
-            <div class="card-ambient-light"></div>
+          <h3>Novo Ingresso</h3>
+          <p>Emitir ingresso individual</p>
+        </button>
+
+        <button class="action-card" [routerLink]="'/grupos/new'">
+          <div class="action-icon">
+            <mat-icon>group_add</mat-icon>
           </div>
-          <div class="park-experience-card checkin" tabindex="0">
-            <div class="card-visual">
-              <span class="card-visual-icon"><mat-icon>speed</mat-icon></span>
-              <span class="card-visual-glow"></span>
+          <h3>Novo Grupo</h3>
+          <p>Cadastrar visita em grupo</p>
+        </button>
+
+        <button class="action-card" [routerLink]="'/comunicados/new'">
+          <div class="action-icon">
+            <mat-icon>campaign</mat-icon>
+          </div>
+          <h3>Novo Comunicado</h3>
+          <p>Criar aviso ou notificação</p>
+        </button>
+
+        <button class="action-card" [routerLink]="'/relatorios/gerar'">
+          <div class="action-icon">
+            <mat-icon>summarize</mat-icon>
+          </div>
+          <h3>Gerar Relatório</h3>
+          <p>Relatórios personalizados</p>
+        </button>
+      </div>
+    </section>
+
+    <section class="recent-activities-section">
+      <div class="activities-header">
+        <h2 class="section-title">Atividades Recentes</h2>
+        <button mat-stroked-button>Ver Tudo</button>
+      </div>
+
+      <div class="activities-list">
+        <div class="activity-item">
+          <div class="activity-icon success">
+            <mat-icon>check_circle</mat-icon>
+          </div>
+          <div class="activity-details">
+            <p class="activity-description">Ingresso #4587 validado com sucesso</p>
+            <span class="activity-time">Há 5 minutos</span>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon warning">
+            <mat-icon>warning</mat-icon>
+          </div>
+          <div class="activity-details">
+            <p class="activity-description">Grupo "Escola Municipal" cancelou visita</p>
+            <span class="activity-time">Há 1 hora</span>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon info">
+            <mat-icon>info</mat-icon>
+          </div>
+          <div class="activity-details">
+            <p class="activity-description">Novo comunicado publicado</p>
+            <span class="activity-time">Há 2 horas</span>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon success">
+            <mat-icon>payments</mat-icon>
+          </div>
+          <div class="activity-details">
+            <p class="activity-description">Pagamento de R$ 1.250,00 confirmado</p>
+            <span class="activity-time">Há 3 horas</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div *ngIf="permissao === 'VISITANTE'" class="user-container">
+  <header class="navbar navbar-expand-xl navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+
+      <a class="navbar-brand d-flex align-items-center gap-2" [routerLink]="'home'">
+        <span class="material-icons fs-1">park</span>
+        <strong>Parque Brennand</strong>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#visitorNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="visitorNavbar">
+        <ul class="navbar-nav mx-auto gap-md-3">
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'home'" routerLinkActive="active">
+              <span class="material-icons">home</span> Início
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/ingressos/meus'" routerLinkActive="active">
+              <span class="material-icons">confirmation_number</span> Ingressos
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/ingressos/new'" routerLinkActive="active">
+              <span class="material-icons">event_available</span> Agendar
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/grupos/homeGrupos'" routerLinkActive="active">
+              <span class="material-icons">groups</span> Grupos
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/comunicados/list'" routerLinkActive="active">
+              <span class="material-icons">campaign</span> Comunicados
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/pesquisas/new'" routerLinkActive="active">
+              <span class="material-icons">poll</span> Pesquisas
+            </a>
+          </li>
+
+        </ul>
+
+        <div class="d-flex">
+          <a class="btn btn-outline-danger d-flex align-items-center gap-1" [routerLink]="'/logout'">
+            <span class="material-icons">logout</span> Sair
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="user-main-content">
+    <section class="user-hero-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="hero-content">
+              <h1 class="hero-title">
+                Bem-vindo ao Parque Francisco Brennand
+              </h1>
+              <p class="hero-subtitle">
+                Explore um universo de arte, cultura e natureza em um dos espaços mais encantadores do Recife.
+              </p>
+              <div class="hero-actions">
+                <button class="btn btn-primary btn-cta" [routerLink]="'/ingressos/new'">
+                  <span class="material-icons">event_available</span>
+                  Agendar Visita
+                </button>
+                <button style="background-color: #FF9800; border: white; color: white;"
+                  class="btn btn-outline-primary btn-secondary" [routerLink]="'/grupos/homeGrupos'">
+                  <span class="material-icons">groups</span>
+                  Visita em Grupo
+                </button>
+              </div>
             </div>
-            <div class="card-content">
-              <h3 class="card-title">Check-in Rápido</h3>
-              <p class="card-desc">Acesse sem filas. Praticidade e tecnologia ao seu favor.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="user-cards-section">
+      <div class="container">
+        <div class="section-header text-center mb-5">
+          <h2 class="section-title">Como você quer viver essa experiência?</h2>
+          <p class="section-subtitle">Escolha seu caminho e sinta a magia do parque.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="user-card individual-card">
+              <div class="card-icon">
+                <span class="material-icons">person</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Visita Individual</h3>
+                <p class="card-text">Explore no seu ritmo. Descubra, contemple, inspire-se.</p>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-primary w-100" [routerLink]="'/ingressos/new'">
+                  <span class="material-icons">event_available</span>
+                  Reservar
+                </button>
+              </div>
             </div>
-            <div class="menu-buttons">
-              <button mat-stroked-button color="primary" class="card-btn" [routerLink]="'/ingressos/validar'">
-                <mat-icon>info</mat-icon>
-                Saiba Mais
-              </button>
+          </div>
+
+          <div class="col-md-4">
+            <div class="user-card group-card">
+              <div class="card-icon">
+                <span class="material-icons">groups</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Visita em Grupo</h3>
+                <p class="card-text">Compartilhe momentos. Conexão, alegria e memórias.</p>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-outline-primary w-100" [routerLink]="'/grupos/homeGrupos'">
+                  <span class="material-icons">groups</span>
+                  Solicitar
+                </button>
+              </div>
             </div>
-            <div class="card-ambient-light"></div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="user-card checkin-card">
+              <div class="card-icon">
+                <span class="material-icons">qr_code_scanner</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Check-in Rápido</h3>
+                <p class="card-text">Acesse sem filas. Praticidade e tecnologia ao seu favor.</p>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-outline-primary w-100" [routerLink]="'/ingressos/validar'">
+                  <span class="material-icons">info</span>
+                  Saiba Mais
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="user-highlights-section">
+      <div class="container">
+        <div class="section-header text-center mb-5">
+          <h2 class="section-title">Destaques do Parque</h2>
+          <p class="section-subtitle">Conheça as principais atrações que te aguardam</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <span class="material-icons">architecture</span>
+              </div>
+              <h4>Esculturas Únicas</h4>
+              <p>Obras de Francisco Brennand que dialogam com a natureza</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <span class="material-icons">nature</span>
+              </div>
+              <h4>Jardins Encantadores</h4>
+              <p>Paisagismo que complementa a experiência artística</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <span class="material-icons">history_edu</span>
+              </div>
+              <h4>História Viva</h4>
+              <p>Conheça a trajetória de um dos maiores artistas brasileiros</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <span class="material-icons">photo_camera</span>
+              </div>
+              <h4>Cenários Inesquecíveis</h4>
+              <p>Ambientes perfeitos para registrar momentos especiais</p>
+            </div>
           </div>
         </div>
       </div>

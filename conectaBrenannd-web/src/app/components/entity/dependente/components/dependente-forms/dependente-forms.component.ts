@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  HostListener,
   Inject,
   Input,
   OnDestroy,
@@ -18,7 +19,7 @@ import { Subscription } from 'rxjs';
 import { Grupo, TipoGrupo } from '../../../grupo/models/grupo.models';
 import { Usuario } from '../../../usuario/models/usuario.models';
 import { ISnackbarManagerService } from '../../../../../service/ui/isnackbar-manager.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IUsuarioService } from '../../../usuario/services/iusuario.service';
 import { IGrupoService } from '../../../grupo/services/igrupo.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,6 +29,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Dependente } from '../../models/dependente.models';
+import { AuthService } from '../../../../../service/auth/auth.service';
 
 @Component({
   selector: 'app-dependente-forms',
@@ -40,9 +42,13 @@ import { Dependente } from '../../models/dependente.models';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    RouterLink,
   ],
   templateUrl: './dependente-forms.component.html',
-  styleUrl: './dependente-forms.component.scss',
+  styleUrls: [
+    './dependente-forms.component.scss',
+    './dependente-forms-visitante.component.scss',
+  ],
   providers: [
     { provide: SERVICES_TOKEN.HTTP.DEPENDENTE, useClass: DependenteService },
     { provide: SERVICES_TOKEN.HTTP.GRUPO, useClass: GrupoService },
@@ -59,6 +65,14 @@ export class DependenteFormsComponent implements OnInit, OnDestroy {
 
   public TipoGrupo = TipoGrupo;
 
+  sidebarVisible = true;
+  isMobile = false;
+
+  permissao: string | null = null;
+  isLoggedIn: boolean = false;
+  private subscriptions = new Subscription();
+  mobileMenuOpen = false;
+
   constructor(
     @Inject(SERVICES_TOKEN.HTTP.GRUPO)
     private readonly httpServiceGrupo: IGrupoService,
@@ -66,7 +80,8 @@ export class DependenteFormsComponent implements OnInit, OnDestroy {
     private readonly httpServiceSecretaria: IUsuarioService,
     @Inject(SERVICES_TOKEN.SNACKBAR)
     private readonly snackbarManager: ISnackbarManagerService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   @Input() dependente: Dependente = {
@@ -99,7 +114,18 @@ export class DependenteFormsComponent implements OnInit, OnDestroy {
     this.dependenteSubmited.emit(this.dependente);
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
   ngOnInit(): void {
+    this.checkScreenSize();
+
+    this.subscriptions.add(
+      this.authService.userRole$.subscribe((role) => (this.permissao = role))
+    );
+
     const subUsuarios = this.httpServiceSecretaria.list().subscribe({
       next: (data) => (this.usuario = data),
       error: () => this.snackbarManager.show('Erro ao carregar usuários.'),
@@ -119,5 +145,33 @@ export class DependenteFormsComponent implements OnInit, OnDestroy {
 
   onBack() {
     this.router.navigate(['/grupos/meus']);
+  }
+
+  private checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    } else {
+      this.sidebarVisible = true;
+      this.mobileMenuOpen = false;
+    }
+  }
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  closeSidebarOnMobile() {
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    }
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
   }
 }

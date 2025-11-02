@@ -1,4 +1,4 @@
-<div class="ingresso-container">
+<div *ngIf="permissao === 'ADMIN'" class="ingresso-container">
 
   <button mat-icon-button class="back-button" (click)="onBack()"> <mat-icon>arrow_back</mat-icon> </button>
 
@@ -23,4 +23,92 @@
       </button>
     </form>
   </mat-card>
+</div>
+
+<div *ngIf="permissao === 'VISITANTE'" class="user-container">
+  <header class="navbar navbar-expand-xl navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+
+      <a class="navbar-brand d-flex align-items-center gap-2" [routerLink]="'home'">
+        <span class="material-icons fs-1">park</span>
+        <strong>Parque Brennand</strong>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#visitorNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="visitorNavbar">
+        <ul class="navbar-nav mx-auto gap-md-3">
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/home'" routerLinkActive="active">
+              <span class="material-icons">home</span> Início
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/ingressos/meus'" routerLinkActive="active">
+              <span class="material-icons">confirmation_number</span> Ingressos
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/ingressos/new'" routerLinkActive="active">
+              <span class="material-icons">event_available</span> Agendar
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/grupos/homeGrupos'" routerLinkActive="active">
+              <span class="material-icons">groups</span> Grupos
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/comunicados/list'" routerLinkActive="active">
+              <span class="material-icons">campaign</span> Comunicados
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/pesquisas/new'" routerLinkActive="active">
+              <span class="material-icons">poll</span> Pesquisas
+            </a>
+          </li>
+
+        </ul>
+
+        <div class="d-flex">
+          <a class="btn btn-outline-danger d-flex align-items-center gap-1" [routerLink]="'/logout'">
+            <span class="material-icons">logout</span> Sair
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="ingresso-container">
+    <mat-card class="ingresso-card">
+      <h2>Solicitar Ingresso</h2>
+      <p>Informe a data da visita</p>
+
+      <form #form="ngForm" (ngSubmit)="onSubmit()" class="ingresso-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Data da Visita</mat-label>
+          <input matInput [matDatepicker]="picker" name="dataUtilizacao" [(ngModel)]="ingresso.dataUtilizacao"
+            required />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>GRATUITO</mat-label>
+          <input matInput name="tipoIngresso" [(ngModel)]="ingresso.tipoIngresso" value="GRATUITO" disabled />
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="primary" class="btn-full" [disabled]="form.invalid">
+          Confirmar
+        </button>
+      </form>
+    </mat-card>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="dependente-form-container">
+<div *ngIf="permissao === 'ADMIN'" class="dependente-form-container">
 
   <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="dependente-form">
 
@@ -61,8 +61,139 @@
       </button>
     </div>
   </form>
+
+  <button class="back-button" (click)="onBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
 </div>
 
-<button class="back-button" (click)="onBack()">
-  <mat-icon>arrow_back</mat-icon>
-</button>
+<div *ngIf="permissao === 'VISITANTE'" class="user-container">
+  <header class="navbar navbar-expand-xl navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+
+      <a class="navbar-brand d-flex align-items-center gap-2" [routerLink]="'home'">
+        <span class="material-icons fs-1">park</span>
+        <strong>Parque Brennand</strong>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#visitorNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="visitorNavbar">
+        <ul class="navbar-nav mx-auto gap-md-3">
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/home'" routerLinkActive="active">
+              <span class="material-icons">home</span> Início
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/ingressos/meus'" routerLinkActive="active">
+              <span class="material-icons">confirmation_number</span> Ingressos
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/ingressos/new'" routerLinkActive="active">
+              <span class="material-icons">event_available</span> Agendar
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/grupos/homeGrupos'" routerLinkActive="active">
+              <span class="material-icons">groups</span> Grupos
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/comunicados/list'" routerLinkActive="active">
+              <span class="material-icons">campaign</span> Comunicados
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/pesquisas/new'" routerLinkActive="active">
+              <span class="material-icons">poll</span> Pesquisas
+            </a>
+          </li>
+
+        </ul>
+
+        <div class="d-flex">
+          <a class="btn btn-outline-danger d-flex align-items-center gap-1" [routerLink]="'/logout'">
+            <span class="material-icons">logout</span> Sair
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div style="margin-top: 160px;" *ngIf="permissao === 'VISITANTE'" class="dependente-form-container">
+
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="dependente-form">
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" name="nome" [(ngModel)]="dependente.nome" required />
+          <mat-error *ngIf="form.submitted && !dependente.nome">
+            Nome é obrigatório.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Idade</mat-label>
+          <input matInput type="number" name="idade" [(ngModel)]="dependente.idade" required />
+          <mat-error *ngIf="form.submitted && !dependente.idade">
+            Idade é obrigatória.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>CPF</mat-label>
+          <input matInput type="text" name="cpf" maxlength="14" [(ngModel)]="dependente.cpf" required />
+          <mat-error *ngIf="form.submitted && !dependente.cpf">
+            CPF é obrigatório.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Parentesco</mat-label>
+          <input matInput type="text" name="parentesco" [(ngModel)]="dependente.parentesco" required />
+          <mat-error *ngIf="form.submitted && !dependente.parentesco">
+            Parentesco é obrigatório.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row full-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Grupo</mat-label>
+          <mat-select name="grupo" [(ngModel)]="dependente.grupo" required>
+            <mat-option *ngFor="let g of grupo" [value]="g">
+              {{ g.nome }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.submitted && !dependente.grupo">
+            Selecione um grupo.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit">
+          Salvar
+        </button>
+      </div>
+    </form>
+
+    <button style="margin-top: 80px;" class="back-button" (click)="onBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+  </div>
+</div>

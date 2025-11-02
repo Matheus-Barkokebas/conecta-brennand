@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
+  HostListener,
   Inject,
   Input,
   OnDestroy,
@@ -26,7 +27,8 @@ import { Ingresso, StatusIngresso } from '../../models/ingresso.models';
 import { Usuario } from '../../../usuario/models/usuario.models';
 import { UsuarioService } from '../../../usuario/services/usuario.service';
 import { IUsuarioService } from '../../../usuario/services/iusuario.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../../../service/auth/auth.service';
 
 @Component({
   selector: 'app-ingresso-form',
@@ -41,9 +43,13 @@ import { Router } from '@angular/router';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCardModule,
+    RouterLink,
   ],
   templateUrl: './ingresso-forms.component.html',
-  styleUrl: './ingresso-forms.component.scss',
+  styleUrls: [
+    './ingresso-forms.component.scss',
+    './ingresso-forms-visitante.component.scss',
+  ],
   providers: [
     { provide: SERVICES_TOKEN.HTTP.INGRESSO, useClass: IngressoService },
     { provide: SERVICES_TOKEN.HTTP.USUARIO, useClass: UsuarioService },
@@ -55,12 +61,20 @@ export class IngressoFormComponent implements OnInit, OnDestroy {
 
   usuario: Usuario[] = [];
 
+  sidebarVisible = true;
+  isMobile = false;
+  permissao: string | null = null;
+  isLoggedIn: boolean = false;
+  private subscriptions = new Subscription();
+  mobileMenuOpen = false;
+
   constructor(
     @Inject(SERVICES_TOKEN.HTTP.USUARIO)
     private readonly httpServiceSecretaria: IUsuarioService,
     @Inject(SERVICES_TOKEN.SNACKBAR)
     private readonly snackbarManager: ISnackbarManagerService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   @Input() ingresso: Ingresso = {
@@ -85,11 +99,32 @@ export class IngressoFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  private checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    } else {
+      this.sidebarVisible = true;
+      this.mobileMenuOpen = false;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
   ngOnInit(): void {
     this.httpSubscriptions.push(
       this.httpServiceSecretaria
         .list()
         .subscribe((data) => (this.usuario = data))
+    );
+
+    this.checkScreenSize();
+
+    this.subscriptions.add(
+      this.authService.userRole$.subscribe((role) => (this.permissao = role))
     );
   }
 
@@ -99,5 +134,23 @@ export class IngressoFormComponent implements OnInit, OnDestroy {
 
   onBack() {
     this.router.navigate(['/home']);
+  }
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  closeSidebarOnMobile() {
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    }
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
   }
 }

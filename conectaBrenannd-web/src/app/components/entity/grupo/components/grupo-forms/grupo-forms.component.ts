@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  HostListener,
   Inject,
   Input,
   OnDestroy,
@@ -13,19 +14,23 @@ import { UsuarioService } from '../../../usuario/services/usuario.service';
 import { SnackbarManagerService } from '../../../../../service/ui/snackbar-manager.service';
 import { Subscription } from 'rxjs';
 import { ISnackbarManagerService } from '../../../../../service/ui/isnackbar-manager.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IUsuarioService } from '../../../usuario/services/iusuario.service';
 import { Grupo, TipoGrupo } from '../../models/grupo.models';
 import { Usuario } from '../../../usuario/models/usuario.models';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../../../../service/auth/auth.service';
 
 @Component({
   selector: 'app-grupo-forms',
-  imports: [CommonModule, FormsModule, MatIconModule],
+  imports: [CommonModule, FormsModule, MatIconModule, RouterLink],
   templateUrl: './grupo-forms.component.html',
-  styleUrl: './grupo-forms.component.scss',
+  styleUrls: [
+    './grupo-forms.component.scss',
+    './grupo-forms-visitante.component.scss',
+  ],
   providers: [
     { provide: SERVICES_TOKEN.HTTP.GRUPO, useClass: GrupoService },
     { provide: SERVICES_TOKEN.HTTP.USUARIO, useClass: UsuarioService },
@@ -39,12 +44,21 @@ export class GrupoFormsComponent implements OnInit, OnDestroy {
 
   usuario: Usuario[] = [];
 
+  sidebarVisible = true;
+  isMobile = false;
+
+  permissao: string | null = null;
+  isLoggedIn: boolean = false;
+  private subscriptions = new Subscription();
+  mobileMenuOpen = false;
+
   constructor(
     @Inject(SERVICES_TOKEN.HTTP.USUARIO)
     private readonly httpServiceSecretaria: IUsuarioService,
     @Inject(SERVICES_TOKEN.SNACKBAR)
     private readonly snackbarManager: ISnackbarManagerService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   @Input() grupo: Grupo = {
@@ -72,6 +86,12 @@ export class GrupoFormsComponent implements OnInit, OnDestroy {
         .list()
         .subscribe((data) => (this.usuario = data))
     );
+
+    this.checkScreenSize();
+
+    this.subscriptions.add(
+      this.authService.userRole$.subscribe((role) => (this.permissao = role))
+    );
   }
 
   ngOnDestroy(): void {
@@ -80,5 +100,38 @@ export class GrupoFormsComponent implements OnInit, OnDestroy {
 
   onBack() {
     this.router.navigate(['/grupos/homeGrupos']);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    } else {
+      this.sidebarVisible = true;
+      this.mobileMenuOpen = false;
+    }
+  }
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  closeSidebarOnMobile() {
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    }
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
   }
 }

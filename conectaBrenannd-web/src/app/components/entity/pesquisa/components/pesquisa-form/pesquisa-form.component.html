@@ -1,4 +1,4 @@
-<mat-card class="pesquisa-card">
+<mat-card *ngIf="permissao === 'ADMIN'" class="pesquisa-card">
   <h2 class="titulo">Cadastrar Pesquisa de Satisfação</h2>
 
   <form #formPesquisa="ngForm" (ngSubmit)="onSubmit()" class="pesquisa-form">
@@ -37,3 +37,107 @@
     </div>
   </form>
 </mat-card>
+
+<div *ngIf="permissao === 'VISITANTE'" class="user-container">
+  <header class="navbar navbar-expand-xl navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+
+      <a class="navbar-brand d-flex align-items-center gap-2" [routerLink]="'home'">
+        <span class="material-icons fs-1">park</span>
+        <strong>Parque Brennand</strong>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#visitorNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="visitorNavbar">
+        <ul class="navbar-nav mx-auto gap-md-3">
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/home'" routerLinkActive="active">
+              <span class="material-icons">home</span> Início
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/ingressos/meus'" routerLinkActive="active">
+              <span class="material-icons">confirmation_number</span> Ingressos
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/ingressos/new'" routerLinkActive="active">
+              <span class="material-icons">event_available</span> Agendar
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/grupos/homeGrupos'" routerLinkActive="active">
+              <span class="material-icons">groups</span> Grupos
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/comunicados/list'" routerLinkActive="active">
+              <span class="material-icons">campaign</span> Comunicados
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/pesquisas/new'" routerLinkActive="active">
+              <span class="material-icons">poll</span> Pesquisas
+            </a>
+          </li>
+
+        </ul>
+
+        <div class="d-flex">
+          <a class="btn btn-outline-danger d-flex align-items-center gap-1" [routerLink]="'/logout'">
+            <span class="material-icons">logout</span> Sair
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <mat-card style="margin-top: 140px;" *ngIf="permissao === 'VISITANTE'" class="pesquisa-card">
+    <h2 class="titulo">Cadastrar Pesquisa de Satisfação</h2>
+
+    <form #formPesquisa="ngForm" (ngSubmit)="onSubmit()" class="pesquisa-form">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput name="descricao" rows="4" required [(ngModel)]="pesquisa.descricao"
+          placeholder="Digite a descrição ou comentário da pesquisa"></textarea>
+        <mat-icon matSuffix>description</mat-icon>
+        <mat-error *ngIf="formPesquisa.submitted && !pesquisa.descricao">
+          A descrição é obrigatória
+        </mat-error>
+      </mat-form-field>
+
+      <div class="avaliacao-container">
+        <label class="label">Avaliação</label>
+        <div class="stars">
+          <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" (click)="pesquisa.estrelas = star"
+            [ngClass]="{ ativo: star <= pesquisa.estrelas }">
+            {{ star <= pesquisa.estrelas ? 'star' : 'star_border' }} </mat-icon>
+        </div>
+        <mat-error *ngIf="formPesquisa.submitted && pesquisa.estrelas === 0">
+          É necessário selecionar ao menos uma estrela
+        </mat-error>
+      </div>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit">
+          <mat-icon>save</mat-icon>
+          Salvar
+        </button>
+
+        <button mat-button color="warn" type="button" (click)="onBack()">
+          <mat-icon>arrow_back</mat-icon>
+          Voltar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

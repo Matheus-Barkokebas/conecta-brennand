@@ -1,9 +1,11 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -16,14 +18,30 @@ import { CommonModule } from '@angular/common';
     MatCardModule,
   ],
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss'],
+  styleUrls: [
+    './home-page.component.scss',
+    './home-page-visitante.component.scss',
+  ],
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
   sidebarVisible = true;
   isMobile = false;
 
+  permissao: string | null = null;
+  isLoggedIn: boolean = false;
+  private subscriptions = new Subscription();
+  mobileMenuOpen = false;
+
+  constructor(
+    private authService: AuthService
+  ) {}
+
   ngOnInit() {
     this.checkScreenSize();
+
+    this.subscriptions.add(
+      this.authService.userRole$.subscribe((role) => (this.permissao = role))
+    );
   }
 
   @HostListener('window:resize', ['$event'])
@@ -37,6 +55,7 @@ export class HomePageComponent {
       this.sidebarVisible = false;
     } else {
       this.sidebarVisible = true;
+      this.mobileMenuOpen = false;
     }
   }
 
@@ -50,11 +69,11 @@ export class HomePageComponent {
     }
   }
 
-  openSidebar() {
-    this.sidebarVisible = true;
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
   }
 
-  closeSidebar() {
-    this.sidebarVisible = false;
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
   }
 }

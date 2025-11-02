@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
+  HostListener,
   Inject,
   Input,
   Output,
@@ -25,7 +26,7 @@ import { Subscription } from 'rxjs';
 import { IDialogManagerService } from '../../../../../service/ui/idialog-manger.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../../../../service/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { YesNoDialogComponent } from '../../../../commons/yes-no-dialog/yes-no-dialog.component';
 
 @Component({
@@ -39,9 +40,13 @@ import { YesNoDialogComponent } from '../../../../commons/yes-no-dialog/yes-no-d
     MatChipsModule,
     MatTooltipModule,
     MatMenuModule,
+    RouterLink
   ],
   templateUrl: './comunicados-table.component.html',
-  styleUrl: './comunicados-table.component.scss',
+  styleUrls: [
+    './comunicados-table.component.scss',
+    './comunicados-table-visitante.component.scss',
+  ],
   providers: [
     { provide: SERVICES_TOKEN.DIALOG, useClass: DialogManagerService },
   ],
@@ -60,14 +65,43 @@ export class ComunicadosTableComponent {
 
   private dialogManagerServiceSubscriptions?: Subscription;
 
+  sidebarVisible = true;
+  isMobile = false;
+
+  permissao: string | null = null;
+  isLoggedIn: boolean = false;
+  private subscriptions = new Subscription();
+  mobileMenuOpen = false;
+
   constructor(
     @Inject(SERVICES_TOKEN.DIALOG)
     private readonly dialogManagerService: IDialogManagerService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.updatePaginatedComunicados();
+    this.checkScreenSize();
+
+    this.subscriptions.add(
+      this.authService.userRole$.subscribe((role) => (this.permissao = role))
+    );
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    } else {
+      this.sidebarVisible = true;
+      this.mobileMenuOpen = false;
+    }
   }
 
   ngOnDestroy(): void {
@@ -111,5 +145,23 @@ export class ComunicadosTableComponent {
 
   onBack() {
     this.router.navigate(['/home']);
+  }
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  closeSidebarOnMobile() {
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    }
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
   }
 }

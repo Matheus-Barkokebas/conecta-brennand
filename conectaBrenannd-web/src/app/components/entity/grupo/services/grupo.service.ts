@@ -36,10 +36,4 @@ export class GrupoService implements IGrupoService {
   listByUser(): Observable<Grupo[]> {
     return this.http.get<Grupo[]>(`${this.basePath}grupos/meus`);
   }
-
-  /*
-  findMyGrupoById(id: number): Observable<Grupo> {
-    return this.http.get<Grupo>(`${this.basePath}grupos/meus/${id}`);
-  }
-  */
 }

@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +20,7 @@ import { Grupo } from '../../models/grupo.models';
 import { Subscription } from 'rxjs';
 import { IDialogManagerService } from '../../../../../service/ui/idialog-manger.service';
 import { YesNoDialogComponent } from '../../../../commons/yes-no-dialog/yes-no-dialog.component';
+import { AuthService } from '../../../../../service/auth/auth.service';
 
 @Component({
   selector: 'app-grupo-table',
@@ -26,12 +35,15 @@ import { YesNoDialogComponent } from '../../../../commons/yes-no-dialog/yes-no-d
     RouterLink,
   ],
   templateUrl: './grupo-table.component.html',
-  styleUrl: './grupo-table.component.scss',
+  styleUrls: [
+    './grupo-table.component.scss',
+    './grupo-table-visitante.component.scss',
+  ],
   providers: [
     { provide: SERVICES_TOKEN.DIALOG, useClass: DialogManagerService },
   ],
 })
-export class GrupoTableComponent {
+export class GrupoTableComponent implements OnInit {
   @Input() grupos: Grupo[] = [];
   @Output() onConfirmDelete = new EventEmitter<Grupo>();
   @Output() onRequestUpdate = new EventEmitter<Grupo>();
@@ -46,11 +58,28 @@ export class GrupoTableComponent {
 
   private dialogManagerServiceSubscriptions?: Subscription;
 
+  sidebarVisible = true;
+  isMobile = false;
+
+  permissao: string | null = null;
+  isLoggedIn: boolean = false;
+  private subscriptions = new Subscription();
+  mobileMenuOpen = false;
+
   constructor(
     @Inject(SERVICES_TOKEN.DIALOG)
     private readonly dialogManagerService: IDialogManagerService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
+
+  ngOnInit() {
+    this.checkScreenSize();
+
+    this.subscriptions.add(
+      this.authService.userRole$.subscribe((role) => (this.permissao = role))
+    );
+  }
 
   ngOnDestroy(): void {
     this.dialogManagerServiceSubscriptions?.unsubscribe();
@@ -74,6 +103,39 @@ export class GrupoTableComponent {
   }
 
   onBack() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/grupos/homeGrupos']);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    } else {
+      this.sidebarVisible = true;
+      this.mobileMenuOpen = false;
+    }
+  }
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  closeSidebarOnMobile() {
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    }
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
   }
 }

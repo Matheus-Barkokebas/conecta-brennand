@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  HostListener,
   Inject,
   Input,
   Output,
@@ -18,7 +19,7 @@ import {
 } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { Subscription } from 'rxjs';
 
 import { Ingresso, StatusIngresso } from '../../models/ingresso.models';
@@ -27,7 +28,7 @@ import { IDialogManagerService } from '../../../../../service/ui/idialog-manger.
 import { AuthService } from '../../../../../service/auth/auth.service';
 import { YesNoDialogComponent } from '../../../../commons/yes-no-dialog/yes-no-dialog.component';
 import { DialogManagerService } from '../../../../../service/ui/dialog-manager.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-ingresso-table',
@@ -41,9 +42,13 @@ import { Router } from '@angular/router';
     MatChipsModule,
     MatTooltipModule,
     MatMenuModule,
+    RouterLink,
   ],
   templateUrl: './ingresso-table.component.html',
-  styleUrl: './ingresso-table.component.scss',
+  styleUrls: [
+    './ingresso-table.component.scss',
+    './ingresso-table-visitante.component.scss',
+  ],
   providers: [
     { provide: SERVICES_TOKEN.DIALOG, useClass: DialogManagerService },
   ],
@@ -60,16 +65,45 @@ export class IngressoTableComponent {
   paginatedIngressos: Ingresso[] = [];
   currentPage = 0;
 
+  mobileMenuOpen = false;
+  permissao: string | null = null;
+  isLoggedIn: boolean = false;
+  private subscriptions = new Subscription();
+  sidebarVisible = true;
+  isMobile = false;
+
   private dialogManagerServiceSubscriptions?: Subscription;
 
   constructor(
     @Inject(SERVICES_TOKEN.DIALOG)
     private readonly dialogManagerService: IDialogManagerService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.updatePaginatedIngressos();
+
+    this.checkScreenSize();
+
+    this.subscriptions.add(
+      this.authService.userRole$.subscribe((role) => (this.permissao = role))
+    );
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    } else {
+      this.sidebarVisible = true;
+      this.mobileMenuOpen = false;
+    }
   }
 
   ngOnDestroy(): void {
@@ -118,5 +152,23 @@ export class IngressoTableComponent {
 
   onBack() {
     this.router.navigate(['/home']);
+  }
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  closeSidebarOnMobile() {
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    }
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
   }
 }

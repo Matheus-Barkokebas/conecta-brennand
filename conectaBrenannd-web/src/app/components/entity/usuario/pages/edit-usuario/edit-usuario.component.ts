@@ -34,7 +34,7 @@ export class EditUsuarioComponent implements OnInit, OnDestroy {
     cidade: '',
     estado: '',
     cep: '',
-    permissao: Permissoes.USUARIO,
+    permissao: Permissoes.VISITANTE,
   };
 
   constructor(

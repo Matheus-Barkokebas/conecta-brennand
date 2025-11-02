@@ -1,51 +1,175 @@
-<button mat-icon-button class="back-button" (click)="onBack()"> <mat-icon>arrow_back</mat-icon> </button>
-<div class="elegant-table-container" *ngIf="grupos?.length; else noData">
-  <h2>Lista de Grupos</h2>
+<button *ngIf="permissao === 'ADMIN'" mat-icon-button class="back-button" (click)="onBack()">
+  <mat-icon>arrow_back</mat-icon> </button>
+<div *ngIf="permissao === 'ADMIN'">
+  <div class="elegant-table-container" *ngIf="grupos?.length; else noData">
+    <h2>Lista de Grupos</h2>
 
-  <table mat-table [dataSource]="grupos" class="elegant-table mat-elevation-z2">
+    <table mat-table [dataSource]="grupos" class="elegant-table mat-elevation-z2">
 
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef class="table-header"> ID </th>
-      <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.id }}</td>
-    </ng-container>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef class="table-header"> ID </th>
+        <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.id }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="nome">
-      <th mat-header-cell *matHeaderCellDef class="table-header"> Nome </th>
-      <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.nome }}</td>
-    </ng-container>
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef class="table-header"> Nome </th>
+        <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.nome }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="tipoGrupo">
-      <th mat-header-cell *matHeaderCellDef class="table-header"> Tipo </th>
-      <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.tipoGrupo }}</td>
-    </ng-container>
+      <ng-container matColumnDef="tipoGrupo">
+        <th mat-header-cell *matHeaderCellDef class="table-header"> Tipo </th>
+        <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.tipoGrupo }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="usuario">
-      <th mat-header-cell *matHeaderCellDef class="table-header"> Usuário </th>
-      <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.usuario?.nome || '-' }}</td>
-    </ng-container>
+      <ng-container matColumnDef="usuario">
+        <th mat-header-cell *matHeaderCellDef class="table-header"> Usuário </th>
+        <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.usuario?.nome || '-' }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef class="table-header actions-header"> Ações </th>
-      <td mat-cell *matCellDef="let grupo" class="table-cell actions-cell">
-        <button mat-icon-button class="edit-button" [routerLink]="'/dependentes/new'" matTooltip="Adicionar dependente">
-          <mat-icon>add</mat-icon>
-        </button>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="table-header actions-header"> Ações </th>
+        <td mat-cell *matCellDef="let grupo" class="table-cell actions-cell">
+          <button mat-icon-button class="edit-button" [routerLink]="'/dependentes/new'"
+            matTooltip="Adicionar dependente">
+            <mat-icon>add</mat-icon>
+          </button>
 
-        <button mat-icon-button class="edit-button" (click)="update(grupo)" matTooltip="Editar grupo">
-          <mat-icon>edit</mat-icon>
-        </button>
+          <button mat-icon-button class="edit-button" (click)="update(grupo)" matTooltip="Editar grupo">
+            <mat-icon>edit</mat-icon>
+          </button>
 
-        <button mat-icon-button class="delete-button" (click)="delete(grupo)" matTooltip="Excluir grupo">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+          <button mat-icon-button class="delete-button" (click)="delete(grupo)" matTooltip="Excluir grupo">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns" class="data-row"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" class="data-row"></tr>
+    </table>
+  </div>
 </div>
 
 <ng-template #noData>
   <p class="empty-message">Nenhum grupo cadastrado.</p>
 </ng-template>
+
+<div style="margin-top: 180px;">
+  <button style="margin-top: 80px;" mat-icon-button class="back-button" (click)="onBack()"> <mat-icon>arrow_back</mat-icon> </button>
+  <div *ngIf="permissao === 'VISITANTE'" class="user-container">
+    <header class="navbar navbar-expand-xl navbar-light bg-white shadow-sm fixed-top">
+      <div class="container">
+
+        <a class="navbar-brand d-flex align-items-center gap-2" [routerLink]="'home'">
+          <span class="material-icons fs-1">park</span>
+          <strong>Parque Brennand</strong>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#visitorNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="visitorNavbar">
+          <ul class="navbar-nav mx-auto gap-md-3">
+
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="'/home'" routerLinkActive="active">
+                <span class="material-icons">home</span> Início
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="'/ingressos/meus'" routerLinkActive="active">
+                <span class="material-icons">confirmation_number</span> Ingressos
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="'/ingressos/new'" routerLinkActive="active">
+                <span class="material-icons">event_available</span> Agendar
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="'/grupos/homeGrupos'" routerLinkActive="active">
+                <span class="material-icons">groups</span> Grupos
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="'/comunicados/list'" routerLinkActive="active">
+                <span class="material-icons">campaign</span> Comunicados
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="'/pesquisas/new'" routerLinkActive="active">
+                <span class="material-icons">poll</span> Pesquisas
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="d-flex">
+            <a class="btn btn-outline-danger d-flex align-items-center gap-1" [routerLink]="'/logout'">
+              <span class="material-icons">logout</span> Sair
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div *ngIf="permissao === 'VISITANTE'">
+      <div class="elegant-table-container" *ngIf="grupos?.length; else noData">
+        <h2>Lista de Grupos</h2>
+
+        <table mat-table [dataSource]="grupos" class="elegant-table mat-elevation-z2">
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef class="table-header"> ID </th>
+            <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.id }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef class="table-header"> Nome </th>
+            <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.nome }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="tipoGrupo">
+            <th mat-header-cell *matHeaderCellDef class="table-header"> Tipo </th>
+            <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.tipoGrupo }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="usuario">
+            <th mat-header-cell *matHeaderCellDef class="table-header"> Usuário </th>
+            <td mat-cell *matCellDef="let grupo" class="table-cell">{{ grupo.usuario?.nome || '-' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="table-header actions-header"> Ações </th>
+            <td mat-cell *matCellDef="let grupo" class="table-cell actions-cell">
+              <button mat-icon-button class="edit-button" [routerLink]="'/dependentes/new'"
+                matTooltip="Adicionar dependente">
+                <mat-icon>add</mat-icon>
+              </button>
+
+              <button mat-icon-button class="edit-button" (click)="update(grupo)" matTooltip="Editar grupo">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button mat-icon-button class="delete-button" (click)="delete(grupo)" matTooltip="Excluir grupo">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns" class="data-row"></tr>
+        </table>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <p class="empty-message">Nenhum grupo cadastrado.</p>
+    </ng-template>
+  </div>
+</div>
