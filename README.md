@@ -51,6 +51,8 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 
 ![banner](arq_readme/imgs/bugIssue.jpg)
 
+# Entrega 4
+
 ## 👥 Equipe
 
 ### Matheus Barkokebas  
