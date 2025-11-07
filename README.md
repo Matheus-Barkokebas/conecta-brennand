@@ -53,9 +53,11 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 
 # Entrega 4
 
-<a href="" target="_blank">📌 Link do Screencast para Entrega 3 (Youtube)</a>
+<a href="" target="_blank">📌 Link do Screencast para Entrega 4 (Youtube)</a>
 
 <a href="" target="_blank">📌 Link para os Teste Automatizados (Youtube)</a>
+
+<a href="https://github.com/Matheus-Barkokebas/conecta-brennand/wiki/Conecta-Brennand-%E2%80%94-Guia-de-Instala%C3%A7%C3%A3o" target="_blank">📌 Link da documentação para montar o ambiente </a> ( WIKI feita no github )
 
 <a href="https://trello.com/b/XQcU1FLY/conecta-brennand" target="_blank">📌 Link do Bug tracker (Trello)</a> (Bug tracker presente em forma de lista e cartão)
 
@@ -64,8 +66,6 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 <a href="https://github.com/Matheus-Barkokebas/conecta-brennand/issues" target="_blank">📌 Link do issues github</a> (Bug tracker no github, servindo para revisão grupal do código em caso de correção de bugs)
 
 ![banner](arq_readme/imgs/bugIssue.jpg)
-
-<a href="https://github.com/Matheus-Barkokebas/conecta-brennand/wiki/Conecta-Brennand-%E2%80%94-Guia-de-Instala%C3%A7%C3%A3o" target="_blank">📌 Link da documentação para montar o ambiente </a> ( WIKI feita no github )
 
 ## 👥 Equipe
 
