@@ -225,7 +225,9 @@
   </main>
 </div>
 
-<div *ngIf="permissao === 'VISITANTE'" class="user-container">
+
+<!-- parte da rota publica -->
+<div *ngIf="permissao != 'ADMIN'" class="user-container">
   <header class="navbar navbar-expand-xl navbar-light bg-white shadow-sm fixed-top">
     <div class="container">
 
@@ -248,19 +250,19 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/ingressos/meus'" routerLinkActive="active">
+            <a class="nav-link" (click)="goToProtectedRoute('/ingressos/meus')" routerLinkActive="active">
               <span class="material-icons">confirmation_number</span> Ingressos
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/ingressos/new'" routerLinkActive="active">
+            <a class="nav-link" (click)="goToProtectedRoute('/ingressos/new')" routerLinkActive="active">
               <span class="material-icons">event_available</span> Agendar
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/grupos/homeGrupos'" routerLinkActive="active">
+            <a class="nav-link" (click)="goToProtectedRoute('/grupos/homeGrupos')" routerLinkActive="active">
               <span class="material-icons">groups</span> Grupos
             </a>
           </li>
@@ -272,7 +274,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/pesquisas/new'" routerLinkActive="active">
+            <a class="nav-link" (click)="goToProtectedRoute('/pesquisas/new')" routerLinkActive="active">
               <span class="material-icons">poll</span> Pesquisas
             </a>
           </li>

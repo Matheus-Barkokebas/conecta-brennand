@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -32,9 +32,7 @@ export class HomePageComponent implements OnInit {
   private subscriptions = new Subscription();
   mobileMenuOpen = false;
 
-  constructor(
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.checkScreenSize();
@@ -42,6 +40,20 @@ export class HomePageComponent implements OnInit {
     this.subscriptions.add(
       this.authService.userRole$.subscribe((role) => (this.permissao = role))
     );
+
+    this.subscriptions.add(
+      this.authService.isLoggedIn$.subscribe(
+        (status) => (this.isLoggedIn = status)
+      )
+    );
+  }
+
+  goToProtectedRoute(route: string) {
+    if (!this.isLoggedIn) {
+      this.router.navigate(['/login'], { queryParams: { redirectTo: route } });
+      return;
+    }
+    this.router.navigate([route]);
   }
 
   @HostListener('window:resize', ['$event'])

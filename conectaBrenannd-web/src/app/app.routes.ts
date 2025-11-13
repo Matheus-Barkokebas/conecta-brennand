@@ -3,7 +3,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   {
     path: '',
