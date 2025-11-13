@@ -55,7 +55,7 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 
 <a href="" target="_blank">📌 Link do Screencast para Entrega 4 (Youtube)</a>
 
-<a href="" target="_blank">📌 Link para os Teste Automatizados (Youtube)</a>
+<a href="https://www.youtube.com/watch?v=nHs6MBy5Ilg" target="_blank">📌 Link para os Teste Automatizados (Youtube)</a>
 
 <a href="https://github.com/Matheus-Barkokebas/conecta-brennand/wiki/Conecta-Brennand-%E2%80%94-Guia-de-Instala%C3%A7%C3%A3o" target="_blank">📌 Link da documentação para montar o ambiente </a> ( WIKI feita no github )
 
