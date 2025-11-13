@@ -95,13 +95,19 @@ class PesquisaServiceTest {
 		novaPesquisa.setDescricao(null);
 		novaPesquisa.setEstrelas(4);
 
+		Pesquisa pesquisaComNula = new Pesquisa();
+		pesquisaComNula.setId(1L);
+		pesquisaComNula.setDescricao(null);
+		pesquisaComNula.setEstrelas(4);
+		pesquisaComNula.setUsuario(usuario);
+
 		UserDetailsImpl userDetails = new UserDetailsImpl(1L, "joao", "joao@example.com", "senha123", "123.456.789-00", null);
 
 		SecurityContextHolder.setContext(securityContext);
 		when(securityContext.getAuthentication()).thenReturn(authentication);
 		when(authentication.getPrincipal()).thenReturn(userDetails);
 		when(usuarioQueryService.findById(1L)).thenReturn(usuario);
-		when(pesquisaRepository.save(any(Pesquisa.class))).thenReturn(pesquisa);
+		when(pesquisaRepository.save(any(Pesquisa.class))).thenReturn(pesquisaComNula);
 
 		// Act
 		Pesquisa resultado = pesquisaService.save(novaPesquisa);

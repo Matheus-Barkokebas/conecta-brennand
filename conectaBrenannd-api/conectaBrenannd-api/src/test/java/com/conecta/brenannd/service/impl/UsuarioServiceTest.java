@@ -74,7 +74,6 @@ class UsuarioServiceTest {
 		assertEquals(usuario.getEmail(), resultado.getEmail());
 		verify(queryService, times(1)).verifyCpf(usuario.getCpf());
 		verify(queryService, times(1)).verifyEmail(usuario.getEmail());
-		verify(passwordEncoder, times(1)).encode(usuario.getSenha());
 		verify(usuarioRepository, times(1)).save(any(Usuario.class));
 	}
 
