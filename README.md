@@ -53,7 +53,7 @@ O Conecta Brennand é um projeto acadêmico criado por estudantes de Sistemas de
 
 # Entrega 4
 
-<a href="" target="_blank">📌 Link do Screencast para Entrega 4 (Youtube)</a>
+<a href="https://www.youtube.com/watch?v=Q50Ur4DfwRY" target="_blank">📌 Link do Screencast para Entrega 4 (Youtube)</a>
 
 <a href="https://www.youtube.com/watch?v=nHs6MBy5Ilg" target="_blank">📌 Link para os Teste Automatizados (Youtube)</a>
 
