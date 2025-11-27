@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../service/auth/auth.service';
+import { Grupo } from '../entity/grupo/models/grupo.models';
+import { GrupoService } from '../entity/grupo/services/grupo.service';
 
 @Component({
   selector: 'app-home-page',
@@ -32,7 +34,13 @@ export class HomePageComponent implements OnInit {
   private subscriptions = new Subscription();
   mobileMenuOpen = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  grupo: Grupo[] = [];
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private grupoService: GrupoService
+  ) {}
 
   ngOnInit() {
     this.checkScreenSize();
@@ -46,6 +54,10 @@ export class HomePageComponent implements OnInit {
         (status) => (this.isLoggedIn = status)
       )
     );
+  }
+
+  getTotalGrupos(): number {
+    return this.grupo.length;
   }
 
   goToProtectedRoute(route: string) {

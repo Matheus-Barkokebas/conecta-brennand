@@ -43,7 +43,7 @@ public class WebSecurityConfig {
 		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.configurationSource(corsConfigurationSource()))
 				.exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**", "/api/test/**").permitAll()
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**", "/api/test/**", "/comunicadosPublicos/**").permitAll()
 						.requestMatchers(HttpMethod.POST, "/usuarios").permitAll().anyRequest().authenticated())
 				.authenticationProvider(authenticationProvider())
 				.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);

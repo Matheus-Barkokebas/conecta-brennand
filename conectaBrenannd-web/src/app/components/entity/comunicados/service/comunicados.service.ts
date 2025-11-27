@@ -29,7 +29,7 @@ export class ComunicadosService implements IComunicadosService {
   }
 
   list(): Observable<Comunicados[]> {
-    return this.http.get<Comunicados[]>(`${this.basePath}comunicados`);
+    return this.http.get<Comunicados[]>(`${this.basePath}comunicadosPublicos`);
   }
 
   findByID(id: number): Observable<Comunicados> {

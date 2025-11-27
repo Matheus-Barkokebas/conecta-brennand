@@ -6,15 +6,6 @@
       </button>
       <h1 class="header-title">Painel Administrativo</h1>
     </div>
-    <div class="header-right">
-      <button mat-icon-button class="header-action">
-        <mat-icon>notifications</mat-icon>
-        <span class="notification-badge">3</span>
-      </button>
-      <button mat-icon-button class="header-action">
-        <mat-icon>account_circle</mat-icon>
-      </button>
-    </div>
   </header>
 
   <aside class="sidebar" [class.sidebar-hidden]="!sidebarVisible">
@@ -87,10 +78,6 @@
             <h3 class="metric-value">1,248</h3>
             <p class="metric-label">Ingressos Hoje</p>
           </div>
-          <div class="metric-trend positive">
-            <mat-icon>trending_up</mat-icon>
-            <span>12%</span>
-          </div>
         </div>
 
         <div class="metric-card">
@@ -98,26 +85,8 @@
             <mat-icon>groups</mat-icon>
           </div>
           <div class="metric-info">
-            <h3 class="metric-value">324</h3>
+            <h3 class="metric-value">{{ getTotalGrupos() }}</h3>
             <p class="metric-label">Grupos Ativos</p>
-          </div>
-          <div class="metric-trend positive">
-            <mat-icon>trending_up</mat-icon>
-            <span>5%</span>
-          </div>
-        </div>
-
-        <div class="metric-card">
-          <div class="metric-icon">
-            <mat-icon>event_available</mat-icon>
-          </div>
-          <div class="metric-info">
-            <h3 class="metric-value">87%</h3>
-            <p class="metric-label">Capacidade</p>
-          </div>
-          <div class="metric-trend negative">
-            <mat-icon>trending_down</mat-icon>
-            <span>3%</span>
           </div>
         </div>
 
@@ -126,12 +95,8 @@
             <mat-icon>attach_money</mat-icon>
           </div>
           <div class="metric-info">
-            <h3 class="metric-value">R$ 24,580</h3>
+            <h3 class="metric-value">R$ 0</h3>
             <p class="metric-label">Receita do Dia</p>
-          </div>
-          <div class="metric-trend positive">
-            <mat-icon>trending_up</mat-icon>
-            <span>8%</span>
           </div>
         </div>
       </div>
@@ -171,55 +136,6 @@
           <h3>Gerar Relatório</h3>
           <p>Relatórios personalizados</p>
         </button>
-      </div>
-    </section>
-
-    <section class="recent-activities-section">
-      <div class="activities-header">
-        <h2 class="section-title">Atividades Recentes</h2>
-        <button mat-stroked-button>Ver Tudo</button>
-      </div>
-
-      <div class="activities-list">
-        <div class="activity-item">
-          <div class="activity-icon success">
-            <mat-icon>check_circle</mat-icon>
-          </div>
-          <div class="activity-details">
-            <p class="activity-description">Ingresso #4587 validado com sucesso</p>
-            <span class="activity-time">Há 5 minutos</span>
-          </div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-icon warning">
-            <mat-icon>warning</mat-icon>
-          </div>
-          <div class="activity-details">
-            <p class="activity-description">Grupo "Escola Municipal" cancelou visita</p>
-            <span class="activity-time">Há 1 hora</span>
-          </div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-icon info">
-            <mat-icon>info</mat-icon>
-          </div>
-          <div class="activity-details">
-            <p class="activity-description">Novo comunicado publicado</p>
-            <span class="activity-time">Há 2 horas</span>
-          </div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-icon success">
-            <mat-icon>payments</mat-icon>
-          </div>
-          <div class="activity-details">
-            <p class="activity-description">Pagamento de R$ 1.250,00 confirmado</p>
-            <span class="activity-time">Há 3 horas</span>
-          </div>
-        </div>
       </div>
     </section>
   </main>
